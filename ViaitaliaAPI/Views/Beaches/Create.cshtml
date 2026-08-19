@@ -1,0 +1,128 @@
+﻿@model ViaitaliaAPI.Models.Beach
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create New Beach</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="CityId" class="control-label">City</label>
+                <select asp-for="CityId" class="form-control" asp-items="ViewBag.CityId">
+                    <option value="">-- Select City --</option>
+                </select>
+                <span asp-validation-for="CityId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="BeachName" class="control-label"></label>
+                <input asp-for="BeachName" class="form-control" />
+                <span asp-validation-for="BeachName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Region" class="control-label"></label>
+                <input asp-for="Region" class="form-control" />
+                <span asp-validation-for="Region" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Latitude" class="control-label"></label>
+                <input asp-for="Latitude" class="form-control" />
+                <span asp-validation-for="Latitude" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Longitude" class="control-label"></label>
+                <input asp-for="Longitude" class="form-control" />
+                <span asp-validation-for="Longitude" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="WaterBodyType" class="control-label"></label>
+                <input asp-for="WaterBodyType" class="form-control" />
+                <span asp-validation-for="WaterBodyType" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="WaterBodyName" class="control-label"></label>
+                <input asp-for="WaterBodyName" class="form-control" />
+                <span asp-validation-for="WaterBodyName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="BeachType" class="control-label"></label>
+                <input asp-for="BeachType" class="form-control" />
+                <span asp-validation-for="BeachType" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="KindOfBeach" class="control-label"></label>
+                <input asp-for="KindOfBeach" class="form-control" />
+                <span asp-validation-for="KindOfBeach" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="BlueFlag" class="control-label"></label>
+                <input asp-for="BlueFlag" class="form-control" />
+                <span asp-validation-for="BlueFlag" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PopularityScore" class="control-label"></label>
+                <input asp-for="PopularityScore" class="form-control" />
+                <span asp-validation-for="PopularityScore" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Facilities" class="control-label"></label>
+                <input asp-for="Facilities" class="form-control" />
+                <span asp-validation-for="Facilities" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Accessibility" class="control-label"></label>
+                <input asp-for="Accessibility" class="form-control" />
+                <span asp-validation-for="Accessibility" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="BestMonths" class="control-label"></label>
+                <input asp-for="BestMonths" class="form-control" />
+                <span asp-validation-for="BestMonths" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Tag" class="control-label"></label>
+                <input asp-for="Tag" class="form-control" />
+                <span asp-validation-for="Tag" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="imageFile" class="control-label">Image</label>
+                <input type="file" name="imageFile" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary ml-2">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

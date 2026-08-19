@@ -1,0 +1,225 @@
+@{
+    ViewData["Title"] = "Blog";
+    Layout = null; // uses your common layout
+}
+
+<!-- Page-specific CSS -->
+<link rel="stylesheet" href="~/css/Blog.css?v=1" />
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=ADLaM+Display:wght@400&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Lemon&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lugrasimo:ital@1&display=swap" rel="stylesheet">
+
+<!-- Navigation -->
+<div class="nav section" data-layer="nav section">
+    <div class="Home" data-layer="Home"><a asp-controller="Home" asp-action="Index">Home</a></div>
+    <div class="Blog" data-layer="Blog"><a asp-controller="Pages" asp-action="Blog">Blog</a></div>
+    <div class="AboutUs" data-layer="About us"><a asp-controller="Pages" asp-action="Aboutus">About us</a></div>
+    <div class="ContactUs" data-layer="Contact us"><a asp-controller="Pages" asp-action="Contactus">Contact us</a></div>
+    <div class="PrivacyPolicy" data-layer="Privacy Policy"><a asp-controller="Pages" asp-action="PrivacyPolicy">Privacy Policy</a></div>
+
+    <div class="Rectangle47" data-layer="Rectangle 47"></div>
+    <div class="SignIn" data-layer="Sign in"><a asp-controller="Auth" asp-action="Login">Sign in</a></div>
+    <div class="Line13" data-layer="Line 13"></div>
+    <img class="ViaitaliaTealBlueComboLogo1"
+         data-layer="ViaItalia teal + blue combo logo 1"
+         src="~/images/ViaItalia teal + blue combo logo.png" alt="Logo" />
+
+    <!-- Active nav indicator -->
+    <div class="Rectangle59" data-layer="Rectangle 59"></div>
+</div>
+
+
+
+<!-- Hero Section -->
+<main class="hero-container">
+    <img src="~/images/blog img 1.jpg" alt="" class="hero-image-left" />
+
+    <section class="hero-quote">
+        <blockquote>
+            "Every road leads to a story — welcome to ViaItalia, where your
+            journey into the heart of Italy begins. From sunlit coastlines to
+            hidden hilltop villages, we guide you to experiences that linger
+            long after the trip ends."
+        </blockquote>
+    </section>
+
+    <h1 class="viaitalia-title">ViaItalia</h1>
+
+    <section class="hero-description">
+        <p>
+            Italy isn't just a destination — it's a feeling, a rhythm, a way of
+            life. From the scent of fresh basil in a bustling market to the
+            golden light spilling over centuries-old piazzas, every moment here
+            tells a story. At the ViaItalia Blog, you'll uncover those stories,
+            hidden secrets, and soul-stirring inspiration that go beyond the
+            guidebooks — bringing the true essence of Italy straight to your
+            screen.
+        </p>
+    </section>
+
+    <img src="~/images/Sorrento, italy.jpg" alt="" class="hero-image-right" />
+</main>
+
+<!-- Blog Hero Section -->
+<section class="blog-hero">
+    <h1 class="blog-title">
+        <span class="text-black">Welcome to the </span>
+        <span class="text-teal">ViaItalia </span>
+        <span class="text-black">Blog</span>
+    </h1>
+    <h2 class="blog-subtitle">
+        Inspiration. Insights. Your Personal Travel Companion.
+    </h2>
+    <p class="blog-description">
+        Your ultimate gateway to everything Italy has to offer! Whether you're
+        dreaming of wandering through the romantic, cobblestone streets of
+        Florence surrounded by Renaissance art, sailing along the breathtaking
+        Amalfi Coast with the sun warming your face and the sea breeze in your
+        hair, or savoring every bite of a perfectly baked, authentic
+        Neapolitan pizza in the heart of Naples — we bring Italy closer to
+        you. From hidden village gems and local traditions to must-visit
+        landmarks and insider travel tips, ViaItalia is your companion for
+        discovering the beauty, culture, history, and flavors of the Bel
+        Paese.
+    </p>
+</section>
+
+<!-- Destination Section -->
+<section class="destination-section">
+    <header class="section-header">What You'll Find Here:</header>
+    <div class="destination-container">
+        <div class="destination-image">
+            <img src="~/images/Image1.png" alt="Italian destination landscape">
+        </div>
+        <article class="destination-content">
+            <div class="destination-text">
+                <h2 class="destination-heading">Destination Deep-Dives</h2>
+                <p class="destination-description">
+                   Explore Italy city by city, uncovering both its world-famous attractions and its hidden treasures. 
+          Stroll through the timeless charm of Rome, where ancient ruins meet vibrant piazzas. 
+          Get lost in the romantic canals of Venice, discovering quiet corners far from the tourist crowds. 
+          Marvel at the Renaissance masterpieces in Florence, then venture into the Tuscan countryside 
+          dotted with vineyards and medieval hill towns. From the glittering Amalfi Coast and the pastel-hued 
+          villages of Cinque Terre to Sicily's sun-kissed beaches and Bari's authentic southern soul — 
+          our deep dives bring you insider guides, cultural stories, local tips, and breathtaking photography. 
+          Whether it's a bustling metropolis or a tucked-away village, we'll show you every side of Italy.
+                </p>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- Culture Section -->
+<section class="culture-section">
+    <div class="culture-container">
+        <div class="culture-content">
+            <h1>Culture, Cuisine &amp; Local Life</h1>
+            <p>
+                 Immerse yourself in the heart and soul of Italy, where every region tells its own story through flavors, customs, and celebrations. Savor the bold taste of espresso in a bustling Roman café, indulge in creamy gelato under the Tuscan sun, or share a plate of fresh seafood along the Sicilian coast. Discover time-honored traditions like the Palio horse race in Siena, the colorful Carnival of Venice, and the grape harvest festivals that fill the countryside with music and laughter. Learn the subtle differences between northern and southern cooking, from the rich risottos of Lombardy to the fiery pasta dishes of Calabria. Through our stories, you'll meet the artisans, farmers, and chefs who keep Italy's heritage alive — giving you a glimpse into everyday life that goes far beyond the tourist trail.
+            </p>
+        </div>
+        <div class="culture-image">
+            <img src="~/images/image2.png" alt="Italian culture and cuisine" />
+        </div>
+    </div>
+</section>
+
+<!-- Travel Tips Section -->
+<section class="travel-tips-section">
+    <img src="~/images/image3.png" alt="Italian travel destination" class="travel-hero-image" />
+    <header class="travel-title"><h1>Smart Travel Tips</h1></header>
+    <article class="travel-description">
+        <p>
+            Make the most of your Italian adventure with practical, insider advice
+      tailored to your needs. From budget-friendly itineraries that let you
+      experience Rome's wonders without overspending, to luxury escapes along
+      Lake Como, we help you plan smarter so you can travel stress-free. Find
+      companion-based suggestions whether you're exploring solo, on a romantic
+      getaway, or traveling with family — complete with recommendations for
+      activities, accommodations, and dining to suit every travel style. Learn
+      the best times to visit each region, from spring wildflowers in Tuscany to
+      winter magic in the Dolomites, and how to avoid peak tourist crowds. We'll
+      guide you through transportation options, language tips, packing
+      essentials, and local etiquette so you can blend in like a true Italian.
+      With our seasonal and situation-specific insights, you'll save time,
+      money, and energy while creating unforgettable memories.
+        </p>
+    </article>
+</section>
+
+<!-- Travel Inspiration -->
+<section class="travel-inspiration">
+    <img src="~/images/image4.png" alt="Travel destination scenic view" class="travel-hero" />
+    <header class="travel-Inspiration-title"><h1>Travel Inspirations for Every Journey</h1></header>
+    <article class="travel-inspiration-description">
+        <p>
+           Whether you're dreaming of a candlelit dinner in a Tuscan vineyard, a
+      laughter-filled family road trip through the rolling hills of Umbria, a
+      soul-searching solo adventure among the ancient ruins of Pompeii, or a
+      slow-paced holiday basking on Sardinia's golden beaches — we've got
+      ideas to fuel your wanderlust. Our inspiration guides bring you tailored
+      suggestions for every type of traveler, complete with hidden-gem
+      destinations, activity recommendations, and must-try local experiences.
+      From weekend escapes to once-in-a-lifetime vacations, you'll find
+      stories, itineraries, and tips that match your travel style and help you
+      create memories you'll cherish forever.
+        </p>
+    </article>
+</section>
+
+<!-- Why Read Blog -->
+<div class="Frame100">
+    <div class="Vector2">
+        <img src="~/images/Vector 2.png" alt="Background Vector Image" class="Vector2"/>
+    </div>
+    <div class="WhyReadOurBlog">Why Read Our Blog?</div>
+    <div class="BlogDescription">
+        Because <span class="ViaItalia">ViaItalia</span> isn't just about booking — it’s about crafting an experience that feels uniquely yours. We believe every journey should tell a story, and this blog is where that story begins.<br>
+      Here, you’ll find handpicked ideas that match your travel style, insider insights from locals, and inspiration drawn from real adventures across Italy. Whether you want to wander beyond the guidebook, uncover secret spots that only residents know, or plan a trip around your passions — food, art, history, nature, or relaxation — we help you design it. Think of our blog as your personal travel companion: one that not only shows you where to go, but why to go, when to go, and how to make every moment unforgettable.
+    </div>
+</div>
+
+<div class="Frame101">
+    <div class="Rectangle121"></div>
+    <div class="SoGrabYourFavoriteGelato">
+        So grab your favorite gelato 🍦 and start exploring. Italy’s waiting — and you’re already on the way.
+    </div>
+</div>
+
+<!-- Newsletter Section -->
+<div class="Frame102">
+    <div class="Rectangle84"></div>
+    <div class="StayUpdated">Stay UpDated</div>
+    <div class="SubscribeToOurNewsletter">
+        Subscribe to our newsletter for the latest travel tips, destination guides, and exclusive offers.
+    </div>
+    <div class="Rectangle85"></div>
+    <div class="EnterEmailAddress">
+        <input type="email" placeholder="Enter Email Address">
+    </div>
+    <div class="Rectangle86"></div>
+    <div class="Subscribe">
+        <button>Subscribe</button>
+    </div>
+</div>
+
+<!-- Footer -->
+ <div class="footer">
+        <div class="footerrectangle"></div>
+        <img class="ViaitaliaLogoInWhite1" src="~/images/ViaItalia logo in white.png" alt="Logo">
+        <div class="footer-nav">
+            <div class="ContactUs-1"><a asp-controller="Pages" asp-action="Contactus">Contact Us</a></div>
+            <div class="AboutUs-1"><a asp-controller="Pages" asp-action="Aboutus">About Us</a></div>
+            <div class="TermCondition-1"><a asp-controller="Pages" asp-action="Terms">Terms & Conditions</a></div>
+            <div class="PrivacyPolicy-1"><a asp-controller="Pages" asp-action="PrivacyPolicy">Privacy Policy</a></div>
+            <div class="Blog-1"><a asp-controller="Pages" asp-action="Blog">Blog</a></div>
+        </div>
+    </div>
+
+
+<!-- Page-specific JS -->
+<script src="~/js/Blog.js"></script>

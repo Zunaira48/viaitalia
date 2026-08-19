@@ -1,0 +1,51 @@
+@{
+    ViewData["Title"] = "Contact Us";
+    Layout = null; // common layout
+}
+
+<!-- Page-specific CSS -->
+<link rel="stylesheet" href="~/css/Contactus.css" />
+
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karma:wght@400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karma:wght@500;700&display=swap">
+
+<!-- Navigation -->
+<div data-layer="Frame 81" class="Frame81">
+    <div data-layer="Home" class="Home"><a asp-controller="Home" asp-action="Index">Home</a></div>
+    <div data-layer="Blog" class="Blog"><a asp-controller="Pages" asp-action="Blog">Blog</a></div>
+    <div data-layer="About us" class="AboutUs"><a asp-controller="Pages" asp-action="Aboutus">About us</a></div>
+    <div data-layer="Contact us" class="ContactUs"><a asp-controller="Pages" asp-action="Contactus">Contact us</a></div>
+    <div data-layer="Privacy Policy" class="PrivacyPolicy"><a asp-controller="Pages" asp-action="PrivacyPolicy">Privacy Policy</a></div>
+
+    <div data-layer="Rectangle 47" class="Rectangle47"></div>
+    <div data-layer="Sign in" class="SignIn"><a asp-controller="Auth" asp-action="Login">Sign in</a></div>
+    <div data-layer="Line 13" class="Line13"></div>
+    <img data-layer="ViaItalia teal + blue combo logo 1"
+         class="ViaitaliaTealBlueComboLogo1"
+         src="~/images/ViaItalia teal + blue combo logo.png" alt="ViaItalia Logo" />
+
+    <!-- Active nav indicator -->
+    <div data-layer="Rectangle 59" class="Rectangle59"></div>
+</div>
+
+
+
+<!-- Contact Section -->
+<div class="content" data-layer="content">
+    <img class="itlaymap" src="~/images/itlaymap.png" alt="Italy Map" />
+    <div class="contact-rectangle" data-layer="contentrectangle"></div>
+    <div class="Contact-Us" data-layer="Contact-us">Contact us</div>
+    <div class="email" data-layer="email">
+        We’d love to hear from you! Have a question, feedback, or suggestion? Just drop us an email.
+    </div>
+    <div class="Rectangle98" data-layer="Rectangle 98"></div>
+    <div class="ViaitaliaGmailCom" data-layer="viaItalia@gmail.com">
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=viaitalia001@gmail.com" target="_blank">
+            viaitalia001@gmail.com
+        </a>
+    </div>
+</div>
+
+<!-- Page-specific JS -->
+<script src="~/js/Contactus.js"></script>

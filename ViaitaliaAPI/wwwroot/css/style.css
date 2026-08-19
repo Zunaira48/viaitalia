@@ -1,0 +1,1501 @@
+:root {
+    --primary-color: #1d3869;
+    --secondary-color: #5a93cc;
+    --text-color: #000000;
+    --background-color: #eceef0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+html, body {
+    scroll-behavior: smooth;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+/* Sab anchor tags k liye globally underline remove */
+a {
+    text-decoration: none !important;
+}
+
+/* Specific sticky-header buttons k liye */
+.sticky-header a,
+.nav-buttons a,
+.city-name a {
+    text-decoration: none !important;
+}
+
+.sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 999;
+    display: none;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+    .sticky-header.active {
+        display: flex;
+    }
+
+    .sticky-header .logo {
+        width: 100px;
+        transition: filter 0.3s ease;
+    }
+
+    .sticky-header .nav-buttons {
+        position: absolute;
+        top: 50%;
+        right: 2rem;
+        transform: translateY(-50%);
+        display: flex;
+        gap: 1rem;
+        z-index: 3;
+        transition: opacity 0.3s ease;
+    }
+
+    .sticky-header .login-btn,
+    .sticky-header .signin-btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .sticky-header .login-btn {
+        border: 3px solid #0ea7bb;
+        background-color: rgba(224, 224, 224, 0);
+        color: #14528b;
+    }
+
+    .sticky-header .signin-btn {
+        background-color: #0ea7bb !important;
+        color: white;
+    }
+
+    .sticky-header .login-btn:hover {
+        color: white;
+        background-color: #14528b;
+    }
+
+    .sticky-header .signin-btn:hover {
+        background-color: rgb(4, 50, 88) !important;
+    }
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    transition: opacity 0.3s ease, visibility 0.3s ease, height 0.3s ease;
+}
+
+    .hero-section.hero-hidden {
+        opacity: 0;
+        visibility: hidden;
+        height: 0;
+        overflow: hidden;
+    }
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border-radius: 0 0 30px 30px;
+}
+
+.background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0 0 30px 30px;
+}
+
+.overlay-rectangle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(19, 66, 104, 0.534);
+    z-index: 2;
+    border-radius: 0 0 30px 30px;
+}
+/* Brand Container */
+.brand-container {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 3;
+    transition: opacity 0.3s ease;
+}
+
+    .brand-container.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+.logo {
+    width: 130px;
+    height: auto;
+}
+/* Hero Text */
+.hero-text {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem;
+    background-color: rgba(3, 4, 71, 0);
+    border-radius: 1rem;
+    margin-top: 3rem;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    margin-bottom: 1rem;
+}
+
+.hero-description {
+    font-size: 2rem;
+    color: rgb(247, 247, 248);
+    margin-bottom: 2rem;
+}
+
+.hero-button {
+    padding: 1rem 2rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+    .hero-button:hover {
+        background-color: #14528b;
+        transform: translateY(-2px);
+    }
+/* Navigation Buttons */
+.nav-buttons {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    display: flex;
+    gap: 1rem;
+    z-index: 3;
+    transition: opacity 0.3s ease;
+}
+
+    .nav-buttons.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+.login-btn {
+    padding: 0.75rem 1.5rem;
+    border: 3px solid #0ea7bb;
+    background-color: rgba(224, 224, 224, 0);
+    border-radius: 50px;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+    .login-btn:hover {
+        background-color: rgba(224, 224, 224, 0.5);
+    }
+
+.signin-btn {
+    padding: 0.75rem 1.5rem;
+    height: 100%;
+    background-color: #0ea7bb !important;
+    border-radius: 50px;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+    .signin-btn:hover {
+        background-color: rgb(4, 50, 88) !important;
+    }
+
+a.hero-button,
+a.hero-button:hover,
+a.cta-button,
+a.cta-button:hover,
+a > .cta-button,
+a > .cta-button:hover {
+    text-decoration: none !important;
+}
+/* Explore Section */
+.explore-section {
+    padding: 2rem;
+    background-color: rgb(248, 248, 248);
+    z-index: 3;
+    transition: padding-top 0.3s ease;
+}
+
+    .explore-section.explore-fixed {
+        padding-top: 140px;
+    }
+
+.explore-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.explore-section h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    text-align: left;
+    padding-left: 2rem;
+    transition: margin-top 0.3s ease;
+}
+
+.explore-nav {
+    width: 100%;
+    background-color: rgba(37, 79, 107, 0.774);
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem;
+    position: relative;
+    z-index: 998;
+    transition: all 0.3s ease;
+}
+
+.explore-section.explore-fixed .explore-nav {
+    position: fixed;
+    top: 60px; /* header height */
+    left: 0;
+    width: 100%;
+    z-index: 998;
+}
+
+.explore-section.explore-fixed h3 {
+    margin-top: 60px;
+}
+/* Anchor tags styled like buttons */
+.nav-btn {
+    display: inline-block;
+    text-decoration: none; /* remove underline */
+    padding: 0.75rem 1.25rem;
+    background-color: rgba(2, 84, 104, 0);
+    color: rgba(2, 2, 2, 0.877);
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+    .nav-btn:hover {
+        background-color: rgba(3, 51, 70, 0.671);
+        transform: translateY(-2px);
+        color: white;
+    }
+
+.trip-planning-section {
+    display: none;
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 50vh;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-description {
+        font-size: 1.5rem;
+    }
+
+    .hero-button {
+        padding: 0.75rem 1.5rem;
+        font-size: 1.25rem;
+    }
+
+    .nav-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .trip-planning-box {
+        width: 95%;
+        height: 320px;
+    }
+
+    .box-header {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+
+    .ask-anything-btn {
+        align-self: flex-end;
+    }
+
+    .box-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .action-btn {
+        width: 80%;
+        padding: 0.75rem;
+        font-size: 1rem;
+    }
+
+    .explore-content {
+        align-items: center;
+        text-align: center;
+    }
+
+    .explore-nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .nav-btn {
+        width: 80%;
+        padding: 0.75rem;
+        font-size: 0.875rem;
+    }
+
+    .sticky-header {
+        flex-direction: column;
+        padding: 0.5rem 1rem;
+    }
+
+    .sticky-search {
+        width: 100%;
+    }
+
+    .explore-section.explore-fixed {
+        padding-top: 200px;
+    }
+
+        .explore-section.explore-fixed .explore-nav {
+            top: 120px;
+        }
+
+        .explore-section.explore-fixed h3 {
+            margin-top: 80px;
+            padding-left: 1rem;
+        }
+}
+/* Destination Containers Section Styles */
+.destination-containers-section {
+    position: relative;
+    padding: 2rem 0;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.destination-row {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.destination-card {
+    position: relative;
+    flex: 1;
+    min-width: 30%;
+    max-width: 400px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    border-radius: 30px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 1rem;
+}
+
+    .destination-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+    }
+
+.card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.card-icon {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit: contain;
+    z-index: 2;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+    .card-icon:hover {
+        transform: scale(1.2);
+        filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+    }
+
+.city-name {
+    position: relative;
+    z-index: 2;
+    font-size: 2.25rem;
+    font-weight: bold;
+    color: #f8fafc;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+    .city-name:hover {
+        color: #041941;
+        text-shadow: 2px 2px 8px rgba(8, 86, 138, 0.8);
+        transform: scale(1.05);
+    }
+    .city-name a{
+        text-decoration: none !important;
+    }
+@media (max-width: 768px) {
+    .destination-row {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .destination-card {
+        width: 100%;
+        min-width: auto;
+        height: 300px;
+        margin: 0;
+    }
+
+    .city-name {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+    }
+    .city-name a{
+        text-decoration: none !important;
+    }
+
+    .card-icon {
+        width: 2rem;
+        height: 2rem;
+    }
+}
+/* Trip Planning Heading Container with Left Margin */
+.trip-planning-heading-container {
+    display: flex;
+    align-items: center;
+    margin: 2rem 3rem 2rem 3rem;
+}
+
+.trip-planning-heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.features-section {
+    padding: 4rem 3.5rem 7rem;
+    margin-top: 6rem;
+    max-width: 1335px;
+    background-color: rgba(1, 27, 61, 0.9);
+    border-radius: 70px 0px 70px 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* NEW: Navigation Bar Styles - Updated for proper alignment */
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background-color: transparent;
+    border-radius: 2rem;
+    margin-bottom: 1rem;
+    border: none;
+}
+/*.home-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+}
+.nav-icon {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}*/
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo {
+    width: 80px;
+    height: auto;
+    object-fit: contain;
+}
+/*.brand-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 1rem;
+}
+.brand-text span:first-child {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.brand-text div {
+    font-size: 1.25rem;
+    font-weight: bold;
+}*/
+.nav-items {
+    display: flex;
+    gap: 1.8rem;
+    align-items: center;
+}
+
+    .nav-items span {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--text-color);
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+        .nav-items span:hover {
+            color: var(--primary-color);
+        }
+/* Sign-in Button Smaller */
+.sign-in-btn {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.85rem;
+    border-radius: 50px;
+    background-color: #0ea7bb;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .sign-in-btn:hover {
+        background-color: rgb(4, 50, 88);
+    }
+/* Thin Line Below Nav Bar */
+.nav-divider {
+    width: 100%;
+    height: 1px;
+    background-color: #25252583;
+    margin-bottom: 1rem;
+}
+/* Other existing styles remain the same */
+.features-section {
+    padding: 4rem 3.5rem 7rem;
+    margin-top: 6rem;
+    max-width: 1335px;
+    background-color: rgba(1, 27, 61, 0.9); /* stone-900 with 90% opacity */
+    border-radius: 70px 0px 70px 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.features-container {
+    display: flex;
+    gap: 1.25rem;
+    max-width: 1362px;
+    margin: 0 auto;
+}
+
+.features-text {
+    flex: 5.5;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+    .features-text h3 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        max-width: 100%;
+    }
+
+    .features-text p {
+        margin-top: 6rem;
+        font-size: 1.875rem;
+        max-width: 100%;
+    }
+
+.features-form {
+    flex: 6.5;
+    display: flex;
+    flex-direction: column;
+    padding-top: 3.5rem;
+    padding-bottom: 6rem;
+    background-color: rgb(226, 232, 240); /* stone-400 with 50% opacity */
+    border-radius: 3rem;
+    margin-top: 0.5rem;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    padding: 2.25rem;
+}
+
+.form-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    align-items: flex-start;
+    margin-left: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.option-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    align-items: flex-start;
+}
+
+.option-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    object-fit: contain;
+    margin-top: 0.375rem;
+}
+
+.sign-in-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1.75rem 2.75rem;
+    background-color: #0ea7bb; /* yellow-950 */
+    color: white;
+    border-radius: 2rem;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+    .sign-in-button:hover {
+        background-color: rgb(4, 50, 88); /* darker yellow */
+    }
+
+.divider {
+    width: 1.5rem;
+    height: 0.25rem;
+    background-color: black;
+    margin: 1rem auto;
+}
+
+.form-inputs {
+    display: flex;
+    flex-direction: column;
+    padding-left: 2.25rem;
+}
+
+    .form-inputs h4 {
+        font-size: 1.875rem;
+        font-weight: bold;
+        color: black;
+        margin-top: 2.25rem;
+    }
+
+    .form-inputs p {
+        margin-top: 1.75rem;
+        font-size: 1.25rem;
+        color: black;
+    }
+
+label {
+    font-size: 1.25rem;
+    color: black;
+    margin-top: 2.25rem;
+    margin-left: 0.75rem;
+}
+
+.destination-input, .date-input {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 1.25rem;
+    background-color: rgba(226, 232, 240, 0.3); /* stone-300 with 30% opacity */
+    border: 3px solid black;
+    border-radius: 2rem;
+    margin-top: 0.75rem;
+    margin-left: 0.75rem;
+    max-width: 32.6875rem; /* 523px */
+}
+
+    .destination-input span, .date-input span {
+        font-size: 1.25rem;
+        color: black;
+    }
+
+.input-icon {
+    width: 3rem;
+    height: auto;
+    margin-left: 1rem;
+}
+/* Destination Input with Arrow */
+.destination-input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 1.25rem;
+    background-color: rgba(226, 232, 240, 0);
+    border: 3px solid black;
+    border-radius: 2rem;
+    margin-top: 0.75rem;
+    margin-left: 0.75rem;
+    max-width: 32.6875rem;
+    position: relative;
+}
+/* Destination Input with Arrow */
+.destination-input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 1.25rem;
+    background-color: rgba(226, 232, 240, 0.3);
+    border: 3px solid black;
+    border-radius: 2rem;
+    margin-top: 0.75rem;
+    margin-left: 0.75rem;
+    max-width: 32.6875rem;
+    position: relative;
+}
+/* Date Input with Arrow */
+.date-input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 1.25rem;
+    background-color: rgba(226, 232, 240, 0.3);
+    border: 3px solid black;
+    border-radius: 2rem;
+    margin-top: 0.75rem;
+    margin-left: 0.75rem;
+    max-width: 32.6875rem;
+    position: relative;
+}
+
+.input-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.arrow-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}
+/* Other existing styles remain the same */
+/* Recommendation Section */
+.recommendation-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 3rem;
+    max-width: 1400px;
+    margin: auto;
+}
+
+.left-box {
+    flex: 1;
+    padding: 2rem;
+    background-color: rgba(3, 45, 80, 0.733); /* stone-400 50% */
+    border-radius: 65px 0 65px 0;
+}
+
+.right-box {
+    flex: 1;
+    padding: 2rem;
+    background-color: transparent;
+    border: 7px solid rgba(3, 45, 80, 0.733);
+    border-radius: 0 65px 0 65px; /* TL=0, TR=rounded, BL=rounded, BR=0 */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-self: stretch; /*Makes sure it stretches fully like left-box */
+}
+
+    .left-box h3, .right-box h3 {
+        font-size: 2rem;
+        font-weight: bold;
+        color: black;
+    }
+
+.left-box p {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    color: #111;
+}
+
+.right-box p {
+    margin-top: 2.5rem;
+    font-size: 2rem;
+    color: #000;
+}
+
+.left-content-box {
+    background: white;
+    margin-top: 2rem;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    padding-left: 2rem;
+    padding-top: 1.5rem;
+    padding-bottom: 3.5rem;
+    border-radius: 40px 40px 040px 40px; /* Left corners rounded */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+}
+/* Optional - adjust navbar spacing inside box */
+.custom-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: transparent;
+    border-radius: 20px;
+    box-shadow: none;
+}
+/* Logo */
+.logo-icon {
+    width: 45px;
+    height: auto;
+    object-fit: contain;
+}
+/* Divider styling stays same */
+.divider {
+    width: 100%;
+    height: 2px;
+    background: #d1d5db;
+}
+/* Make sure left-box fills height */
+.left-box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+/* Adjust white block to be attached from right and bottom */
+.left-content-box {
+    flex-grow: 1;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.home-icon {
+    width: 28px;
+    height: 28px;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1rem;
+}
+
+    .brand-text strong {
+        font-size: 1rem;
+        color: #000;
+    }
+
+    .brand-text span {
+        font-size: 0.85rem;
+        color: #444;
+    }
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-item {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    position: relative;
+}
+
+    .nav-item.active::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: black;
+        border-radius: 2px;
+    }
+
+.arrow-icon {
+    width: 20px;
+    height: auto;
+}
+/* Sign-in Button */
+.signin-button {
+    background-color: #0ea7bb;
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+    .signin-button:hover {
+        background-color: rgb(4, 50, 88);
+    }
+/* Thin Line Below Navbar */
+.thin-line {
+    width: 100%;
+    height: 1px;
+    padding-right: 2rem;
+    background-color: #19191a9d;
+}
+
+.options {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    align-items: center;
+}
+
+.option {
+    font-size: 0.9rem;
+    background-color: #eee;
+    padding: 0.2rem 0.6rem;
+    border-radius: 1rem;
+}
+
+.signin-btn {
+    padding: 0.5rem 1.5rem;
+    background-color: #78350f;
+    color: white;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+}
+
+.divider {
+    margin: 2rem auto 2rem;
+    width: 60px;
+    height: 5px;
+    background-color: black;
+    border-radius: 3px;
+}
+
+.beach-section h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.beach-card {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    margin-right: 2rem;
+    background-color: rgba(79, 148, 175, 0.8); /* stone-500 */
+    padding: 1rem;
+    border-radius: 1rem;
+    color: white;
+}
+
+    .beach-card img {
+        width: 100px;
+        border-radius: 0.5rem;
+        object-fit: cover;
+    }
+
+    .beach-card h5 {
+        font-size: 1.2rem;
+        color: black;
+    }
+
+.chat {
+    margin-top: 7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.2rem;
+}
+
+.msg {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 1.5rem;
+    border: 2px solid rgba(0, 0, 0, 0);
+    background-color: #0565be;
+    color: white;
+    max-width: 90%;
+}
+
+    .msg img {
+        width: 40px;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .msg.user {
+        align-self: flex-end;
+    }
+
+    .msg.bot {
+        align-self: flex-start;
+    }
+/* Responsive Design */
+@media (max-width: 768px) {
+    .features-section, .recommendation-section {
+        padding: 2.5rem 1.25rem 5rem;
+        margin-top: 2.5rem;
+    }
+
+    .features-container, .recommendation-container {
+        flex-direction: column;
+    }
+
+    .features-form, .recommendation-form, .offline-availability {
+        margin-top: 1.5rem;
+    }
+
+    .form-options, .recommendation-options {
+        flex-direction: column;
+    }
+
+    .destination-input, .date-input {
+        max-width: 100%;
+    }
+
+    .beach-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .beach-info {
+        margin-top: 1rem;
+    }
+
+    .recommendation-details {
+        padding-left: 0;
+    }
+
+    .chat-message {
+        max-width: 100%;
+    }
+}
+/* Weather Section Styles */
+.weather-section {
+    padding: 3rem 3rem 8rem;
+    margin-top: 4rem; /* reduced from 9rem to 4rem */
+    max-width: 1332px;
+    background-color: rgba(8, 126, 156, 0.849);
+    border-radius: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.weather-title {
+    font-size: 3.125rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 1rem;
+    max-width: 100%;
+}
+
+.weather-content {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: -1.5rem;
+}
+
+.weather-text {
+    flex: 5.5;
+}
+
+    .weather-text p {
+        font-size: 2.5rem;
+        color: white;
+        max-width: 100%;
+    }
+
+.weather-image {
+    flex: 4.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .weather-image img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        aspect-ratio: 1.42;
+    }
+/* CTA Section Styles */
+.cta-section {
+    padding: 6rem 5rem;
+    margin-top: 2rem; /* Further reduced */
+    max-width: 1332px;
+    background-color: #012650;
+    border-radius: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.cta-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 988px;
+    margin: 0 auto;
+}
+
+    .cta-content p {
+        font-size: 3.125rem;
+        font-weight: bold;
+        color: white;
+        margin-bottom: 8rem;
+    }
+
+.cta-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 4rem;
+    background-color: #0ea7bb; /* orange-300 */
+    color: #000000; /* black */
+    border-radius: 30px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 361px;
+}
+
+    .cta-button:hover {
+        background-color: rgb(4, 50, 88); /* lighter orange */
+        transform: translateY(-2px);
+    }
+/* Responsive Design */
+@media (max-width: 768px) {
+    .weather-section {
+        padding: 1.25rem 1.25rem 6rem;
+        margin-top: 2.5rem;
+    }
+
+    .weather-title {
+        font-size: 2.5rem;
+    }
+
+    .weather-content {
+        flex-direction: column;
+    }
+
+    .weather-text p {
+        font-size: 2.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .weather-image {
+        margin-top: 1.5rem;
+    }
+
+    .cta-section {
+        padding: 6rem 1.25rem;
+        margin-top: 2.5rem;
+    }
+
+    .cta-content p {
+        font-size: 2.5rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .cta-button {
+        padding: 1rem 1.25rem;
+        font-size: 2.5rem;
+        width: 100%;
+        max-width: 300px;
+    }
+}
+/* FAQ Section Styles */
+.faq-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    padding: 2rem 0;
+}
+
+.faq-header {
+    padding: 0 2rem;
+    margin-bottom: 2rem;
+}
+
+    .faq-header h2 {
+        font-size: 3.125rem;
+        font-weight: bold;
+        color: #043d53;
+    }
+
+.faq-line-top {
+    width: 100%;
+    height: 3px;
+    background-color: rgb(3, 84, 95);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.faq-questions {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0 2rem;
+    align-items: flex-end; /* Questions aligned to the right side */
+}
+
+.faq-item {
+    width: 100%;
+    max-width: 700px;
+}
+
+.question-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+    .question-container:hover {
+        transform: translateY(-2px);
+    }
+
+.faq-item h3 {
+    font-size: 1.875rem;
+    font-weight: bold;
+    color: #043d53;
+    margin: 0;
+    text-align: left;
+}
+
+.arrow-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    color: black;
+}
+
+.faq-line-bottom {
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    margin-top: 0.5rem;
+}
+/* Add this to your CSS */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    font-size: 1rem;
+    color: #333;
+    padding: 0 1rem;
+    background-color: rgba(248, 248, 248, 0.7);
+    margin: 0;
+    transition: max-height 0.3s ease;
+}
+
+    .faq-answer.active {
+        max-height: 1000px; /* bada rakho taki pura answer khul jaye */
+        padding: 0.5rem 1rem;
+        margin-top: -1px;
+        border-top: 1px solid #e5e5e5;
+    }
+
+.faq-item {
+    position: relative;
+}
+/* Footer Styles */
+.footer {
+    padding: 3.5rem 2.75rem;
+    margin-top: 72px;
+    background-color: #001a33;
+    border-radius: 30px 30px 0 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.footer-logo-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer-logo {
+    width: 140px;
+    height: auto;
+    object-fit: contain;
+}
+
+.footer-brand-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.2;
+}
+
+    .footer-brand-text .pak-text {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: white;
+    }
+
+    .footer-brand-text .travelgenix-text {
+        font-size: 2rem;
+        font-weight: bold;
+        color: white;
+        margin-top: -4px; /* fine tuning to match image */
+    }
+
+.footer-nav-section {
+    display: flex;
+    gap: 4rem;
+}
+
+.footer-nav-column {
+    display: flex;
+    flex-direction: column;
+}
+
+    .footer-nav-column h3 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: white;
+        margin-bottom: 1.5rem;
+    }
+
+    .footer-nav-column nav {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+
+    .footer-nav-column a {
+        font-size: 1.125rem;
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+        .footer-nav-column a:hover {
+            color: #f8b400;
+        }
+
+.footer-copyright {
+    text-align: center;
+    font-size: 1rem;
+    color: white;
+    margin-top: 3rem;
+}
+/* Responsive */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 2.5rem;
+    }
+
+    .footer-nav-section {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .footer-logo-section {
+        flex-direction: column;
+        align-items: center;
+    }
+}

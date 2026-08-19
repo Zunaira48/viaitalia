@@ -1,0 +1,111 @@
+@{
+    ViewData["Title"] = "Terms & Conditions";
+    Layout = null; // Common layout
+}
+
+<!-- Page-specific CSS -->
+<link rel="stylesheet" href="~/css/terms.css?v=1" />
+
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karma:wght@400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karma:wght@500;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Karma:wght@400;700&family=Karla:wght@400&display=swap" rel="stylesheet">
+
+<!-- Navigation -->
+<div class="Frame81" data-layer="Frame 81">
+    <div class="Home" data-layer="Home"><a asp-controller="Home" asp-action="Index">Home</a></div>
+    <div class="Blog" data-layer="Blog"><a asp-controller="Pages" asp-action="Blog">Blog</a></div>
+    <div class="Terms" data-layer="Terms"><a asp-controller="Pages" asp-action="Terms">Terms & Conditions</a></div>
+    <div class="ContactUs" data-layer="Contact us"><a asp-controller="Pages" asp-action="Contactus">Contact us</a></div>
+    <div class="PrivacyPolicy" data-layer="Privacy Policy"><a asp-controller="Pages" asp-action="PrivacyPolicy">Privacy Policy</a></div>
+
+    <div class="Rectangle47" data-layer="Rectangle 47"></div>
+    <div class="SignIn" data-layer="Sign in"><a asp-controller="Auth" asp-action="Login">Sign in</a></div>
+    <div class="Line13" data-layer="Line 13"></div>
+    <img class="ViaitaliaTealBlueComboLogo1"
+         data-layer="ViaItalia teal + blue combo logo 1"
+         src="~/images/ViaItalia teal + blue combo logo.png" alt="Logo" />
+
+    <!-- Active nav indicator -->
+    <div class="Rectangle59" data-layer="Rectangle 59"></div>
+</div>
+
+
+
+<!-- Terms & Conditions Content -->
+<div class="Frame107">
+    <div class="Rectangle96"></div>
+    <div class="TermCondition">Terms & Conditions</div>
+    <div class="WelcomeToViaitalia">
+        Welcome to ViaItalia. By using our website, you agree to the following terms:
+    </div>
+</div>
+
+<div class="Frame108">
+    <div class="website">Use the Website:</div>
+    <div class="websitetext">
+        ViaItalia is a travel planning platform. You may use our services only for personal, non-commercial purposes. Don’t misuse the site in any way that could harm it or other users.
+    </div>
+    <img src="~/images/Vector 7.png" class="VectorImage7" alt="Vector 7 Image" />
+
+    <div class="Information">Information Accuracy</div>
+    <div class="Informationtext">
+        We aim to provide accurate travel information, but we can’t guarantee that all content is 100% up-to-date. Use your own judgment while planning.
+    </div>
+    <img src="~/images/Vector 7.png" class="VectorImage8" alt="Vector 8 Image" />
+
+    <div class="Responsibility">User Responsibility</div>
+    <div class="Responsibletext">
+        You are responsible for any information you provide through our forms. Please make sure your inputs are honest and respectful.
+    </div>
+    <img src="~/images/Vector 7.png" class="VectorImage9" alt="Vector 9 Image" />
+
+    <div class="IntellectualProperty">Intellectual Property</div>
+    <div class="Intellectualtext">
+        All content on ViaItalia (text, images, design) belongs to us or is used with permission. Please don’t copy or reuse it without our consent.
+    </div>
+    <img src="~/images/Vector 7.png" class="VectorImage10" alt="Vector 10 Image" />
+
+    <div class="External">External Links</div>
+    <div class="Externaltext">
+        We may link to other websites (like maps or restaurants). We’re not responsible for their content or policies.
+    </div>
+    <img src="~/images/Vector 7.png" class="VectorImage11" alt="Vector 11 Image" />
+
+    <div class="Privacy">Privacy</div>
+    <div class="privacytext">
+        Your use of our site is also subject to our 
+        @Html.ActionLink("Privacy Policy", "PrivacyPolicy", "Pages") 
+        — please read it to understand how we handle your data.
+    </div>
+    <img src="~/images/Vector 7.png" class="VectorImage12" alt="Vector 12 Image" />
+
+    <div class="Changes">Changes to Terms</div>
+    <div class="changestext">
+        We may update these terms anytime. Continued use of the site means you accept any changes.
+    </div>
+    <img src="~/images/Vector 7.png" class="VectorImage13" alt="Vector 13 Image" />
+
+    <div class="ContactUs1">Contact Us</div>
+    <div class="contectUs1text">
+        Questions? Email us at: <a href="https://mail.google.com/mail/?view=cm&fs=1&to=viaitalia001@gmail.com" target="_blank">
+            viaitalia001@gmail.com
+        </a>
+    </div>
+    <img src="~/images/Vector 7.png" class="VectorImage14" alt="Vector 14 Image" />
+</div>
+
+<!-- Footer -->
+ <div class="Frame80">
+        <div class="Rectangle48"></div>
+        <div class="ContactUs-1"><a asp-controller="Pages" asp-action="Contactus">Contact us</a></div>
+        <div class="AboutUs-1"><a asp-controller="Pages" asp-action="Aboutus">About us</a></div>
+        <div class="TermCondition-1"><a asp-controller="Pages" asp-action="Terms">Terms & Conditions</a></div>
+        <div class="PrivacyPolicy-1"><a asp-controller="Pages" asp-action="PrivacyPolicy">Privacy Policy</a></div>
+        <div class="Blog-1"><a asp-controller="Pages" asp-action="Blog">Blog</a></div>
+        <img class="ViaitaliaLogoInWhite1" src="~/images/ViaItalia logo in white.png" alt="ViaItalia Logo">
+    </div>
+
+
+<!-- Page-specific JS -->
+<script src="~/js/terms.js"></script>

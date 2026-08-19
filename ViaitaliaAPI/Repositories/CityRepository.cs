@@ -1,0 +1,60 @@
+﻿using Microsoft.EntityFrameworkCore;
+using ViaitaliaAPI.Data;
+using ViaitaliaAPI.Models;
+
+namespace ViaitaliaAPI.Repositories
+{
+    public class CityRepository : ICityRepository
+    {
+        private readonly TravelDBContext _context;
+
+        public CityRepository(TravelDBContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<IEnumerable<City>> GetAllAsync()
+        {
+            return await _context.Cities.Include(c => c.Image).ToListAsync();
+        }
+
+        public async Task<City?> GetByIdAsync(Guid id)
+        {
+            return await _context.Cities.FirstOrDefaultAsync(c => c.CityId == id);
+        }
+
+        public async Task<City?> GetByIdWithImageAsync(Guid id)
+        {
+            return await _context.Cities
+                .Include(c => c.Image)
+                .FirstOrDefaultAsync(c => c.CityId == id);
+        }
+
+        public async Task AddAsync(City city)
+        {
+            await _context.Cities.AddAsync(city);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(City city)
+        {
+            _context.Cities.Update(city);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(Guid id)
+        {
+            var city = await _context.Cities.FindAsync(id);
+            if (city != null)
+            {
+                _context.Cities.Remove(city);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<bool> ExistsAsync(Guid id)
+        {
+            return await _context.Cities.AnyAsync(c => c.CityId == id);
+        }
+    }
+}

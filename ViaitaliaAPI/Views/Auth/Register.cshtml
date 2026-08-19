@@ -1,0 +1,373 @@
+﻿@model ViaitaliaAPI.Models.DTO.RegisterRequestDto
+@{
+    ViewData["Title"] = "User Registration";
+    Layout = null; // Remove Bootstrap layout
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Karma:wght@300;400;500;600;700&family=Jaldi:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+      --color-white: #ffffff;
+      --color-primary: #35a392;
+      --color-dark-bg: #00191c;
+      --color-border-light: #92f6ef;
+      --color-border-medium: #88d3be;
+      --color-text-placeholder: rgba(255, 255, 255, 0.58);
+      --font-family-heading: 'Karma', serif;
+      --font-family-body: 'Jaldi', sans-serif;
+      --neon-color: #92f6ef;
+      --neon-glow: 0 0 10px var(--neon-color), 0 0 20px var(--neon-color);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: var(--font-family-heading);
+      background: linear-gradient(109deg, #032623 18.29%, #26615d 99.09%);
+      color: var(--color-white);
+      min-height: 100vh;
+      overflow: hidden; /* Prevent scrolling */
+    }
+    
+    .page-wrapper {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 60px;
+      overflow: hidden;
+    }
+    
+    @@media (max-width: 768px) {
+      .page-wrapper {
+        padding: 0 30px;
+      }
+    }
+    
+    @@media (max-width: 480px) {
+      .page-wrapper {
+        padding: 0 20px;
+      }
+    }
+    
+    /* Header Styles */
+    .site-header {
+      padding-top: 10px; /* Reduced padding */
+      padding-bottom: 10px; /* Reduced padding */
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--color-white);
+    }
+    
+    .nav-icon {
+      width: 40px; /* Reduced size */
+      height: 40px; /* Reduced size */
+    }
+    
+    .nav-text {
+      font-family: var(--font-family-body);
+      font-weight: 400;
+      font-size: 28px; /* Reduced size */
+      line-height: 1.5; /* Adjusted */
+    }
+    
+    .btn-login {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 130px; /* Reduced width */
+      height: 50px; /* Reduced height */
+      background-color: var(--color-dark-bg);
+      border-radius: 50px;
+      color: var(--color-white);
+      font-family: var(--font-family-heading);
+      font-weight: 700;
+      font-size: 20px; /* Reduced size */
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    
+    .btn-login:hover {
+      background-color: #002a2f;
+    }
+    
+    @@media (max-width: 480px) {
+      .nav-text {
+        font-size: 20px;
+      }
+      .nav-icon {
+        width: 30px;
+        height: 30px;
+      }
+      .btn-login {
+        width: 100px;
+        height: 40px;
+        font-size: 16px;
+      }
+    }
+    
+    /* Signup Form Styles */
+    .signup-section {
+      display: flex;
+      justify-content: center;
+      align-items: center; /* Changed to center vertically */
+      padding-top: 20px; /* Reduced padding */
+      padding-bottom: 20px; /* Reduced padding */
+      height: calc(100vh - 70px); /* Full height minus header */
+    }
+    
+    .signup-form {
+      width: 100%;
+      max-width: 500px; /* Reduced max width */
+      padding: 20px 30px; /* Reduced padding */
+      background-color: rgba(0, 26, 28, 0.55);
+      border: 1px solid var(--color-border-light);
+      border-radius: 50px;
+      box-shadow: 0px 4px 4px 7px rgba(135, 232, 213, 0.25);
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    
+    .signup-form:hover {
+      border-color: var(--neon-color);
+      box-shadow: 0px 4px 4px 7px rgba(135, 232, 213, 0.25), var(--neon-glow);
+    }
+    
+    .form-title {
+      font-family: var(--font-family-heading);
+      font-weight: 700;
+      font-size: 22px; /* Reduced size */
+      line-height: 1.5; /* Adjusted */
+      color: var(--color-white);
+      text-align: left;
+      margin-bottom: 20px; /* Reduced margin */
+    }
+    
+    .form-group {
+      margin-bottom: 20px; /* Reduced margin */
+    }
+    
+    .form-group:last-of-type {
+      margin-bottom: 15px; /* Reduced margin */
+    }
+    
+    .input-wrapper {
+      border: 1px solid var(--color-border-medium);
+      border-radius: 50px;
+      padding: 0 20px; /* Reduced padding */
+      height: 50px; /* Reduced height */
+      display: flex;
+      align-items: center;
+      background-color: rgba(0, 26, 28, 0.55);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .input-wrapper:hover {
+      border-color: var(--neon-color);
+      box-shadow: var(--neon-glow);
+    }
+    
+    .form-input {
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      color: var(--color-text-placeholder);
+      font-family: var(--font-family-heading);
+      font-weight: 700;
+      font-size: 18px; /* Reduced size */
+      padding: 10px 0; /* Reduced padding */
+    }
+    
+    .form-input::placeholder {
+      color: var(--color-text-placeholder);
+      opacity: 1;
+    }
+    
+    .role-label {
+      display: block;
+      font-family: var(--font-family-heading);
+      font-weight: 700;
+      font-size: 24px; /* Reduced size */
+      line-height: 1.5; /* Adjusted */
+      color: var(--color-white);
+      margin-bottom: 10px; /* Reduced margin */
+    }
+    
+    .role-options {
+  display: flex;
+  gap: 15px;
+}
+
+.role-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 25px;
+  border: 1px solid var(--color-border-medium);
+  border-radius: 30px;
+  background-color: rgba(0, 26, 28, 0.55);
+  cursor: pointer;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  font-family: var(--font-family-heading);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--color-text-placeholder);
+}
+
+.role-option:hover {
+  border-color: var(--neon-color);
+  box-shadow: var(--neon-glow);
+}
+
+.role-option input {
+  display: none; /* hide default radio */
+}
+
+.role-option input:checked + span {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  padding: 10px 25px;
+  border-radius: 30px;
+}
+    
+    .btn-signup {
+      align-self: center;
+      width: 150px; /* Reduced width */
+      height: 45px; /* Reduced height */
+      background-color: var(--color-primary);
+      border: none;
+      border-radius: 15px;
+      color: var(--color-white);
+      font-family: var(--font-family-heading);
+      font-weight: 700;
+      font-size: 20px; /* Reduced size */
+      cursor: pointer;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .btn-signup:hover {
+      background-color: #2a8a7b;
+      box-shadow: var(--neon-glow);
+    }
+    
+    .validation-summary {
+      color: #ff6b6b;
+      margin-bottom: 15px; /* Reduced margin */
+      padding: 8px; /* Reduced padding */
+      border-radius: 8px;
+      background-color: rgba(255, 107, 107, 0.1);
+      font-size: 14px; /* Reduced size */
+    }
+    
+    .field-validation {
+      color: #ff6b6b;
+      font-size: 12px; /* Reduced size */
+      margin-top: 3px; /* Reduced margin */
+      display: block;
+    }
+    
+    @@media (max-width: 768px) {
+      .signup-form {
+        padding: 20px;
+        max-width: 90%;
+      }
+      .form-title {
+        font-size: 20px;
+      }
+      .role-label {
+        font-size: 22px;
+      }
+    }
+    
+    @@media (max-width: 480px) {
+      .signup-section {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        height: calc(100vh - 60px); /* Adjusted for smaller header */
+      }
+      .signup-form {
+        padding: 15px;
+        border-radius: 30px;
+      }
+      .form-title {
+        font-size: 18px;
+        margin-bottom: 15px;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .input-wrapper {
+        height: 45px;
+        padding: 0 15px;
+      }
+      .form-input, .custom-select {
+        font-size: 16px;
+        padding: 8px 0;
+      }
+      .role-label {
+        font-size: 20px;
+        margin-bottom: 8px;
+      }
+      .btn-signup {
+        width: 120px;
+        height: 40px;
+        font-size: 18px;
+      }
+    }
+</style>
+
+<header class="site-header">
+  <div class="page-wrapper header-container">
+        <a asp-controller="Home" asp-action="Index" class="nav-link">
+      <img src="~/images/home-agreement.png" alt="Home Icon" class="nav-icon">
+      <span class="nav-text">Home</span>
+    </a>
+    <a asp-controller="Auth" asp-action="Login"><button class="btn-login">Log in</button></a>
+  </div>
+</header>
+
+<main id="signup" class="signup-section">
+  <div class="page-wrapper">
+    <form asp-action="Register" method="post" class="signup-form">
+      <h1 class="form-title">Provide Information for Sign up</h1>
+      
+      <div asp-validation-summary="All" class="validation-summary"></div>
+      
+      <div class="form-group">
+        <div class="input-wrapper">
+          <input asp-for="UserName" class="form-input" placeholder="Username" />
+          <span asp-validation-for="UserName" class="field-validation"></span>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="input-wrapper">
+          <input asp-for="Password" class="form-input" type="password" placeholder="Enter your Password" />
+          <span asp-validation-for="Password" class="field-validation"></span>
+        </div>
+      </div>
+      
+      <button type="submit" class="btn-signup">Sign up</button>
+    </form>
+  </div>
+</main>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

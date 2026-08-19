@@ -1,0 +1,128 @@
+﻿@model ViaitaliaAPI.Models.Beach
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Beach</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CityName" class="control-label"></label>
+                <input asp-for="CityName" class="form-control" />
+                <span asp-validation-for="CityName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BeachName" class="control-label"></label>
+                <input asp-for="BeachName" class="form-control" />
+                <span asp-validation-for="BeachName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Region" class="control-label"></label>
+                <input asp-for="Region" class="form-control" />
+                <span asp-validation-for="Region" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Latitude" class="control-label"></label>
+                <input asp-for="Latitude" class="form-control" />
+                <span asp-validation-for="Latitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Longitude" class="control-label"></label>
+                <input asp-for="Longitude" class="form-control" />
+                <span asp-validation-for="Longitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WaterBodyType" class="control-label"></label>
+                <input asp-for="WaterBodyType" class="form-control" />
+                <span asp-validation-for="WaterBodyType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WaterBodyName" class="control-label"></label>
+                <input asp-for="WaterBodyName" class="form-control" />
+                <span asp-validation-for="WaterBodyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BeachType" class="control-label"></label>
+                <input asp-for="BeachType" class="form-control" />
+                <span asp-validation-for="BeachType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KindOfBeach" class="control-label"></label>
+                <input asp-for="KindOfBeach" class="form-control" />
+                <span asp-validation-for="KindOfBeach" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BlueFlag" class="control-label"></label>
+                <input asp-for="BlueFlag" class="form-control" />
+                <span asp-validation-for="BlueFlag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PopularityScore" class="control-label"></label>
+                <input asp-for="PopularityScore" class="form-control" />
+                <span asp-validation-for="PopularityScore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Facilities" class="control-label"></label>
+                <input asp-for="Facilities" class="form-control" />
+                <span asp-validation-for="Facilities" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Accessibility" class="control-label"></label>
+                <input asp-for="Accessibility" class="form-control" />
+                <span asp-validation-for="Accessibility" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BestMonths" class="control-label"></label>
+                <input asp-for="BestMonths" class="form-control" />
+                <span asp-validation-for="BestMonths" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tag" class="control-label"></label>
+                <input asp-for="Tag" class="form-control" />
+                <span asp-validation-for="Tag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CityId" class="control-label"></label>
+                <select asp-for="CityId" class="form-control" asp-items="ViewBag.CityId"></select>
+                <span asp-validation-for="CityId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="imageFile">Image</label>
+                <input type="file" name="imageFile" class="form-control" />
+            </div>
+
+            @if (Model.ImageId != null && Model.Image != null && !string.IsNullOrEmpty(Model.Image.FilePath))
+            {
+                <div class="mt-3">
+                    <label>Current Image</label>
+                    <img src="@Model.Image.FilePath" alt="Beach Image" class="img-thumbnail" width="250" />
+                </div>
+            }
+
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

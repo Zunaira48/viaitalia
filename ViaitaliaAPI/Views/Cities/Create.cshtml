@@ -1,0 +1,156 @@
+﻿@model ViaitaliaAPI.Models.City
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>City</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CityName" class="control-label">City Name</label>
+                <input asp-for="CityName" class="form-control" />
+                <span asp-validation-for="CityName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Region" class="control-label">Region</label>
+                <input asp-for="Region" class="form-control" />
+                <span asp-validation-for="Region" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegionCode" class="control-label">Region Code</label>
+                <input asp-for="RegionCode" class="form-control" />
+                <span asp-validation-for="RegionCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Latitude" class="control-label">Latitude</label>
+                <input asp-for="Latitude" class="form-control" />
+                <span asp-validation-for="Latitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Longitude" class="control-label">Longitude</label>
+                <input asp-for="Longitude" class="form-control" />
+                <span asp-validation-for="Longitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Population" class="control-label">Population</label>
+                <input asp-for="Population" class="form-control" />
+                <span asp-validation-for="Population" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label">Description</label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tags" class="control-label">Tags</label>
+                <input asp-for="Tags" class="form-control" />
+                <span asp-validation-for="Tags" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CityCode" class="control-label">City Code</label>
+                <input asp-for="CityCode" class="form-control" />
+                <span asp-validation-for="CityCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AreaKm2" class="control-label">Area in Km2</label>
+                <input asp-for="AreaKm2" class="form-control" />
+                <span asp-validation-for="AreaKm2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Timezone" class="control-label">Timezone</label>
+                <input asp-for="Timezone" class="form-control" />
+                <span asp-validation-for="Timezone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmergencyNumber" class="control-label">Emergency number</label>
+                <input asp-for="EmergencyNumber" class="form-control" />
+                <span asp-validation-for="EmergencyNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NearestAirportName" class="control-label">Nearest Airport Name</label>
+                <input asp-for="NearestAirportName" class="form-control" />
+                <span asp-validation-for="NearestAirportName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NearestAirportIata" class="control-label">Nearest Airport Iata</label>
+                <input asp-for="NearestAirportIata" class="form-control" />
+                <span asp-validation-for="NearestAirportIata" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfficialWebsite" class="control-label">Official Website</label>
+                <input asp-for="OfficialWebsite" class="form-control" />
+                <span asp-validation-for="OfficialWebsite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfficialLanguage" class="control-label">Official Language</label>
+                <input asp-for="OfficialLanguage" class="form-control" />
+                <span asp-validation-for="OfficialLanguage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Currency" class="control-label">Currency</label>
+                <input asp-for="Currency" class="form-control" />
+                <span asp-validation-for="Currency" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MayorName" class="control-label">MayorName</label>
+                <input asp-for="MayorName" class="form-control" />
+                <span asp-validation-for="MayorName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GovernanceType" class="control-label">Governance Type</label>
+                <input asp-for="GovernanceType" class="form-control" />
+                <span asp-validation-for="GovernanceType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TransportationTags" class="control-label">Transportation Tags</label>
+                <input asp-for="TransportationTags" class="form-control" />
+                <span asp-validation-for="TransportationTags" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="YearFounded" class="control-label">Year Founded</label>
+                <input asp-for="YearFounded" class="form-control" />
+                <span asp-validation-for="YearFounded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClimateZone" class="control-label">Climate Zone</label>
+                <input asp-for="ClimateZone" class="form-control" />
+                <span asp-validation-for="ClimateZone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProvinceName" class="control-label">Province Name</label>
+                <input asp-for="ProvinceName" class="form-control" />
+                <span asp-validation-for="ProvinceName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnescoSites" class="control-label">Unesco Sites</label>
+                <input asp-for="UnescoSites" class="form-control" />
+                <span asp-validation-for="UnescoSites" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocalFestivals" class="control-label">Local Festivals</label>
+                <input asp-for="LocalFestivals" class="form-control" />
+                <span asp-validation-for="LocalFestivals" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="imageFile" class="control-label">Image</label>
+                <input type="file" name="imageFile" class="form-control" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="mt-4 d-flex justify-content-between">
+    <input type="submit" value="Save" class="btn btn-primary" />
+    <a asp-action="Index" asp-controller="Cities" class="btn btn-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

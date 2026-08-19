@@ -1,0 +1,454 @@
+body {
+  background: #ffff;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.Frame81 {
+    width: 1440px;
+    height: 119px;
+    position: relative;
+    overflow: hidden;
+}
+
+.Home, .Blog, .Terms, .ContactUs, .PrivacyPolicy, .SignIn {
+    position: absolute;
+    text-align: center;
+    font-family: 'Karma', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.Home {
+    width: 144px;
+    height: 42px;
+    left: 290px;
+    top: 46px;
+    color: black;
+    font-size: 26px;
+}
+
+.Blog {
+    width: 144px;
+    height: 29px;
+    left: 410px;
+    top: 46px;
+    color: black;
+    font-size: 26px;
+}
+
+.Terms {
+    width: 220px; /* width zyada ki gayi */
+    height: 30px;
+    left: 580px;
+    top: 42px;
+    position: absolute;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 26px;
+    font-family: 'Karma', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+    white-space: nowrap; /* line break prevent karega */
+}
+
+.ContactUs {
+    width: 144px;
+    height: 42px;
+    left: 860px;
+    top: 43px;
+    color: black;
+    font-size: 26px;
+}
+
+.PrivacyPolicy {
+    width: 208px;
+    height: 42px;
+    left: 1030px;
+    top: 42px;
+    color: black;
+    font-size: 26px;
+}
+
+.Rectangle47 {
+    width: 111px;
+    height: 45px;
+    left: 1289px;
+    top: 43px;
+    position: absolute;
+    background: #0AE7BB;
+    border-radius: 50px;
+}
+
+.SignIn {
+    width: 98px;
+    height: 35px;
+    left: 1296px;
+    top: 49px;
+    color: white;
+    font-size: 24px;
+}
+
+.Line13 {
+    width: 914px;
+    height: 0px;
+    left: 320px;
+    top: 88px;
+    position: absolute;
+    border: 1px solid black;
+}
+
+.ViaitaliaTealBlueComboLogo1 {
+    width: 232px;
+    height: 89px;
+    left: 39px;
+    top: 15px;
+    position: absolute;
+}
+
+.Rectangle59 {
+    width: 98px;
+    height: 14px;
+    position: absolute;
+    background: #7ACBCD;
+    border-radius: 3px;
+    transition: all 0.3s ease; /* smooth animation */
+}
+
+/* Links underline remove */
+.Frame81 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+ .Frame107 {
+            width: 1153px;
+            height: 310px;
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .Rectangle96 {
+            width: 560px;
+            height: 111px;
+            position: absolute;
+            left: 297px;
+            top: 12px;
+            background: rgba(247.61, 253.89, 255, 0);
+            box-shadow: 0px 10px 12px #219466;
+            border-radius: 30px;
+            border: 3px solid #6DC6B1;
+        }
+
+.TermCondition {
+    width: 520px; /* width thodi zyada kar di */
+    height: 55px;
+    position: absolute;
+    left: 310px; /* thoda adjust kiya center align ke liye */
+    top: 40px;
+    text-align: center;
+    color: black;
+    font-size: 42px; /* thoda font size chhota kiya */
+    font-family: 'Karma', sans-serif;
+    font-weight: 700;
+    white-space: nowrap; /* line break ko prevent karega */
+}
+
+        .WelcomeToViaitalia {
+            width: 951px;
+            height: 104px;
+            position: absolute;
+            left: 101px;
+            top: 186px;
+            text-align: center;
+            color: black;
+            font-size: 32px;
+            font-family: 'Karma', sans-serif;
+            font-weight: 700;
+            word-wrap: break-word;
+        }
+
+
+          .Frame108 {
+            width: 1080px;
+            height: 1758px;
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .VectorImage7, .VectorImage8, .VectorImage9, .VectorImage10, 
+        .VectorImage11, .VectorImage12, .VectorImage13, .VectorImage14 {
+            position: absolute;
+            width: 899px;
+            height: 7px;
+        }
+
+        .VectorImage7 {
+            left: 110px;
+            top: 197px;
+        }
+
+        .VectorImage8 {
+            left: 110px;
+            top: 419px;
+        }
+
+        .VectorImage9 {
+            left: 110px;
+            top: 630px;
+        }
+
+        .VectorImage10 {
+            left: 110px;
+            top: 852px;
+        }
+
+        .VectorImage11 {
+            left: 110px;
+            top: 1074px;
+        }
+
+        .VectorImage12 {
+            left: 121px;
+            top: 1296px;
+        }
+
+        .VectorImage13 {
+            left: 110px;
+            top: 1518px;
+        }
+
+        .VectorImage14 {
+            left: 110px;
+            top: 1714px;
+        }
+
+        .website, .Information, .Responsibility, .IntellectualProperty, 
+        .External, .Privacy, .Changes, .ContactUs1 {
+            position: absolute;
+            color: black;
+            font-size: 32px;
+            font-family: 'Karma', sans-serif;
+            font-weight: 700;
+            word-wrap: break-word;
+        }
+
+        .website {
+            width: 327px;
+            height: 40px;
+            left: 68px;
+            top: 0px;
+        }
+
+        .Information {
+            width: 424px;
+            height: 40px;
+            left: 65px;
+            top: 248px;
+        }
+
+        .Responsibility {
+            width: 424px;
+            height: 40px;
+            left: 67px;
+            top: 459px;
+        }
+
+        .IntellectualProperty {
+            width: 424px;
+            height: 40px;
+            left: 68px;
+            top: 681px;
+        }
+
+        .External {
+            width: 424px;
+            height: 40px;
+            left: 65px;
+            top: 903px;
+        }
+
+        .Privacy {
+            width: 424px;
+            height: 40px;
+            left: 68px;
+            top: 1125px;
+        }
+
+        .Changes {
+            width: 424px;
+            height: 40px;
+            left: 65px;
+            top: 1347px;
+        }
+
+        .ContactUs1 {
+            width: 424px;
+            height: 40px;
+            left: 68px;
+            top: 1579px;
+        }
+
+        .websitetext, 
+        .Informationtext, 
+        .Responsibletext, 
+        .Intellectualtext, 
+        .Externaltext, 
+        .privacytext, 
+        .changestext, 
+        .contectUs1text {
+            position: absolute;
+            color: black;
+            font-size: 24px;
+            font-family: 'Karla', sans-serif;
+            font-weight: 400;
+            word-wrap: break-word;
+        }
+
+        .websitetext {
+            width: 842px;
+            height: 100px;
+            left: 110px;
+            top: 78px;
+        }
+
+        .Informationtext {
+            width: 842px;
+            height: 74px;
+            left: 110px;
+            top: 326px;
+        }
+
+        .Responsibletext {
+            width: 842px;
+            height: 74px;
+            left: 110px;
+            top: 537px;
+        }
+
+        .Intellectualtext {
+            width: 842px;
+            height: 74px;
+            left: 110px;
+            top: 759px;
+        }
+
+        .Externaltext {
+            width: 842px;
+            height: 74px;
+            left: 110px;
+            top: 981px;
+        }
+
+        .privacytext{
+            width: 842px;
+            height: 74px;
+            left: 121px;
+            top: 1203px;
+        }
+
+        .privacytext a {
+            color: black;
+            text-decoration: underline;
+        }
+
+        .changestext {
+            width: 842px;
+            height: 74px;
+            left: 121px;
+            top: 1425px;
+        }
+
+        .contectUs1text {
+            width: 842px;
+            height: 28px;
+            left: 121px;
+            top: 1667px;
+        }
+
+            .contectUs1text a {
+                color: #538C83 !important;
+                text-decoration: none;
+            }
+
+
+             .Frame80 {
+            width: 100%;
+            height: 126px;
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+
+        .Rectangle48 {
+            width: 100%;
+            height: 124px;
+            position: absolute;
+            left: 0px;
+            top: 2px;
+            background: #001A33;
+        }
+
+        .ContactUs-1, .AboutUs-1, .TermCondition-1, .PrivacyPolicy-1, .Blog-1 {
+            position: absolute;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            font-family: 'Karma', sans-serif;
+            font-weight: 400;
+            word-wrap: break-word;
+            width: 220px;
+            height: 35px;
+            cursor: pointer;
+        }
+
+        .ContactUs-1 {
+            left: 255px;
+            top: 51px;
+        }
+
+        .AboutUs-1 {
+            left: 500px;
+            top: 51px;
+        }
+
+        .TermCondition-1 {
+            left: 740px;
+            top: 51px;
+        }
+
+        .PrivacyPolicy-1 {
+            left: 1016px;
+            top: 51px;
+        }
+
+        .Blog-1 {
+            left: 1249px;
+            top: 51px;
+        }
+
+        .ViaitaliaLogoInWhite1 {
+            width: 182px;
+            height: 69px;
+            position: absolute;
+            left: 34px;
+            top: 28px;
+        }
+
+.ContactUs-1 a, .AboutUs-1 a, .TermCondition-1 a, .PrivacyPolicy-1 a, .Blog-1 a {
+    color: white !important;
+    text-decoration: none !important;
+}
+
+    .ContactUs-1 a:hover, .AboutUs-1 a:hover, .TermCondition-1 a:hover, .PrivacyPolicy-1 a:hover, .Blog-1 a:hover {
+        color: #7ACBCD !important; /* Lighter teal from Rectangle59 */
+        text-decoration: none !important;
+    }
+
+

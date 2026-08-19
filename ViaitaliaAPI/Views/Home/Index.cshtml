@@ -1,0 +1,381 @@
+﻿@{
+    ViewData["Title"] = "ViaItalia - Home";
+     Layout = null; // remove if you want to use the site's layout
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViaItalia</title>
+    <link rel="stylesheet" href="~/css/style.css?v=1" />
+</head>
+<body>
+
+<!-- Sticky Header -->
+<div class="sticky-header" id="stickyHeader">
+    <img src="~/images/ViaItalia teal + blue combo logo.png" class="logo" style="width: 100px;" />
+
+    <!-- Login & Sign up buttons -->
+    <div class="nav-buttons">
+        @if (User.Identity != null && User.Identity.IsAuthenticated)
+        {
+            <span style="color:white; margin-right:12px;">Hi, @User.Identity.Name</span>
+            @if (!User.IsInRole("Writer"))
+            {
+                <a asp-controller="Auth" asp-action="RequestWriterAccess" class="login-btn">Request Writer Access</a>
+            }
+            <form asp-action="Logout" asp-controller="Auth" method="post" style="display:inline;">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="signin-btn">Log out</button>
+            </form>
+        }
+        else
+        {
+            <a asp-controller="Auth" asp-action="Login" class="login-btn">Log in</a>
+            <a asp-controller="Auth" asp-action="Register" class="signin-btn">Sign up</a>
+        }
+    </div>
+</div>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-background">
+        <img src="~/images/Cool-Italy-Background.jpg" alt="Travel Background" class="background-image" />
+    </div>
+    <div class="overlay-rectangle"></div>
+    <div class="brand-container">
+        <img src="~/images/ViaItalia teal + blue combo logo.png" class="logo" />
+    </div>
+    <div class="hero-text">
+        <h2 class="hero-title">Hi! I'm ViaItalia Your Trip Planner</h2>
+        <p class="hero-description">Let's Plan your Trip With Me.</p>
+
+        @if (User.Identity != null && User.Identity.IsAuthenticated)
+        {
+            <!-- Logged in: Redirect to Trip Planner -->
+            <a class="hero-button" asp-controller="TravelPlanner" asp-action="Plan">Get Started</a>
+        }
+        else
+        {
+            <!-- Not Logged in: Redirect to Login -->
+            <a class="hero-button" asp-controller="Auth" asp-action="Login">Get Started</a>
+        }
+    </div>
+
+    <div class="nav-buttons">
+        @if (User.Identity != null && User.Identity.IsAuthenticated)
+        {
+            <form asp-action="Logout" asp-controller="Auth" method="post" style="display:inline;">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="signin-btn">Log out</button>
+            </form>
+        }
+        else
+        {
+            <a asp-controller="Auth" asp-action="Login"><button class="login-btn">Log in</button></a>
+            <a asp-controller="Auth" asp-action="Register"><button class="signin-btn">Sign up</button></a>
+        }
+    </div>
+</section>
+
+<!-- Explore Section -->
+<section class="explore-section">
+    <div class="explore-content">
+        <h3>Explore Italy</h3>
+        <nav class="explore-nav">
+    <a asp-controller="AttractionPlaces" asp-action="Index" class="nav-btn">Attractions</a>
+    <a asp-controller="Hotels" asp-action="Index" class="nav-btn">Hotels</a>
+    <a asp-controller="Beaches" asp-action="Index" class="nav-btn">Beaches</a>
+    <a asp-controller="Cities" asp-action="Index" class="nav-btn">Cities</a>
+    <a asp-controller="ShoppingMalls" asp-action="Index" class="nav-btn">Shopping malls</a>
+    <a asp-controller="Restaurants" asp-action="Index" class="nav-btn">Restaurants</a>
+</nav>
+    </div>
+</section>
+
+<!-- Remaining HTML (Unchanged, Abbreviated for Brevity) -->
+    <section class="combined-destinations-container">
+        <div class="destination-row">
+            <div class="destination-card">
+                <img src="~/images/Coliseu - Roma.jpg" alt="Rome" class="card-image">
+                <a href="https://localhost:7131/Cities/Details/013c7957-a860-451f-909e-05cd5c150afb" class="city-name">Rome</a>
+            </div>
+            <div class="destination-card">
+                <img src="~/images/parma italy.jpg" alt="Parma" class="card-image">
+                <a href="https://localhost:7131/Cities/Details/773bc099-7e91-4038-b112-4738bc46b347" class="city-name">Parma</a>
+            </div>
+            <div class="destination-card">
+                <img src="~/images/Cathedral-Siena-Italy.webp" alt="Siena" class="card-image">
+                <a href="https://localhost:7131/Cities/Details/90b672ea-0a31-4851-91f5-77ca54ea5364" class="city-name">Siena</a>
+            </div>
+        </div>
+        <div class="destination-row">
+            <div class="destination-card">
+                <img src="~/images/Pisa, Italy.jpg" alt="Pisa" class="card-image">
+                <a href="https://localhost:7131/Cities/Details/bc62b984-4cf8-425e-8905-8de20a857ca8" class="city-name">Pisa</a>
+            </div>
+            <div class="destination-card">
+                <img src="~/images/Rimini city Of Italy.jpg" alt="Rimini" class="card-image">
+                <a href="https://localhost:7131/Cities/Details/2a23b00e-6dc8-46bf-9857-e538d6ef4e31" class="city-name">Rimini</a>
+            </div>
+            <div class="destination-card">
+                <img src="~/images/florence duomo facade🍃🌞🏛️.jpg" alt="Florence" class="card-image">
+                <a href="https://localhost:7131/Cities/Details/4a18e961-6bcf-4f1e-9133-430a65d33496" class="city-name">Florence</a>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- New H3 Outside Features Section - Left Side with Margin -->
+<div class="trip-planning-heading-container">
+    <h3 class="trip-planning-heading">Things you need to Plan your Amazing trip</h3>
+</div>
+
+<!-- Features Section -->
+<section class="features-section">
+    <div class="features-container">
+        <div class="features-text">
+            <h3>Select Your Destination !</h3>
+            <p>Select Your Target Destination ! Where you want to go and plan your trip with ViaItalia. We help you and providing good suggestions allover the Italy. So Make your trip more memorable with us.</p>
+        </div>
+        <div class="features-form">
+            <div class="form-content">
+                <!-- Navigation Bar with Logo and Items -->
+<div class="nav-bar">
+    <div class="logo-container">
+        <img src="~/images/ViaItalia teal + blue combo logo.png" alt="Logo" class="nav-logo">
+    </div>
+
+    <div class="nav-items">
+        <span>For You</span>
+        <span>Beach</span>
+        <span>Hotels</span>
+        <span>Rivers</span>
+        <span>Lakes</span>
+    </div>
+
+    <button class="sign-in-btn">Sign in</button>
+</div>
+
+<!-- Thin Divider Line -->
+<div class="nav-divider"></div>
+                <!--div class="divider"></div-->
+                <div class="form-inputs">
+                    <h4>Provide us your Trip preferences</h4>
+                    <p>Give some Specific information about your Trip, Our Travel Planner will Generate a customized Plan according to your Preferences.</p>
+                    
+                    <label>What is your Destination?</label>
+                    <div class="destination-input">
+                        <span>Rome, Italy</span>
+                        <div class="input-arrow">
+                            <img src="~/images/angle-down.png" alt="Down arrow" class="arrow-icon">
+                        </div>
+                    </div>
+                    
+                    <label>When You Plan to Go?</label>
+<div class="date-input">
+<span>Select Date</span>
+<div class="input-arrow">
+<img src="~/images/calendar-clock.png" alt="calendar-clock" class="arrow-icon">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Recommendation Section -->
+ <section class="recommendation-section">
+ <!-- Left Panel -->
+<div class="left-box">
+  <h3>Provide you some Further Recommendation</h3>
+  <p>We are providing you some other recommendation which help you in exploring the Italy too well.</p>
+
+  <!-- White Block Starts -->
+  <div class="left-content-box">
+    
+    <!-- Navbar -->
+    <div class="custom-navbar">
+      <div class="nav-left">
+        <img src="~/images/ViaItalia teal + blue combo logo.png" alt="Logo" class="logo-icon" />
+      </div>
+
+      <div class="nav-links">
+        <span class="nav-item">For You</span>
+        <span class="nav-item active">Beaches</span>
+        <span class="nav-item">Hotels</span>
+        <span class="nav-item">Rivers</span>
+        <span class="nav-item">Lakes</span>
+        <img src="~/images/right arrow icon.jpg" alt="Arrow Icon" class="arrow-icon" />
+      </div>
+
+      <button class="signin-button">Sign in</button>
+    </div>
+
+    <div class="thin-line"></div>
+
+    <!-- Beach Info -->
+    <div class="beach-section">
+      <h4>Beaches</h4>
+      <p>Here we suggest you some popular beaches of Italy</p>
+
+      <div class="beach-card">
+        <img src="~/images/beach lido di ostia.jpg" alt="Lido Di Ostia" />
+        <div>
+          <h5>Lido Di Ostia</h5>
+          <p>Location, Rome Italy</p>
+        </div>
+      </div>
+
+      <div class="beach-card">
+        <img src="~/images/beach lido del re.jpg" alt="Lido Del Re" />
+        <div>
+          <h5>Lido Del Re</h5>
+          <p>Location, Taormina Italy</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+  <!-- Right Panel -->
+  <div class="right-box">
+    <h3>Offline Availability</h3>
+    <p>
+      If you have no Internet access, and for any reason your internet become down, don’t worry we have a solution for you.
+    </p>
+
+    <div class="chat">
+      <div class="msg user">
+        <img src="~/images/women image.png" />
+        <span>Hi,</span>
+      </div>
+
+      <div class="msg bot">
+        <img src="~/images/men image.png" />
+        <span>Hi, I'm Your Travel Planner, you want some help?</span>
+      </div>
+
+      <div class="msg user">
+        <img src="~/images/women image.png" />
+        <span>If I lose internet access so how can I know about my plan?</span>
+      </div>
+
+      <div class="msg bot">
+        <img src="~/images/men image.png" />
+        <span>You can download PDF file of your plan in your device.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Weather Section -->
+    <section class="weather-section">
+        <h2 class="weather-title">Check Weather Before Planning Your Adventure !</h2>
+        <div class="weather-content">
+            <div class="weather-text">
+                <p>Before Planning your adventures make sure, Is today 's Weather Allow you to enjoy your adventure.</p>
+            </div>
+            <div class="weather-image">
+                <img src="~/images/weather icons.png" alt="Weather illustration">
+            </div>
+        </div>
+    </section>
+
+<!-- CTA Section with Conditional Try Now Button -->
+<section class="cta-section">
+    <div class="cta-content">
+        <p>Stop wasting your time in manual trip planning. Start your Trip Planning With ViaItalia.</p>
+       @if (User.Identity != null && User.Identity.IsAuthenticated)
+{
+    <a class="cta-button" asp-controller="TravelPlanner" asp-action="Plan">Try Now</a>
+}
+else
+{
+    <a class="cta-button" asp-controller="Auth" asp-action="Login">Try Now</a>
+}
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+  <div class="faq-header">
+    <h2>FAQs</h2>
+  </div>
+  <div class="faq-line-top"></div>
+  <div class="faq-questions">
+    <div class="faq-item">
+      <div class="question-container">
+        <h3>What is ViaItalia?</h3>
+        <img src="~/images/angle-down.png" alt="Down arrow" class="arrow-icon" />
+      </div>
+      <div class="faq-line-bottom"></div>
+      <div class="faq-answer">ViaItalia is your personal trip planner for exploring Italy's beautiful destinations.</div>
+    </div>
+    <div class="faq-item">
+      <div class="question-container">
+        <h3>Can we access ViaItalia Offline?</h3>
+        <img src="~/images/angle-down.png" alt="Down arrow" class="arrow-icon" />
+      </div>
+      <div class="faq-line-bottom"></div>
+      <!-- Add answer container -->
+      <div class="faq-answer">Yes, you can download your trip plans as PDF files for offline access.</div>
+    </div>
+    <div class="faq-item">
+      <div class="question-container">
+        <h3>Is it easy to use ViaItalia?</h3>
+        <img src="~/images/angle-down.png" alt="Down arrow" class="arrow-icon" />
+      </div>
+      <div class="faq-line-bottom"></div>
+      <!-- Add answer container -->
+      <div class="faq-answer">Yes, ViaItalia is designed with a user-friendly interface for easy navigation and planning.</div>
+    </div>
+    <div class="faq-item">
+      <div class="question-container">
+        <h3>Is ViaItalia have Paid Version?</h3>
+        <img src="~/images/angle-down.png" alt="Down arrow" class="arrow-icon" />
+      </div>
+      <div class="faq-line-bottom"></div>
+      <!-- Add answer container -->
+      <div class="faq-answer">ViaItalia offers both free basic features and premium paid plans with advanced options.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Footer (unchanged except image and link paths updated) -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-logo-section">
+            <img src="~/images/ViaItalia logo in white.png" alt="ViaItalia White Logo" class="footer-logo" />
+        </div>
+
+        <div class="footer-nav-section">
+            <div class="footer-nav-column">
+                <h3>Get Started</h3>
+                <nav>
+                        <a href="https://localhost:7131/Cities/Details/013c7957-a860-451f-909e-05cd5c150afb">Plan your trip of Rome</a>
+                        <a href="https://localhost:7131/Cities/Details/8320bfe2-b6a6-43ec-b0d9-7d4c719c4b9d">Plan your trip of Gela</a>
+                        <a href="https://localhost:7131/Cities/Details/759a1eda-480f-472b-a0c6-1db81a253f67">Plan your trip of Como</a>
+                </nav>
+            </div>
+            <div class="footer-nav-column">
+                <h3>Resources</h3>
+                <nav>
+                    <a asp-controller="Pages" asp-action="ContactUs">Contact Us</a>
+                    <a asp-controller="Pages" asp-action="AboutUs">About Us</a>
+                    <a asp-controller="Pages" asp-action="PrivacyPolicy">Privacy Policy</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <p class="footer-copyright">© 2025 ViaItalia</p>
+</footer>
+
+<script src="~/js/script.js"></script>
+</body>
+</html>

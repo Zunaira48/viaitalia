@@ -1,0 +1,35 @@
+@{
+    ViewData["Title"] = "Request Writer Access";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Request Writer Access - ViaItalia</title>
+</head>
+<body style="font-family:sans-serif; max-width:500px; margin:60px auto; text-align:center;">
+    @if (ViewBag.AlreadyWriter == true)
+    {
+        <h2>You already have Writer access.</h2>
+        <a asp-controller="Home" asp-action="Index">Go to Home</a>
+    }
+    else if (ViewBag.HasPendingRequest == true)
+    {
+        <h2>You already have a pending request.</h2>
+        <p>Please wait for the admin to review it.</p>
+        <a asp-controller="Home" asp-action="Index">Go to Home</a>
+    }
+    else
+    {
+        <h2>Request Writer Access</h2>
+        <p>This sends a request to the site admin for approval.</p>
+        <form asp-action="RequestWriterAccess" method="post">
+            @Html.AntiForgeryToken()
+            <button type="submit" style="padding:10px 25px;background:#2a8a7b;color:white;border:none;border-radius:8px;cursor:pointer;">
+                Send Request
+            </button>
+        </form>
+    }
+</body>
+</html>

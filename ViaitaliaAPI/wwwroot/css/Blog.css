@@ -1,0 +1,1122 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.nav.section {
+    width: 1440px;
+    height: 119px;
+    position: relative;
+    overflow: hidden;
+}
+
+.Home, .Blog, .AboutUs, .ContactUs, .PrivacyPolicy, .SignIn {
+    position: absolute;
+    text-align: center;
+    font-family: 'Karma', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.Home {
+    width: 144px;
+    height: 42px;
+    left: 290px;
+    top: 46px;
+    color: black;
+    font-size: 26px;
+}
+
+.Blog {
+    width: 144px;
+    height: 29px;
+    left: 462px;
+    top: 46px;
+    color: black;
+    font-size: 26px;
+}
+
+.AboutUs {
+    width: 144px;
+    height: 42px;
+    left: 633px;
+    top: 42px;
+    color: black;
+    font-size: 26px;
+}
+
+.ContactUs {
+    width: 144px;
+    height: 42px;
+    left: 819px;
+    top: 43px;
+    color: black;
+    font-size: 26px;
+}
+
+.PrivacyPolicy {
+    width: 208px;
+    height: 42px;
+    left: 986px;
+    top: 42px;
+    color: black;
+    font-size: 26px;
+}
+
+.Rectangle47 {
+    width: 111px;
+    height: 45px;
+    left: 1289px;
+    top: 43px;
+    position: absolute;
+    background: #0AE7BB;
+    border-radius: 50px;
+}
+
+.SignIn {
+    width: 98px;
+    height: 35px;
+    left: 1296px;
+    top: 49px;
+    color: white;
+    font-size: 24px;
+}
+
+.Line13 {
+    width: 914px;
+    height: 0px;
+    left: 320px;
+    top: 88px;
+    position: absolute;
+    border: 1px solid black;
+}
+
+.ViaitaliaTealBlueComboLogo1 {
+    width: 232px;
+    height: 89px;
+    left: 39px;
+    top: 15px;
+    position: absolute;
+}
+
+.Rectangle59 {
+    width: 98px;
+    height: 14px;
+    position: absolute;
+    background: #7ACBCD;
+    border-radius: 3px;
+    transition: all 0.3s ease; /* Smooth animation */
+}
+
+/* remove underline from links */
+.nav.section a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+
+
+body {
+  margin: 0;
+  font-family: 'ADLaM Display', Arial, sans-serif;
+}
+
+.hero-container {
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  height: 1270px;
+  max-width: none;
+  padding: 0;
+  margin-top: 100px;
+}
+
+/* Left Image */
+.hero-image-left {
+  object-fit: cover;
+  position: absolute;
+  left: 0;
+  top: 30px;
+  width: 544px;
+  height: 725px;
+  border-radius: 0;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Quote */
+.hero-quote {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  text-align: center;
+  color: black;
+  font-size: 3rem;
+  height: 402px;
+  left: 605px;
+  top: 25px;
+  width: 767px;
+  font-family: 'Franklin Gothic Heavy', Arial, sans-serif; /* Applied here */
+}
+
+.hero-quote blockquote {
+  font-size: 3rem;
+  line-height: 1.3;
+}
+
+/* Title */
+/* Title - Center in Original Position */
+.viaitalia-title {
+  position: absolute;
+  left: 449px;
+  top: 532px;
+  width: 584px;
+  height: 126px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Lemon', cursive;
+  font-size: 120px;
+  background: linear-gradient(to right, #FFFFFF, #074C4D, #4CADB4, #FFFFFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+  text-align: center;
+  z-index: 10; /* added so it stays above images */
+}
+
+/* Responsive positioning */
+@media (max-width: 991px) {
+  .viaitalia-title {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    font-size: 4rem;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .viaitalia-title {
+    font-size: 2.5rem;
+  }
+}
+
+
+/* Description */
+.hero-description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  text-align: center;
+  color: black;
+  font-size: 2rem;
+  height: 439px;
+  left: 50px;
+  top: 800px;
+  width: 798px;
+  font-family: 'ADLaM Display', Arial, sans-serif; /* Applied here */
+}
+
+.hero-description p {
+  font-size: 2rem;
+  line-height: 1.4;
+}
+
+/* Right Image */
+.hero-image-right {
+  object-fit: cover;
+  position: absolute;
+  top: 510px;
+  width: 544px;
+  height: 725px;
+  border-radius: 200px 0 0 0;
+  margin: 0;
+  padding: 0;
+  max-width: none;
+  right: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 991px) {
+  .hero-container {
+    padding: 20px;
+    height: auto;
+    max-width: 991px;
+  }
+  .hero-image-left,
+  .hero-image-right {
+    position: relative;
+    left: 0;
+    top: 0;
+    margin: 0 auto 20px;
+    width: 300px;
+    height: 400px;
+  }
+  .hero-image-right {
+    border-radius: 100px 0 0 0;
+  }
+  .hero-quote,
+  .hero-description {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  .hero-quote blockquote {
+    font-size: 2rem;
+  }
+  
+  .hero-description p {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-container {
+    padding: 15px;
+    max-width: 100%;
+  }
+  .hero-image-left,
+  .hero-image-right {
+    width: 250px;
+    height: 300px;
+  }
+  .hero-image-right {
+    border-radius: 50px 0 0 0;
+  }
+  .hero-quote blockquote {
+    font-size: 1.5rem;
+  }
+  .hero-description p {
+    font-size: 1rem;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.blog-hero {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 0;
+  margin: 0 auto;
+  width: 100%;
+  height: 614px;
+  max-width: 1440px;
+}
+
+.blog-title {
+  font-size: 3.75rem; /* text-6xl */
+  text-align: center;
+  height: 102px;
+  width: 913px;
+  margin-bottom: 20px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Alkalami&family=Lugrasimo&display=swap');
+
+.text-black {
+  color: black;
+  font-family: 'Alkalami', serif;
+}
+
+.text-teal {
+  color: #0d9488; /* Tailwind's teal-600 */
+  font-family: 'Lugrasimo', Georgia, 'Times New Roman', Times, serif;
+  font-style: italic;
+  font-size: 64px; /* ya apni marzi ka size */
+  font-weight: 400; /* Lugrasimo heavy na lagay */
+  letter-spacing: 1px;
+}
+
+.blog-subtitle {
+  font-size: 2.25rem; /* text-4xl */
+  text-align: center;
+  color: black;
+  height: 48px;
+  width: 1063px;
+  margin-bottom: 24px;
+  font-family: 'Alkalami', serif;
+}
+
+.blog-description {
+  font-size: 1.875rem; /* text-3xl */
+  text-align: center;
+  color: black;
+  height: 392px;
+  width: 1184px;
+  line-height: 1.5;
+  margin-top: 50px;
+}
+
+/* Medium screens */
+@media (max-width: 991px) {
+  .blog-hero {
+    padding: 20px;
+    height: auto;
+    max-width: 991px;
+  }
+  .blog-title {
+    font-size: 3rem; /* text-5xl */
+    width: 100%;
+    height: auto;
+    max-width: 700px;
+  }
+  .blog-subtitle {
+    font-size: 1.875rem; /* text-3xl */
+    width: 100%;
+    height: auto;
+    max-width: 800px;
+  }
+  .blog-description {
+    font-size: 1.5rem; /* text-2xl */
+    width: 100%;
+    height: auto;
+    max-width: 900px;
+  }
+}
+
+/* Small screens */
+@media (max-width: 640px) {
+  .blog-hero {
+    padding: 16px;
+    max-width: 100%;
+  }
+  .blog-title {
+    font-size: 1.875rem; /* text-3xl */
+  }
+  .blog-subtitle {
+    font-size: 1.25rem; /* text-xl */
+  }
+  .blog-description {
+    font-size: 1.125rem; /* text-lg */
+  }
+}
+
+/* General Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  color: #000;
+}
+
+/* Section Styles */
+.destination-section {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 20px;
+}
+
+/* Section Header */
+.section-header {
+  z-index: 10;
+  align-self: center;
+  margin-top: -12px;
+  margin-left: 64px;
+  font-size: 3rem; /* text-5xl */
+  text-align: center;
+  color: black;
+  font-family: 'Alkalami', serif;
+  font-weight: bold;
+  font-size: 48px;
+}
+
+@media (max-width: 768px) {
+  .section-header {
+    font-size: 2.25rem; /* text-4xl */
+    margin-left: 0;
+    max-width: 100%;
+  }
+}
+
+/* Container for Image & Content */
+.destination-container {
+  display: flex;
+  gap: 20px;
+  margin-top: 48px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .destination-container {
+    flex-direction: column;
+    margin-top: 40px;
+  }
+}
+
+/* Destination Image */
+.destination-image {
+  width: 41%;
+}
+
+.destination-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 70px 0 70px 0;
+}
+
+@media (max-width: 768px) {
+  .destination-image {
+    width: 100%;
+    margin-top: 36px;
+  }
+}
+
+/* Destination Content */
+.destination-content {
+  width: 59%;
+}
+
+.destination-text {
+  display: flex;
+  flex-direction: column;
+  margin-top: 14px;
+}
+
+.destination-heading {
+  font-size: 3rem; /* text-5xl */
+  font-weight: bold;
+  font-family: 'Karma', serif;
+}
+
+.destination-description {
+  font-size: 1.5rem; /* text-2xl */
+  margin-top: 44px;
+  margin-left: 28px;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .destination-content {
+    width: 100%;
+    margin-left: 0;
+  }
+  .destination-heading {
+    font-size: 2.25rem;
+  }
+  .destination-description {
+    margin-top: 40px;
+    margin-left: 0;
+    font-size: 1.25rem;
+  }
+}
+
+.culture-section {
+  overflow: hidden;
+  padding: 20px;
+}
+
+.culture-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: nowrap; /* prevent wrap on large screens */
+  justify-content: space-between;
+}
+
+.culture-content {
+  width: 59%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  color: black;
+   flex: 0 0 59%;
+}
+
+.culture-content h1 {
+  font-size: 3rem; /* same as text-5xl */
+  font-weight: bold;
+}
+
+.culture-content p {
+  margin-top: 40px;
+  margin-left: 20px;
+  font-size: 1.5rem; /* text-2xl */
+  line-height: 1.6;
+}
+
+.culture-image {
+  width: 41%;
+  flex: 0 0 41%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px; /* ✅ Add gap */
+  box-sizing: border-box;
+}
+
+.culture-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  aspect-ratio: 0.9;
+  border-radius: 70px 0px 70px 0px;
+}
+
+@media (max-width: 768px) {
+  .culture-content,
+  .culture-image {
+    width: 100%;
+    margin-left: 0;
+    flex: 0 0 100%;
+  }
+  .culture-container {
+    flex-direction: column;
+  }
+
+  .culture-content h1 {
+    font-size: 2.25rem; /* text-4xl */
+  }
+
+  .culture-content p {
+    margin-top: 20px;
+  }
+
+  .culture-image img {
+    margin-top: 20px;
+  }
+  .culture-image {
+    justify-content: center;
+  }
+}
+
+.travel-tips-section {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: none;
+  height: 630px;
+  background-color: white;
+  overflow: hidden;
+  
+}
+
+.travel-hero-image {
+   position: absolute;
+  top: 1.5rem;
+  left: 20px; /* left gap now 20px */
+  height: 583px;
+  width: 506px;
+  border-radius: 70px 0 0 0;
+}
+
+.travel-title {
+  position: absolute;
+  left: 545px;
+  top: 38px;
+  width: 561px;
+  height: 58px;
+}
+
+.travel-title h1 {
+  font-size: 3rem; /* text-5xl */
+  font-weight: bold;
+  color: black;
+}
+
+.travel-description {
+  position: absolute;
+  left: 565px;
+  top: 117px;
+  width: 853px;
+  height: 490px;
+}
+
+.travel-description p {
+  font-size: 1.5rem; /* text-2xl */
+  color: black;
+  line-height: 1.6;
+}
+
+/* Tablet view */
+@media (max-width: 768px) {
+  .travel-tips-section {
+    box-sizing: border-box;
+    padding: 20px;
+    height: auto;
+  }
+
+  .travel-hero-image {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-bottom: 20px;
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    border-radius: 40px 0 0 0;
+  }
+
+  .travel-title {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  .travel-title h1 {
+    font-size: 2.25rem; /* text-4xl */
+  }
+
+  .travel-description {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+  }
+
+  .travel-description p {
+    font-size: 1.25rem; /* text-xl */
+    line-height: 1.5;
+  }
+}
+
+/* Mobile view */
+@media (max-width: 480px) {
+  .travel-tips-section {
+    padding: 16px;
+  }
+
+  .travel-hero-image {
+    max-width: 300px;
+    border-radius: 30px 0 0 0;
+  }
+
+  .travel-title h1 {
+    font-size: 1.875rem; /* text-3xl */
+  }
+
+  .travel-description p {
+    font-size: 1rem; /* text-base */
+    line-height: 1.5;
+  }
+}
+
+.travel-inspiration {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: none;
+  height: 574px;
+  background-color: white;
+  overflow: hidden;
+
+}
+
+/* Image */
+.travel-hero {
+  object-fit: cover;
+  position: absolute;
+  top: 43px;
+  right: 20px;
+  height: 512px;
+  width: 506px;
+  border-radius: 70px 0 0 0;
+}
+
+/* Title */
+.travel-Inspiration-title {
+  position: absolute;
+  top: 48px; /* top-12 in Tailwind */
+  left: 60px;
+  width: 669px;
+  height: 138px;
+}
+
+.travel-Inspiration-title h1 {
+  font-size: 3rem; /* text-5xl */
+  font-weight: bold;
+  color: black;
+}
+
+/* Description */
+.travel-inspiration-description {
+  position: absolute;
+  left: 80px;
+  top: 175px;
+  width: 790px;
+  height: 368px;
+}
+
+.travel-inspiration-description p {
+  font-size: 1.5rem; /* text-2xl */
+  color: black;
+  line-height: 1.6;
+}
+
+/* Tablet view */
+@media (max-width: 768px) {
+  .travel-inspiration {
+    padding: 40px 20px;
+    height: auto;
+  }
+
+  .travel-hero {
+    display: block;
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: 20px auto;
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    border-radius: 40px 0 0 0;
+  }
+
+  .travel-Inspiration-title {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    text-align: center;
+  }
+
+  .travel-Inspiration-title h1 {
+    font-size: 2.25rem; /* text-4xl */
+  }
+
+  .travel-inspiration-description {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    height: auto;
+    text-align: center;
+  }
+
+  .travel-inspiration-description p {
+    font-size: 1.25rem; /* text-xl */
+    line-height: 1.5;
+  }
+}
+
+/* Mobile view */
+@media (max-width: 480px) {
+  .travel-inspiration {
+    padding: 20px 16px;
+  }
+
+  .travel-hero {
+    max-width: 300px;
+    border-radius: 30px 0 0 0;
+  }
+
+  .travel-Inspiration-title h1 {
+    font-size: 1.875rem; /* text-3xl */
+  }
+
+  .travel-inspiration-description p {
+    font-size: 1rem; /* text-base */
+    line-height: 1.5;
+  }
+}
+
+ .Frame100 {
+      width: 100%;
+      max-width: none; /* Matches original design width */
+      height: 995px;
+      position: relative;
+      overflow: hidden;
+      margin: 0 auto; /* Center the container */
+    }
+
+    .Vector2 {
+      position: absolute;
+      left: 0; /* No gap on left */
+      top: 0;
+      width: 100%; /* Full width to prevent gaps */
+    }
+
+    .Vector2 img {
+      width: 100%;
+      height: 995px; /* Matches original SVG height */
+      display: block; /* Removes any default image spacing */
+      object-fit: cover; /* Ensures image fits without distortion */
+    }
+
+    .WhyReadOurBlog {
+      width: 408px;
+      height: 47px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%); /* Center horizontally */
+      top: 285px;
+      color: black;
+      font-size: 40px;
+      font-family: 'Kameron', serif;
+      font-weight: 700;
+      word-wrap: break-word;
+      text-align: center;
+    }
+
+    .BlogDescription {
+      width: 1059px;
+      height: 420px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%); /* Center horizontally */
+      top: 340px;
+      text-align: center;
+      color: black;
+      font-size: 32px;
+      font-family: 'Karla', sans-serif;
+      font-weight: 400;
+      word-wrap: break-word;
+      line-height: 1.5;
+    }
+
+    .BlogDescription .ViaItalia {
+      font-family: 'Kavoon', cursive;
+      font-weight: 1000;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Kameron:wght@700&family=Karla:wght@400&family=Kavoon:wght@400&display=swap');
+
+
+     .Frame101 {
+      width: 1030px;
+      height: 183px;
+      position: relative;
+      overflow: hidden;
+      margin: 0 auto; /* Center the container */
+      top: 100px;
+    }
+
+    .Rectangle121 {
+      width: 954px;
+      height: 138px;
+      position: absolute;
+      left: 41px;
+      top: 22px;
+      background: rgba(6.13, 80.80, 67.11, 0.69);
+      border-radius: 40px;
+    }
+
+    .SoGrabYourFavoriteGelato {
+      width: 850px; /* Adjusted for better text wrapping */
+      height: 86px;
+      position: absolute;
+      left: 74px;
+      top: 48px;
+      text-align: center;
+      color: white;
+      font-size: 32px;
+      font-family: 'Karla', sans-serif;
+      font-weight: 600;
+      word-wrap: break-word;
+      line-height: 1.3; /* Improved readability */
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Karla:wght@600&display=swap');
+
+ .Frame102 {
+  width: 100%;
+  height: 488px;
+  position: relative;
+  overflow: hidden;
+  top: 100px;
+  margin: 0; /* Remove auto centering */
+}
+
+.Rectangle84 {
+  width: 100%;
+  height: 388px;
+  position: absolute;
+  left: 0;
+  top: 42px;
+  background: linear-gradient(53deg, rgba(147, 236, 230, 0.81) 0%, #4E7B85 100%);
+  border-radius: 117px;
+}
+
+    .StayUpdated {
+      width: 397px;
+      height: 85px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%); /* Center horizontally */
+      top: 61px;
+      text-align: center;
+      color: black;
+      font-size: 48px;
+      font-family: 'Kaisei HarunoUmi', serif;
+      font-weight: 700;
+      word-wrap: break-word;
+    }
+
+    .SubscribeToOurNewsletter {
+      width: 850px;
+      height: 68px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%); /* Center horizontally */
+      top: 168px;
+      text-align: center;
+      color: black;
+      font-size: 28px;
+      font-family: 'Kameron', serif;
+      font-weight: 500;
+      word-wrap: break-word;
+    }
+
+    .Rectangle85 {
+      width: 630px;
+      height: 72px;
+      position: absolute;
+      left: 285px;
+      top: 276px;
+      background: rgba(4, 55, 89, 0.33);
+      border-radius: 40px;
+      border: 1px solid #043759;
+    }
+
+    .Rectangle86 {
+      width: 258px;
+      height: 72px;
+      position: absolute;
+      left: 1001px;
+      top: 276px;
+      background: rgba(2.63, 76.76, 71.82, 0.76);
+      border-radius: 40px;
+      border: 1px solid #034A42;
+    }
+
+    .EnterEmailAddress {
+      width: 562px;
+      height: 28px;
+      position: absolute;
+      left: 319px;
+      top: 298px;
+      color: rgba(0, 0, 0, 0.55);
+      font-size: 24px;
+      font-family: 'Kameron', serif;
+      font-weight: 500;
+      word-wrap: break-word;
+    }
+
+    .EnterEmailAddress input {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: rgba(0, 0, 0, 0.55);
+      font-size: 24px;
+      font-family: 'Kameron', serif;
+      font-weight: 500;
+      padding: 0 10px;
+    }
+
+    .Subscribe {
+      width: 258px; /* Match Rectangle86 width */
+      height: 72px; /* Match Rectangle86 height */
+      position: absolute;
+      left: 1001px;
+      top: 276px;
+      text-align: center;
+      color: #FBF9F9;
+      font-size: 36px;
+      font-family: 'Kameron', serif;
+      font-weight: 500;
+      word-wrap: break-word;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .Subscribe button {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      border: none;
+      color: #FBF9F9;
+      font-size: 36px;
+      font-family: 'Kameron', serif;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Kaisei+HarunoUmi:wght@700&family=Kameron:wght@500&display=swap');
+
+
+    
+     .footer {
+  width: 100%;
+  height: 126px;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  display: flex;
+  align-items: center;      /* Center vertically */
+  justify-content: center;  /* Center horizontally */
+  margin-top: 100px;
+}
+
+.footerrectangle {
+  width: 100%;
+  height: 124px;
+  position: absolute;
+  left: 0;
+  top: 2px;
+  background: #001A33;
+}
+
+/* Make nav container */
+.footer-nav {
+  display: flex;
+  gap: 10px;
+  z-index: 1; /* On top of rectangle */
+  margin-left: 340px;
+}
+
+.footer-nav div {
+  width: 220px;
+  height: 35px;
+  text-align: center;
+  color: white;
+  font-size: 24px;
+  font-family: 'Karma', sans-serif;
+  font-weight: 400;
+  line-height: 35px;
+  cursor: pointer;
+}
+
+    .footer-nav a:hover {
+        color: #7ACBCD !important; /* Lighter teal from Rectangle59 */
+        text-decoration: none !important;
+    }
+
+    .footer-nav a {
+        color: white;
+        text-decoration: none;
+    }
+
+.ViaitaliaLogoInWhite1 {
+  width: 182px;
+  height: 69px;
+  position: absolute;
+  left: 34px;
+  top: 28px;
+}
+ 

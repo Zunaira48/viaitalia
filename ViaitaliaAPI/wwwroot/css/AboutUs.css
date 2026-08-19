@@ -1,0 +1,579 @@
+body {
+  background: #ffff;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.nav section {
+  width: 1440px;
+  height: 119px;
+  position: relative;
+  overflow: hidden;
+}
+
+.Home {
+  width: 144px;
+  height: 42px;
+  left: 290px;
+  top: 46px;
+  position: absolute;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  font-size: 26px;
+  font-family: 'Karma', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.Blog {
+  width: 144px;
+  height: 29px;
+  left: 462px;
+  top: 46px;
+  position: absolute;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  font-size: 26px;
+  font-family: 'Karma', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.AboutUs {
+  width: 144px;
+  height: 42px;
+  left: 633px;
+  top: 42px;
+  position: absolute;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  font-size: 26px;
+  font-family: 'Karma', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.ContactUs {
+  width: 144px;
+  height: 42px;
+  left: 819px;
+  top: 43px;
+  position: absolute;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  font-size: 26px;
+  font-family: 'Karma', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.PrivacyPolicy {
+  width: 208px;
+  height: 42px;
+  left: 986px;
+  top: 42px;
+  position: absolute;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  font-size: 26px;
+  font-family: 'Karma', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.Rectangle47 {
+  width: 111px;
+  height: 45px;
+  left: 1289px;
+  top: 43px;
+  position: absolute;
+  background: #0AE7BB;
+  border-radius: 50px;
+}
+
+.SignIn {
+  width: 98px;
+  height: 35px;
+  left: 1296px;
+  top: 49px;
+  position: absolute;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+  font-family: 'Karma', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.Line13 {
+  width: 914px;
+  height: 0px;
+  left: 320px;
+  top: 88px;
+  position: absolute;
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.ViaitaliaTealBlueComboLogo1 {
+  width: 232px;
+  height: 89px;
+  left: 39px;
+  top: 15px;
+  position: absolute;
+}
+
+.Rectangle59 {
+    width: 98px;
+    height: 14px;
+    position: absolute;
+    background: #7ACBCD;
+    border-radius: 3px;
+    transition: all 0.3s ease; /* smooth move karega */
+}
+
+.nav a {
+    color: black; /* apne design ka color set karo */
+    text-decoration: none; /* underline hata dega */
+}
+/*main*/
+
+
+/* Main container styling */
+main {
+  overflow-x: hidden; /* no horizontal overflow */
+  text-align: center;
+  color: black;
+  font-size: 3.75rem; /* Equivalent to text-6xl */
+  width: 100%;
+  margin-top: 140px;
+}
+
+/* Hero image styling */
+.hero-image {
+  display: block;          /* removes inline-gap */
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-width: 100vw;        /* never exceed viewport */
+  margin-bottom: -80px;
+  
+}
+
+/* About us section styling */
+.about-us-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 4rem;
+  padding-top: 1px;
+  padding-bottom: 24rem;
+  width: 100%;
+  min-height: 429px;
+  overflow: hidden;        /* ensure background doesn’t push width */
+}
+
+.about-us-section img {
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100vw;        /* prevent right-side gap */
+  margin-top: 30px;
+}
+
+.about-us-section h1 {
+  position: relative;
+  font-size: 10rem;
+  width: 600px;
+  height: 230px;
+  font-weight: 700px;
+  margin-top: -5px;
+  font-family: Lalezar;
+  left: -50px;
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 767px) {
+  main {
+    font-size: 2.25rem;
+  }
+
+  .about-us-section {
+    padding: 0 1.25rem;
+    padding-bottom: 6rem;
+  }
+
+  .about-us-section h1 {
+    margin-bottom: 0.625rem;
+    font-size: 2.25rem;
+  }
+
+  .hero-image {
+    max-width: 100vw;
+  }
+}
+
+/*frame 1*/
+
+.journey {
+  width: 1440px;
+  height: 740px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.journey-title {
+  width: 809px;
+  height: 81px;
+  position: absolute;
+  left: 332px;
+  top: 4px;
+  text-align: center;
+  color: #09798C;
+  font-size: 64px;
+  font-family: 'Lalezar', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.description {
+  width: 1254px;
+  height: 451px;
+  position: absolute;
+  left: 92px;
+  top: 105px;
+  text-align: center;
+  color: black;
+  font-size: 36px;
+  font-family: 'Lateef', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.vector-image {
+  width: 1437px;
+  height: 200px;
+  position: absolute;
+  top: 510px;
+  /*object-fit: cover;*/
+}
+
+/*frame 2*/
+
+.we-do-section  {
+  width: 1440px;
+  height: 1100px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.what-we-do {
+  width: 375px;
+  height: 81px;
+  position: absolute;
+  left: 533px;
+  top: 16px;
+  text-align: center;
+  color: #09798C;
+  font-size: 64px;
+  font-family: 'Lalezar', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.why-we-exist {
+  width: 375px;
+  height: 81px;
+  position: absolute;
+  left: 521px;
+  top: 589px;
+  text-align: center;
+  color: #09798C;
+  font-size: 64px;
+  font-family: 'Lalezar', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.viaitalia-description {
+  width: 1143px;
+  height: 484px;
+  position: absolute;
+  left: 149px;
+  top: 101px;
+  color: black;
+  font-size: 25px;
+  font-family: 'Lexend Exa', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.viaitalia-description p {
+  margin: 10px 0;
+}
+
+.viaitalia-description ul {
+  list-style-type: disc;
+  padding-left: 40px;
+  margin: 10px 0;
+}
+
+.viaitalia-description li {
+  margin-bottom: 10px;
+}
+
+.why-we-exist-description {
+  width: 1143px;
+  height: 313px;
+  position: absolute;
+  left: 149px;
+  top: 708px;
+  text-align: center;
+  color: black;
+  font-size: 23px;
+  font-family: 'Lexend Exa', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.why-we-exist-description p {
+  margin: 10px 0;
+}
+
+/*frame 3*/
+
+.Mission {
+  width: 1440px;
+  height: 1152px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.vector-image1 {
+  width: 1436px;
+  height: 184px;
+  position: absolute;
+  left: -1px;
+  top: 18px;
+  object-fit: cover;
+}
+
+.our-mission {
+  width: 399px;
+  height: 68px;
+  position: absolute;
+  left: 521px;
+  top: 238px;
+  text-align: center;
+  color: black;
+  font-size: 64px;
+  font-family: 'Lalezar', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.mission-description {
+  width: 966px;
+  height: 340px;
+  position: absolute;
+  left: 237px;
+  top: 333px;
+  text-align: center;
+  color: white;
+  font-size: 24px;
+  font-family: 'Lexend Exa', sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+  z-index: 2;
+}
+
+.mission-description p {
+  margin: 0;
+}
+
+.rectangle94 {
+  width: 1079px;
+  height: 478px;
+  position: absolute;
+  left: 181px;
+  top: 222px;
+  background: rgba(8.93, 91.99, 124.82, 0.71);
+  border-radius: 40px;
+}
+
+.why-we-exist {
+  width: 375px;
+  height: 81px;
+  position: absolute;
+  left: 533px;
+  top: 700px;
+  text-align: center;
+  color: #09798C;
+  font-size: 64px;
+  font-family: 'Lalezar', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.why-we-exist-description {
+  width: 1143px;
+  height: 316px;
+  position: absolute;
+  left: 149px;
+  top: 814px;
+  color: black;
+  font-size: 24px;
+  font-family: 'Lexend Exa', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.why-we-exist-description ul {
+  list-style-type: disc;
+  padding-left: 40px;
+  margin: 10px 0;
+}
+
+.why-we-exist-description li {
+  margin-bottom: 20px;
+}
+
+/*frame 4*/
+
+.contact {
+  width: 1440px;
+  height: 270px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.rectangle95 {
+  width: 373px;
+  height: 83px;
+  position: absolute;
+  left: 533px;
+  top: 39px;
+  background: #538C83;
+  border-radius: 40px;
+}
+
+.lets-contact {
+  width: 249px;
+  height: 50px;
+  position: absolute;
+  left: 595px;
+  top: 56px;
+  text-align: center;
+  color: white;
+  font-size: 40px;
+  font-family: 'Alatsi', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.email-contact {
+  width: 540px;
+  height: 43px;
+  position: absolute;
+  left: 450px;
+  top: 185px;
+  text-align: center;
+  color: black;
+  font-size: 32px;
+  font-family: 'Alegreya', serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+    .email-contact a {
+        color: #538C83 !important; /* Explicit black color */
+        text-decoration: none !important; /* Removes underline */
+    }
+
+
+
+/*footer*/
+
+
+  .footer-nav {
+            width: 100%;
+            height: 126px;
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+
+        .Rectangle48 {
+            width: 100%;
+            height: 124px;
+            position: absolute;
+            left: 0px;
+            top: 2px;
+            background: #001A33;
+        }
+
+        .ContactUs-1, .AboutUs-1, .TermCondition-1, .PrivacyPolicy-1, .Blog-1 {
+            position: absolute;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            font-family: 'Karma', sans-serif;
+            font-weight: 400;
+            word-wrap: break-word;
+            width: 220px;
+            height: 35px;
+            cursor: pointer;
+        }
+
+        .ContactUs-1 {
+            left: 255px;
+            top: 51px;
+        }
+
+        .AboutUs-1 {
+            left: 500px;
+            top: 51px;
+        }
+
+        .TermCondition-1 {
+            left: 740px;
+            top: 51px;
+        }
+
+        .PrivacyPolicy-1 {
+            left: 1016px;
+            top: 51px;
+        }
+
+        .Blog-1 {
+            left: 1249px;
+            top: 51px;
+        }
+
+        .ViaitaliaLogoInWhite1 {
+            width: 182px;
+            height: 69px;
+            position: absolute;
+            left: 34px;
+            top: 28px;
+        }
+
+.ContactUs-1 a, .AboutUs-1 a, .TermCondition-1 a, .PrivacyPolicy-1 a, .Blog-1 a{
+    color: white !important;
+    text-decoration: none !important;
+}
+
+    .ContactUs-1 a:hover, .AboutUs-1 a:hover, .TermCondition-1 a:hover, .PrivacyPolicy-1 a:hover, .Blog-1 a:hover {
+        color: #7ACBCD !important; /* Lighter teal from Rectangle59 */
+        text-decoration: none !important;
+    }
+

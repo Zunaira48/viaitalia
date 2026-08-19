@@ -1,0 +1,29 @@
+# Build outputs
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ASP.NET Core
+appsettings.Production.json
+
+# Database files (never commit local .mdf/.ldf if any end up in the folder)
+*.mdf
+*.ldf
+*.bak
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node (only relevant if you ever add npm-based frontend tooling later)
+node_modules/
+
+wwwroot/images/

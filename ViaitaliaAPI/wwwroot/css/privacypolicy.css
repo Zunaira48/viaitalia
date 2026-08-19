@@ -1,0 +1,792 @@
+body{
+    background-color: #012F48;
+    color: #ffff;
+    margin: 0;
+    padding: 0;
+}
+.Frame78 {
+    width: 1440px;
+    height: 119px;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+}
+
+.Home, .Blog, .AboutUs, .ContactUs, .PrivacyPolicy, .SignIn {
+    position: absolute;
+    text-align: center;
+    font-family: 'Karma', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.Home {
+    width: 144px;
+    height: 42px;
+    left: 290px;
+    top: 46px;
+    color: white;
+    font-size: 26px;
+}
+
+.Blog {
+    width: 144px;
+    height: 29px;
+    left: 462px;
+    top: 46px;
+    color: white;
+    font-size: 26px;
+}
+
+.AboutUs {
+    width: 144px;
+    height: 42px;
+    left: 633px;
+    top: 42px;
+    color: white;
+    font-size: 26px;
+}
+
+.ContactUs {
+    width: 144px;
+    height: 42px;
+    left: 819px;
+    top: 43px;
+    color: white;
+    font-size: 26px;
+}
+
+.PrivacyPolicy {
+    width: 208px;
+    height: 42px;
+    left: 986px;
+    top: 42px;
+    color: white;
+    font-size: 26px;
+}
+
+.Rectangle47 {
+    width: 111px;
+    height: 45px;
+    left: 1289px;
+    top: 43px;
+    position: absolute;
+    background: #0AE7BB;
+    border-radius: 50px;
+}
+
+.SignIn {
+    width: 98px;
+    height: 35px;
+    left: 1296px;
+    top: 49px;
+    color: black;
+    font-size: 24px;
+}
+
+.Line13 {
+    width: 914px;
+    height: 0px;
+    left: 320px;
+    top: 88px;
+    position: absolute;
+    border: 1px solid white;
+    border-image: linear-gradient(to right, transparent, white, transparent) 1;
+}
+
+.ViaitaliaTealBlueComboLogo1 {
+    width: 232px;
+    height: 89px;
+    left: 39px;
+    top: 15px;
+    position: absolute;
+}
+
+.Rectangle59 {
+    width: 98px;
+    height: 14px;
+    position: absolute;
+    background: #7ACBCD;
+    border-radius: 3px;
+    transition: all 0.3s ease; /* smooth animation */
+}
+
+/* Hover effects for interactivity */
+.Home:hover, .Blog:hover, .AboutUs:hover, .ContactUs:hover, .PrivacyPolicy:hover, .SignIn:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.Frame78 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+
+      .Frame104 {
+      width: 1314px;
+      height: 378px;
+      position: relative;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    .PrivacyPolicy1 {
+      width: 644px;
+      height: 99px;
+      left: 436px;
+      top: 31px;
+      position: absolute;
+      text-align: center;
+      color: white;
+      font-size: 64px;
+      font-family: 'Lalezar', sans-serif;
+      font-weight: 700;
+      word-wrap: break-word;
+    }
+
+    .Line15 {
+      width: 278px;
+      height: 0px;
+      left: 619px;
+      top: 106px;
+      position: absolute;
+      box-shadow: 0px 4px 4px #8FF6E6;
+      border: 2px solid white;
+      border-image: linear-gradient(to right, transparent, white, transparent) 1;
+    }
+
+    .description-1 {
+      width: 1177px;
+      height: 150px;
+      left: 150px;
+      top: 155px;
+      position: absolute;
+      text-align: center;
+      color: white;
+      font-size: 32px;
+      font-family: 'Laila', sans-serif;
+      font-weight: 400;
+      word-wrap: break-word;
+    }
+
+    /* Hover effects for interactivity */
+    .PrivacyPolicy1:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+
+        .info {
+      width: 1054px;
+      height: 674px;
+      position: relative;
+      overflow: hidden;
+      background: transparent;
+      left: 225px;
+    }
+
+    .inforectangle {
+      width: 974px;
+      height: 642px;
+      left: 42px;
+      top: 9px;
+      position: absolute;
+      background: rgba(40.91, 124.97, 139.81, 0.66);
+      box-shadow: 5px 10px 8px 10px rgba(152.03, 220.81, 245.82, 0.25);
+      border-radius: 30px;
+      border: 2px solid #87DEE4;
+    }
+
+    .infotext {
+      width: 530px;
+      height: 52px;
+      left: 100px;
+      top: 55px;
+      position: absolute;
+      color: white;
+      font-size: 40px;
+      font-family: 'Lalezar', sans-serif;
+      font-weight: 400;
+      word-wrap: break-word;
+    }
+
+    .text-1 {
+      width: 764px;
+      height: 438px;
+      left: 133px;
+      top: 148px;
+      position: absolute;
+      color: white;
+      font-size: 25px;
+      font-family: 'Ledger', sans-serif;
+      font-weight: 400;
+      word-wrap: break-word;
+      line-height: 1.5; /* Improved readability */
+    }
+
+    .text-1 ul {
+      list-style-type: disc;
+      padding-left: 40px;
+      margin: 0;
+      margin-top: 50px;
+    }
+
+    .text-1 li {
+      margin-bottom: 20px; /* Spacing between bullet points */
+    }
+
+    .Analyze {
+  left: 44px; /* Matches inforectangle's left */
+  top: 55px;   /* Matches inforectangle's top */
+  position: absolute;
+}
+
+    .Analyze img {
+      width: 54px;
+      height: 54px;
+    }
+
+    /* Hover effects for interactivity */
+    .infotext:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+
+
+       .data {
+      width: 1034px;
+      height: 680px;
+      position: relative;
+      overflow: hidden;
+      background: transparent;
+      left: 235px;
+      top: 80px;
+    }
+    .datarectangle {
+      width: 974px;
+      height: 642px;
+      left: 28px;
+      top: 14px;
+      position: absolute;
+      background: rgba(40.91, 124.97, 139.81, 0.66);
+      box-shadow: 5px 10px 8px 10px rgba(152.03, 220.81, 245.82, 0.25);
+      border-radius: 30px;
+      border: 2px solid #87DEE4;
+    }
+
+    .datatext {
+      width: 530px;
+      height: 52px;
+      left: 100px;
+      top: 91px;
+      position: absolute;
+      color: white;
+      font-size: 40px;
+      font-family: 'Lalezar', sans-serif;
+      font-weight: 400;
+      word-wrap: break-word;
+    }
+
+    .text-2 {
+      width: 764px;
+      height: 438px;
+      left: 143px;
+      top: 184px;
+      position: absolute;
+      color: white;
+      font-size: 25px;
+      font-family: 'Ledger', sans-serif;
+      font-weight: 400;
+      word-wrap: break-word;
+      line-height: 1.5;
+    }
+
+    .text-2 ul {
+      list-style-type: disc;
+      padding-left: 40px;
+      margin: 0;
+      margin-top: 40px;
+    }
+
+    .text-2 li {
+      margin-bottom: 20px; /* Spacing between bullet points */
+    }
+
+    .Database {
+      left: 40px;
+      top: 89px;
+      position: absolute;
+    }
+
+    .Database img {
+      width: 54px;
+      height: 54px;
+    }
+
+    /* Hover effects for interactivity */
+    .datatext:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+
+
+     .cookies {
+      width: 1024px;
+      height: 662px;
+      position: relative;
+      overflow: hidden;
+      background: transparent;
+      left: 235px;
+      top: 180px;
+    }
+
+    .cookiesrectangle {
+      width: 974px;
+      height: 642px;
+      left: 28px;
+      top: 1px;
+      position: absolute;
+      background: rgba(40.91, 124.97, 139.81, 0.66);
+      box-shadow: 5px 10px 8px 10px rgba(152.03, 220.81, 245.82, 0.25);
+      border-radius: 30px;
+      border: 2px solid #87DEE4;
+    }
+
+    .cookiestext {
+      width: 530px;
+      height: 52px;
+      left: 100px;
+      top: 78px;
+      position: absolute;
+      color: white;
+      font-size: 40px;
+      font-family: 'Lalezar', sans-serif;
+      font-weight: 400;
+      word-wrap: break-word;
+    }
+
+    .text-3 {
+      width: 764px;
+      height: 438px;
+      left: 133px;
+      top: 173px;
+      position: absolute;
+      color: white;
+      font-size: 25px;
+      font-family: 'Ledger', sans-serif;
+      font-weight: 400;
+      word-wrap: break-word;
+      line-height: 1.5;
+    }
+
+    .text-3 ul {
+      list-style-type: disc;
+      padding-left: 40px;
+      margin: 0;
+      margin-top: 50px;
+    }
+
+    .text-3 li {
+      margin-bottom: 20px; /* Spacing between bullet points */
+    }
+
+    .Cookie {
+      left: 39px;
+      top: 78px;
+      position: absolute;
+    }
+
+    .Cookie img {
+      width: 54px;
+      height: 54px;
+    }
+
+    /* Hover effects for interactivity */
+    .cookiestext:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+
+
+      .thirdparty {
+      width: 1052px;
+      height: 584px;
+      position: relative;
+      overflow: hidden;
+      background: transparent;
+      left: 220px;
+      top: 260px;
+    }
+
+    .thirdpartyrectangle {
+      width: 974px;
+      height: 530px;
+      left: 42px;
+      top: 24px;
+      position: absolute;
+      background: rgba(40.91, 124.97, 139.81, 0.66);
+      box-shadow: 5px 10px 8px 10px rgba(152.03, 220.81, 245.82, 0.25);
+      border-radius: 30px;
+      border: 2px solid #87DEE4;
+    }
+
+    .ThirdPartytext {
+      width: 530px;
+      height: 52px;
+      left: 120px;
+      top: 101px;
+      position: absolute;
+      color: white;
+      font-size: 40px;
+      font-family: 'Lalezar', sans-serif;
+      font-weight: 400;
+      word-wrap: break-word;
+    }
+
+    .text-4 {
+      width: 764px;
+      height: 330px;
+      left: 141px;
+      top: 196px;
+      position: absolute;
+      color: white;
+      font-size: 25px;
+      font-family: 'Ledger', sans-serif;
+      font-weight: 400;
+      word-wrap: break-word;
+      line-height: 1.5;
+    }
+
+    .text-4 ul {
+      list-style-type: disc;
+      padding-left: 40px;
+      margin: 0;
+    }
+
+    .text-4 li {
+      margin-bottom: 20px; /* Spacing between bullet points */
+    }
+
+    .Handshake {
+      left: 53px;
+      top: 101px;
+      position: absolute;
+    }
+
+    .Handshake img {
+      width: 54px;
+      height: 54px;
+    }
+
+    /* Hover effects for interactivity */
+    .ThirdPartytext:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+
+
+        .protect {
+      width: 1034px;
+      height: 362px;
+      position: relative;
+      overflow: hidden;
+      background: transparent;
+      left: 237px;
+      margin-top: 340px;
+    }
+
+    .protectrectangle {
+      width: 974px;
+      height: 308px;
+      left: 24px;
+      top: 19px;
+      position: absolute;
+      background: rgba(40.91, 124.97, 139.81, 0.66);
+      box-shadow: 5px 10px 8px 10px rgba(152.03, 220.81, 245.82, 0.25);
+      border-radius: 30px;
+      border: 2px solid #87DEE4;
+    }
+
+    .protect1 {
+      width: 968px;
+      height: 305px;
+      left: 30px;
+      top: 22px;
+      position: absolute;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    .protecttext {
+      width: 596px;
+      height: 52px;
+      left: 70px;
+      top: 66px;
+      position: absolute;
+      color: white;
+      font-size: 40px;
+      font-family: 'Lalezar', sans-serif;
+      font-weight: 400;
+      word-wrap: break-word;
+    }
+
+    .text-5 {
+      width: 843px;
+      height: 129px;
+      left: 91px;
+      top: 142px;
+      position: absolute;
+      color: white;
+      font-size: 25px;
+      font-family: 'Ledger', sans-serif;
+      font-weight: 400;
+      word-wrap: break-word;
+      line-height: 1.5;
+    }
+
+    .text-5 ul {
+      list-style-type: disc;
+      padding-left: 40px;
+      margin: 0;
+    }
+
+    .text-5 li {
+      margin-bottom: 15px; /* Adjusted spacing due to smaller height */
+    }
+
+    .Lock {
+      left: 5px;
+      top: 64px;
+      position: absolute;
+    }
+
+    .Lock img {
+      width: 54px;
+      height: 54px;
+    }
+
+    /* Hover effects for interactivity */
+    .protecttext:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+
+      .right {
+      width: 1022px;
+      height: 552px;
+      position: relative;
+      overflow: hidden;
+      background: transparent;
+      left: 248px;
+      margin-top: 90px;
+    }
+
+    .rightrectangle {
+      width: 974px;
+      height: 530px;
+      left: 12px;
+      top: 6px;
+      position: absolute;
+      background: rgba(40.91, 124.97, 139.81, 0.66);
+      box-shadow: 5px 10px 8px 10px rgba(152.03, 220.81, 245.82, 0.25);
+      border-radius: 30px;
+      border: 2px solid #87DEE4;
+    }
+
+    .righttext {
+      width: 596px;
+      height: 52px;
+      left: 87px;
+      top: 80px;
+      position: absolute;
+      color: white;
+      font-size: 40px;
+      font-family: 'Lalezar', sans-serif;
+      font-weight: 400;
+      word-wrap: break-word;
+    }
+
+    .text-6 {
+      width: 764px;
+      height: 330px;
+      left: 117px;
+      top: 174px;
+      position: absolute;
+      color: white;
+      font-size: 25px;
+      font-family: 'Ledger', sans-serif;
+      font-weight: 400;
+      word-wrap: break-word;
+      line-height: 1.5;
+    }
+
+    .text-6 ul {
+      list-style-type: disc;
+      padding-left: 40px;
+      margin: 0;
+    }
+
+    .text-6 li {
+      margin-bottom: 20px; /* Spacing between bullet points */
+    }
+
+    .text-6 a {
+      color: #87DEE4; /* Matching border color for email link */
+      text-decoration: none;
+    }
+
+    .text-6 a:hover {
+      text-decoration: underline;
+    }
+
+    .Done {
+      left: 23px;
+      top: 80px;
+      position: absolute;
+    }
+
+    .Done img {
+      width: 54px;
+      height: 54px;
+    }
+
+    /* Hover effects for interactivity */
+    .righttext:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+
+       .fav {
+      width: 1036px;
+      height: 334px;
+      position: relative;
+      overflow: hidden;
+      background: transparent;
+      left: 233px;
+      margin-top: 90px;
+    }
+
+    .favrectangle {
+      width: 974px;
+      height: 308px;
+      left: 26px;
+      top: 13px;
+      position: absolute;
+      background: rgba(40.91, 124.97, 139.81, 0.66);
+      box-shadow: 5px 10px 8px 10px rgba(152.03, 220.81, 245.82, 0.25);
+      border-radius: 30px;
+      border: 2px solid #87DEE4;
+    }
+
+    .favtext {
+      width: 749px;
+      height: 115px;
+      left: 139px;
+      top: 82px;
+      position: absolute;
+      text-align: center;
+      color: white;
+      font-size: 25px;
+      font-family: 'Ledger', sans-serif;
+      font-weight: 400;
+      word-wrap: break-word;
+      line-height: 1.5;
+    }
+
+    .text-7 {
+      width: 645px;
+      height: 42px;
+      left: 190px;
+      top: 231px;
+      position: absolute;
+      text-align: center;
+      color: white;
+      font-size: 25px;
+      font-family: 'Lemon', sans-serif;
+      font-weight: 400;
+      word-wrap: break-word;
+    }
+
+    .Favorite {
+      left: 487px;
+      top: 20px;
+      position: absolute;
+    }
+
+    .Favorite img {
+      width: 54px;
+      height: 54px;
+    }
+
+    /* Hover effects for interactivity */
+    .text-7:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+
+    .text-6 li a{
+        color: aqua !important;
+        text-decoration: none !important;
+    }
+
+
+
+     .footer {
+  width: 100%;
+  height: 126px;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  display: flex;
+  align-items: center;      /* Center vertically */
+  justify-content: center;  /* Center horizontally */
+  margin-top: 100px;
+}
+
+.footerrectangle {
+  width: 100%;
+  height: 124px;
+  position: absolute;
+  left: 0;
+  top: 2px;
+  background: #001A33;
+}
+
+/* Make nav container */
+.footer-nav {
+  display: flex;
+  gap: 10px;
+  z-index: 1; /* On top of rectangle */
+  margin-left: 340px;
+}
+
+.footer-nav div {
+  width: 220px;
+  height: 35px;
+  text-align: center;
+  color: white;
+  font-size: 24px;
+  font-family: 'Karma', sans-serif;
+  font-weight: 400;
+  line-height: 35px;
+  cursor: pointer;
+}
+
+        .footer-nav a:hover {
+            color: #7ACBCD !important; /* Lighter teal from Rectangle59 */
+            text-decoration: none !important;
+        }
+
+    .footer-nav a {
+        color: white;
+        text-decoration: none;
+    }
+
+.ViaitaliaLogoInWhite1 {
+  width: 182px;
+  height: 69px;
+  position: absolute;
+  left: 34px;
+  top: 28px;
+}

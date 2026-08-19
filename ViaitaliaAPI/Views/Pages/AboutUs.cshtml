@@ -1,0 +1,122 @@
+@{
+    ViewData["Title"] = "About Us";
+    Layout = null; // ensures header, scripts, footer, etc. come from layout
+}
+
+<!-- Custom styles for this page -->
+<link rel="stylesheet" href="~/css/AboutUs.css?v=1" />
+
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karma:wght@400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karma:wght@500;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Karma:wght@400;700&family=Karla:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Lexend+Exa:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alatsi&family=Alegreya:wght@400&display=swap" rel="stylesheet">
+
+<!-- Navigation -->
+ <div class="nav section" data-layer="nav section">
+    <div class="Home" data-layer="Home"><a asp-controller="Home" asp-action="Index">Home</a></div>
+    <div class="Blog" data-layer="Blog"><a asp-controller="Pages" asp-action="Blog">Blog</a></div>
+    <div class="AboutUs" data-layer="About us"><a asp-controller="Pages" asp-action="Aboutus">About us</a></div>
+    <div class="ContactUs" data-layer="Contact us"><a asp-controller="Pages" asp-action="Contactus">Contact us</a></div>
+    <div class="PrivacyPolicy" data-layer="Privacy Policy"><a asp-controller="Pages" asp-action="PrivacyPolicy">Privacy Policy</a></div>
+
+    <div class="Rectangle47" data-layer="Rectangle 47"></div>
+    <div class="SignIn" data-layer="Sign in"><a asp-controller="Auth" asp-action="Login">Sign in</a></div>
+    <div class="Line13" data-layer="Line 13"></div>
+    <img class="ViaitaliaTealBlueComboLogo1" data-layer="ViaItalia teal + blue combo logo 1"
+         src="~/images/ViaItalia teal + blue combo logo.png" alt="Logo" />
+
+    <!-- Yeh active indicator hai -->
+    <div class="Rectangle59" data-layer="Rectangle 59"></div>
+</div>
+
+
+
+<!-- Main -->
+<main>
+    <img src="~/images/Vector 3.png" alt="About us hero image" class="hero-image" />
+    <section class="about-us-section">
+        <img src="~/images/Vector 4.png" alt="About us background" />
+        <h1>About Us</h1>
+    </section>
+</main>
+
+<!-- Journey Section -->
+<div class="journey">
+    <div class="journey-title">Journey Behind The ViaItalia</div>
+    <div class="description">
+        At ViaItalia, we believe travel should never be one-size-fits-all — especially not in a country as rich, diverse, and soulful as Italy. Every traveler brings their own dreams, curiosities, and pace, and Italy offers endless ways to match them. That’s why we created a platform where your journey starts with you. Whether you imagine sipping espresso in a sun-dappled Roman café, tracing family roots in a quiet Sicilian town, hiking the dramatic trails of Cinque Terre, or indulging in a week-long culinary tour through Tuscany — ViaItalia helps you design it your way. Our mission is simple: to blend expert insights, local knowledge, and curated resources so you can create an Italian story that feels deeply personal, unforgettable, and truly your own.
+    </div>
+    <img src="~/images/Vector 5.png" alt="Decorative Image" class="vector-image">
+</div>
+
+<!-- What We Do -->
+<div class="we-do-section">
+    <div class="what-we-do">What We Do</div>
+    <div class="why-we-exist">Why We Exist</div>
+    <div class="viaitalia-description">
+        <p>ViaItalia is more than just a travel planner — it's your personal travel designer.</p>
+        <p>Using our interactive features, you can:</p>
+        <ul>
+            <li>Select your ideal destination theme (romantic, cultural, adventurous, etc.)</li>
+            <li>Choose your trip companion type (solo, couple, friends, family)</li>
+            <li>Set your trip duration, budget, and arrival airport</li>
+            <li>Filter hotels by star rating</li>
+            <li>Discover personalized city suggestions with the best hotels, restaurants, shopping malls, attractions, and beaches — all matched to your form inputs.</li>
+        </ul>
+        <p>We turn your travel details into a custom-designed map of Italian magic.</p>
+    </div>
+    <div class="why-we-exist-description">
+        <p>Italy isn’t just a place on a map — it’s an emotion, a culture, a way of life.</p>
+        <p>We started ViaItalia with a simple idea:</p>
+        <p>“What if planning a trip to Italy felt just as beautiful as the trip itself?”</p>
+        <p>No more endless tabs, confusing blogs, or generic itineraries.</p>
+        <p>Just a single, smart platform that understands your needs and transforms them into an unforgettable Italian experience.</p>
+    </div>
+</div>
+
+<!-- Mission -->
+<div class="Mission">
+    <img src="~/images/Vector 6.png" alt="Decorative Image" class="vector-image1">
+    <div class="our-mission">Our Mission</div>
+    <div class="mission-description">
+        <p>To help travelers explore Italy in a smarter, deeper, and more meaningful way — blending the power of modern technology with the timeless soul of authentic Italian travel. We aim to go beyond simple itineraries, offering curated guides, personalized tools, and insider knowledge that let you experience Italy like a local. From planning routes that save you time and money, to uncovering hidden gems far from the crowds, our mission is to connect you with the true essence of the country — its people, traditions, landscapes, and flavors. At ViaItalia, we believe travel isn’t just about places you visit, but the memories you create and the stories you carry home.</p>
+    </div>
+    <div class="rectangle94"></div>
+    <div class="why-we-exist">Why We Exist</div>
+    <div class="why-we-exist-description">
+        <ul>
+            <li>Personalization First: Your preferences shape your journey</li>
+            <li>Smart Results: No random suggestions — only what matches your input</li>
+            <li>Detail-Rich Data: From hidden beaches to local markets, we guide you through it all</li>
+            <li>Experience + Emotion: We focus not just on where you go, but how you feel while you're there</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Contact -->
+<div class="contact">
+    <div class="rectangle95"></div>
+    <div class="lets-contact">Let’s Contact</div>
+    <div class="email-contact">Email us at: <a href="https://mail.google.com/mail/?view=cm&fs=1&to=viaitalia001@gmail.com" target="_blank">
+            viaitalia001@gmail.com
+        </a></div>
+</div>
+
+<!-- Footer -->
+  <!--footer-->
+    <div class="footer-nav">
+        <div class="Rectangle48"></div>
+        <div class="ContactUs-1"><a asp-controller="Pages" asp-action="Contactus">Contact us</a></div>
+        <div class="AboutUs-1"><a asp-controller="Pages" asp-action="Aboutus">About us</a></div>
+        <div class="TermCondition-1"><a asp-controller="Pages" asp-action="Terms">Term&condition</a></div>
+        <div class="PrivacyPolicy-1"><a asp-controller="Pages" asp-action="PrivacyPolicy">Privacy policy</a></div>
+        <div class="Blog-1"><a asp-controller="Pages" asp-action="Blog">Blog</a></div>
+        <img class="ViaitaliaLogoInWhite1" src="~/images/ViaItalia logo in white.png" alt="ViaItalia Logo">
+    </div>
+
+
+<!-- Scripts -->
+<script src="~/js/AboutUs.js"></script>

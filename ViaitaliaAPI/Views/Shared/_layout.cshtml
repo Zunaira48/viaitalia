@@ -1,0 +1,159 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    //var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    //var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+    //var hideNavbar = (currentController == "Auth" && (currentAction == "Login" || currentAction == "Register"));
+
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+    var isAuthPage = currentController == "Auth" && 
+                     (currentAction == "Login" || currentAction == "Register");
+
+    var isUserLoggedIn = User.Identity != null && User.Identity.IsAuthenticated;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <title>@ViewData["Title"] - YourAppName</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <!-- Logo: Always visible -->
+        <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">Viaitalia</a>
+
+        @if (!isAuthPage)
+                {
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            @if (isUserLoggedIn)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link @(currentController == "Cities" ? "active" : "")" asp-controller="Cities" asp-action="Index">Cities</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link @(currentController == "Beaches" ? "active" : "")" asp-controller="Beaches" asp-action="Index">Beaches</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link @(currentController == "AttractionPlaces" ? "active" : "")" asp-controller="AttractionPlaces" asp-action="Index">Attractions</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link @(currentController == "Hotels" ? "active" : "")" asp-controller="Hotels" asp-action="Index">Hotels</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link @(currentController == "Restaurants" ? "active" : "")" asp-controller="Restaurants" asp-action="Index">Restaurants</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link @(currentController == "ShoppingMalls" ? "active" : "")" asp-controller="ShoppingMalls" asp-action="Index">Shopping Malls</a>
+                                </li>
+                                <li class="nav-item">
+                                    <form asp-controller="Auth" asp-action="Logout" method="post" class="d-inline">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-outline-danger ms-3">
+                                            Logout
+                                        </button>
+                                    </form>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="btn btn-outline-light me-2 @(currentAction == "Login" ? "active" : "")"
+                                       asp-controller="Auth" asp-action="Login">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="btn btn-light text-dark @(currentAction == "Register" ? "active" : "")"
+                                       asp-controller="Auth" asp-action="Register">Register</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+        </nav>
+        @*@if (!hideNavbar)
+        {
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">Viaitalia</a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link @(currentController == "Cities" ? "active" : "")" asp-controller="Cities" asp-action="Index">Cities</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link @(currentController == "Beaches" ? "active" : "")" asp-controller="Beaches" asp-action="Index">Beaches</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link @(currentController == "AttractionPlaces" ? "active" : "")" asp-controller="AttractionPlaces" asp-action="Index">Attractions</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link @(currentController == "Hotels" ? "active" : "")" asp-controller="Hotels" asp-action="Index">Hotels</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link @(currentController == "Restaurants" ? "active" : "")" asp-controller="Restaurants" asp-action="Index">Restaurants</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link @(currentController == "ShoppingMalls" ? "active" : "")" asp-controller="ShoppingMalls" asp-action="Index">Shopping Malls</a>
+                                </li>
+                                <li class="nav-item">
+                                    <form asp-controller="Auth" asp-action="Logout" method="post" class="d-inline">
+                                        <button type="submit" class="btn btn-link nav-link">Logout</button>
+                                    </form>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link @(currentAction == "Login" ? "active" : "")" asp-controller="Auth" asp-action="Login">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link @(currentAction == "Register" ? "active" : "")" asp-controller="Auth" asp-action="Register">Register</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        }*@
+    </header>
+    <div class="container mt-4">
+        @RenderBody()
+    </div>
+
+    <footer class="text-center text-muted mt-4 mb-2">
+        <hr />
+        &copy; @DateTime.Now.Year - Viaitalia
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
