@@ -1,14 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
+using ViaitaliaAPI.Repositories;
 
 namespace ViaitaliaAPI.Controllers
 {
     public class HomeController : Controller
     {
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Index()
+        private readonly ICityRepository _cityRepository;
+
+        public HomeController(ICityRepository cityRepository)
         {
-            return View();
+            _cityRepository = cityRepository;
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public async Task<IActionResult> Index()
+        {
+            var cities = await _cityRepository.GetAllAsync();
+            var featuredCities = cities
+                .OrderBy(c => c.CityName)
+                .Take(9)
+                .ToList();
+
+            return View(featuredCities);
         }
     }
 }
