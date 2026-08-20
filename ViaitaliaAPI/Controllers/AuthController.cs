@@ -114,7 +114,7 @@ namespace ViaitaliaAPI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await _signInManager.SignOutAsync();
             TempData["SuccessMessage"] = "You have been logged out successfully.";
             return RedirectToAction("Login", "Auth");
         }
