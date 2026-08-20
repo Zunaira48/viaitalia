@@ -26,4 +26,5 @@ Thumbs.db
 # Node (only relevant if you ever add npm-based frontend tooling later)
 node_modules/
 
-wwwroot/images/
+# ViaItalia website images
+ViaitaliaAPI/wwwroot/images/
