@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿#nullable enable
+
+using Microsoft.EntityFrameworkCore;
 using ViaitaliaAPI.Data;
 using ViaitaliaAPI.Models;
 
@@ -55,6 +57,20 @@ namespace ViaitaliaAPI.Repositories
         public async Task<bool> ExistsAsync(Guid id)
         {
             return await _context.Cities.AnyAsync(c => c.CityId == id);
+        }
+                public async Task<List<City>> GetPagedAsync(int skip, int take)
+        {
+            return await _context.Cities
+                .Include(c => c.Image)
+                .OrderBy(c => c.CityName)
+                .Skip(skip)
+                .Take(take)
+                .ToListAsync();
+        }
+
+        public async Task<int> CountAsync()
+        {
+            return await _context.Cities.CountAsync();
         }
     }
 }

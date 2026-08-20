@@ -11,65 +11,75 @@ namespace ViaitaliaAPI.Controllers
     public class RestaurantsController : Controller
     {
         private readonly TravelDBContext _context;
-        private readonly IRestaurantRepository _restaurantRepository;
+        private readonly IRestaurantRepository _repository;
         private readonly ICityRepository _cityRepository;
         private readonly IImageRepository _imageRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private const int PageSize = 20;
 
-        public RestaurantsController(TravelDBContext context, IRestaurantRepository restaurantRepository, ICityRepository cityRepository, IImageRepository imageRepository, IWebHostEnvironment webHostEnvironment)
+        public RestaurantsController(TravelDBContext context, IRestaurantRepository repository, ICityRepository cityRepository, IImageRepository imageRepository, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
-            _restaurantRepository = restaurantRepository;
+            _repository = repository;
             _cityRepository = cityRepository;
             _imageRepository = imageRepository;
             _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Restaurants
-        [Authorize(Roles = "Writer, Reader")]
         public async Task<IActionResult> Index()
         {
-            var restaurants = await _restaurantRepository.GetAllAsync();
-            restaurants = restaurants
-                .OrderByDescending(a => a.RestaurantName)
-                .ToList();
+            var restaurants = await _repository.GetPagedAsync(0, PageSize);
+            var totalCount = await _repository.CountAsync();
+
+            ViewBag.TotalCount = totalCount;
+            ViewBag.Loaded = restaurants.Count;
+            ViewBag.PageSize = PageSize;
+
             return View(restaurants);
         }
 
+        // GET: Restaurants/LoadMore
+        [HttpGet]
+        public async Task<IActionResult> LoadMore(int skip)
+        {
+            var restaurants = await _repository.GetPagedAsync(skip, PageSize);
+            return PartialView("_RestaurantCardBatch", restaurants);
+        }
 
         // GET: Restaurants/Details/5
-        [Authorize(Roles = "Writer, Reader")]
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null) return NotFound();
 
-            var restaurant = await _restaurantRepository.GetByIdWithImageAsync(id.Value);
+            var restaurant = await _repository.GetByIdWithImageAsync(id.Value);
             if (restaurant == null) return NotFound();
 
             return View(restaurant);
         }
 
-
         // GET: Restaurants/Create
         [Authorize(Roles = "Writer")]
         public async Task<IActionResult> Create()
         {
-            ViewBag.CityId = new SelectList(await _cityRepository.GetAllAsync(), "CityId", "CityName");
+            var cities = await _cityRepository.GetAllAsync();
+            ViewBag.CityId = new SelectList(cities, "CityId", "CityName");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Writer")]
-        public async Task<IActionResult> Create(Restaurant restaurant, IFormFile imageFile)
+        public async Task<IActionResult> Create([Bind("CityName,RestaurantName,StreetAddress,PostalCode,CuisineType,OpeningTime,ClosingTime,PhoneNumber,Website,PublicTransport,Category,Description,CityId,Id")] Restaurant restaurant, IFormFile imageFile)
         {
             if (ModelState.IsValid)
             {
                 var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images");
-                Directory.CreateDirectory(uploadsFolder); // Ensure folder exists
+                Directory.CreateDirectory(uploadsFolder);
+
                 if (imageFile != null && imageFile.Length > 0)
                 {
-                    var fileName = Guid.NewGuid().ToString(); // Just base name
+                    var fileName = Guid.NewGuid().ToString();
                     var extension = Path.GetExtension(imageFile.FileName);
                     var savedFileName = fileName + extension;
                     var filePath = Path.Combine(uploadsFolder, savedFileName);
@@ -103,7 +113,7 @@ namespace ViaitaliaAPI.Controllers
                         restaurant.CityName = city.CityName;
                     }
                 }
-                await _restaurantRepository.AddAsync(restaurant);
+                await _repository.AddAsync(restaurant);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -112,16 +122,17 @@ namespace ViaitaliaAPI.Controllers
             return View(restaurant);
         }
 
-        // Get Edit
+        // GET: Restaurants/Edit/5
         [Authorize(Roles = "Writer")]
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null) return NotFound();
 
-            var restaurant = await _restaurantRepository.GetByIdWithImageAsync(id.Value);
+            var restaurant = await _repository.GetByIdWithImageAsync(id.Value);
             if (restaurant == null) return NotFound();
 
-            ViewBag.CityId = new SelectList(await _cityRepository.GetAllAsync(), "CityId", "CityName", restaurant.CityId);
+            var cities = await _cityRepository.GetAllAsync();
+            ViewData["CityId"] = new SelectList(cities, "CityId", "CityName", restaurant.CityId);
             return View(restaurant);
         }
 
@@ -133,72 +144,84 @@ namespace ViaitaliaAPI.Controllers
             if (id != restaurant.Id)
                 return NotFound();
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                try
-                {
-                    var existingRestaurant = await _restaurantRepository.GetByIdWithImageAsync(id);
-
-                    if (existingRestaurant == null)
-                        return NotFound();
-
-                    if (imageFile != null && imageFile.Length > 0)
-                    {
-                        if (existingRestaurant.Image != null)
-                        {
-                            var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, "Images",
-                                                             $"{existingRestaurant.Image.FileName}{existingRestaurant.Image.FileExtension}");
-
-                            if (System.IO.File.Exists(oldImagePath))
-                            {
-                                System.IO.File.Delete(oldImagePath);
-                            }
-
-                            _context.Images.Remove(existingRestaurant.Image);
-                            await _context.SaveChangesAsync(); // Save removal
-                        }
-
-                        var newImage = new Image
-                        {
-                            Id = Guid.NewGuid(),
-                            File = imageFile,
-                            FileName = Path.GetFileNameWithoutExtension(imageFile.FileName),
-                            FileExtension = Path.GetExtension(imageFile.FileName),
-                            FileSizeInBytes = imageFile.Length,
-                            Description = $"Image for {restaurant.RestaurantName}"
-                        };
-
-                        var uploadedImage = await _imageRepository.Upload(newImage);
-                        restaurant.ImageId = uploadedImage.Id;
-                    }
-
-                    if (restaurant.CityId.HasValue)
-                    {
-                        var city = await _cityRepository.GetByIdAsync(restaurant.CityId.Value);
-                        if (city != null)
-                        {
-                            restaurant.CityName = city.CityName;
-                        }
-                    }
-
-                    _context.Entry(existingRestaurant).CurrentValues.SetValues(restaurant);
-                    await _restaurantRepository.UpdateAsync(existingRestaurant);
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!await _restaurantRepository.ExistsAsync(restaurant.Id))
-                        return NotFound();
-                    else
-                        throw;
-                }
-
-                return RedirectToAction(nameof(Index));
+                ViewData["CityId"] = new SelectList(_context.Cities, "CityId", "CityName", restaurant.CityId);
+                return View(restaurant);
             }
 
-            ViewData["CityId"] = new SelectList(_context.Cities, "CityId", "CityName", restaurant.CityId);
-            return View(restaurant);
-        }
+            try
+            {
+                var existingRestaurant = await _repository.GetByIdWithImageAsync(id);
 
+                if (existingRestaurant == null)
+                    return NotFound();
+
+                existingRestaurant.RestaurantName = restaurant.RestaurantName;
+                existingRestaurant.StreetAddress = restaurant.StreetAddress;
+                existingRestaurant.PostalCode = restaurant.PostalCode;
+                existingRestaurant.CuisineType = restaurant.CuisineType;
+                existingRestaurant.OpeningTime = restaurant.OpeningTime;
+                existingRestaurant.ClosingTime = restaurant.ClosingTime;
+                existingRestaurant.PhoneNumber = restaurant.PhoneNumber;
+                existingRestaurant.Website = restaurant.Website;
+                existingRestaurant.PublicTransport = restaurant.PublicTransport;
+                existingRestaurant.Category = restaurant.Category;
+                existingRestaurant.Description = restaurant.Description;
+
+                if (restaurant.CityId.HasValue && restaurant.CityId != existingRestaurant.CityId)
+                {
+                    existingRestaurant.CityId = restaurant.CityId;
+
+                    var city = await _cityRepository.GetByIdAsync(restaurant.CityId.Value);
+                    if (city != null)
+                    {
+                        existingRestaurant.CityName = city.CityName;
+                    }
+                }
+
+                if (imageFile != null && imageFile.Length > 0)
+                {
+                    if (existingRestaurant.Image != null)
+                    {
+                        var oldImagePath = Path.Combine(
+                            _webHostEnvironment.WebRootPath,
+                            "Images",
+                            $"{existingRestaurant.Image.FileName}{existingRestaurant.Image.FileExtension}"
+                        );
+
+                        if (System.IO.File.Exists(oldImagePath))
+                            System.IO.File.Delete(oldImagePath);
+
+                        _context.Images.Remove(existingRestaurant.Image);
+                        await _context.SaveChangesAsync();
+                    }
+
+                    var newImage = new Image
+                    {
+                        Id = Guid.NewGuid(),
+                        File = imageFile,
+                        FileName = Path.GetFileNameWithoutExtension(imageFile.FileName),
+                        FileExtension = Path.GetExtension(imageFile.FileName),
+                        FileSizeInBytes = imageFile.Length,
+                        Description = $"Image for {restaurant.RestaurantName}"
+                    };
+
+                    var uploadedImage = await _imageRepository.Upload(newImage);
+                    existingRestaurant.ImageId = uploadedImage.Id;
+                }
+
+                await _repository.UpdateAsync(existingRestaurant);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!await _repository.ExistsAsync(restaurant.Id))
+                    return NotFound();
+                else
+                    throw;
+            }
+        }
 
         // GET: Restaurants/Delete/5
         [Authorize(Roles = "Writer")]
@@ -206,30 +229,26 @@ namespace ViaitaliaAPI.Controllers
         {
             if (id == null) return NotFound();
 
-            var restaurant = await _restaurantRepository.GetByIdWithImageAsync(id.Value);
+            var restaurant = await _repository.GetByIdWithImageAsync(id.Value);
             if (restaurant == null) return NotFound();
 
             return View(restaurant);
         }
 
         // POST: Restaurants/Delete/5
-        [HttpPost, ActionName("DeleteConfirmed")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Writer")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var restaurant = await _restaurantRepository.GetByIdWithImageAsync(id);
-            if (restaurant != null)
-            {
-                await _restaurantRepository.DeleteAsync(restaurant.Id);
-            }
-
+            await _repository.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
 
-        private async Task<bool> RestaurantExistsAsync(Guid id)
+        private async Task<bool> RestaurantExists(Guid id)
         {
-            return await _restaurantRepository.ExistsAsync(id);
+            var restaurant = await _repository.GetByIdAsync(id);
+            return restaurant != null;
         }
     }
 }

@@ -15,6 +15,7 @@ namespace ViaitaliaAPI.Controllers
         private readonly ICityRepository _cityRepository;
         private readonly IImageRepository _imageRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private const int PageSize = 20;
 
         public HotelsController(TravelDBContext context, IHotelRepository repository, ICityRepository cityRepository, IImageRepository imageRepository, IWebHostEnvironment webHostEnvironment)
         {
@@ -23,21 +24,30 @@ namespace ViaitaliaAPI.Controllers
             _cityRepository = cityRepository;
             _imageRepository = imageRepository;
             _webHostEnvironment = webHostEnvironment;
-    }
+        }
 
         // GET: Hotels
-        [Authorize(Roles = "Writer, Reader")]
         public async Task<IActionResult> Index()
         {
-            var hotels = await _repository.GetAllAsync();
-            hotels = hotels
-                .OrderByDescending(a => a.HotelName)
-                .ToList();
+            var hotels = await _repository.GetPagedAsync(0, PageSize);
+            var totalCount = await _repository.CountAsync();
+
+            ViewBag.TotalCount = totalCount;
+            ViewBag.Loaded = hotels.Count;
+            ViewBag.PageSize = PageSize;
+
             return View(hotels);
         }
 
+        // GET: Hotels/LoadMore
+        [HttpGet]
+        public async Task<IActionResult> LoadMore(int skip)
+        {
+            var hotels = await _repository.GetPagedAsync(skip, PageSize);
+            return PartialView("_HotelCardBatch", hotels);
+        }
+
         // GET: Hotels/Details/5
-        [Authorize(Roles = "Writer, Reader")]
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null) return NotFound();
@@ -65,11 +75,11 @@ namespace ViaitaliaAPI.Controllers
             if (ModelState.IsValid)
             {
                 var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images");
-                Directory.CreateDirectory(uploadsFolder); // Ensure folder exists
-                
+                Directory.CreateDirectory(uploadsFolder);
+
                 if (imageFile != null && imageFile.Length > 0)
                 {
-                    var fileName = Guid.NewGuid().ToString(); // Just base name
+                    var fileName = Guid.NewGuid().ToString();
                     var extension = Path.GetExtension(imageFile.FileName);
                     var savedFileName = fileName + extension;
                     var filePath = Path.Combine(uploadsFolder, savedFileName);
@@ -212,8 +222,6 @@ namespace ViaitaliaAPI.Controllers
                     throw;
             }
         }
-
-
 
         // GET: Hotels/Delete/5
         [Authorize(Roles = "Writer")]

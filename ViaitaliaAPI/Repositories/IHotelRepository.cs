@@ -1,4 +1,6 @@
-﻿using ViaitaliaAPI.Models;
+﻿#nullable enable
+
+using ViaitaliaAPI.Models;
 
 public interface IHotelRepository
 {
@@ -10,4 +12,6 @@ public interface IHotelRepository
     Task DeleteAsync(Guid id);
     Task<bool> ExistsAsync(Guid id);
     Task<Hotel?> GetByIdWithImageAsync(Guid id);
+    Task<List<Hotel>> GetPagedAsync(int skip, int take);
+    Task<int> CountAsync();
 }

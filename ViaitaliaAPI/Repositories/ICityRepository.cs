@@ -1,4 +1,6 @@
-﻿using ViaitaliaAPI.Models;
+﻿#nullable enable
+
+using ViaitaliaAPI.Models;
 
 namespace ViaitaliaAPI.Repositories
 {
@@ -11,5 +13,7 @@ namespace ViaitaliaAPI.Repositories
         Task DeleteAsync(Guid id);
         Task<bool> ExistsAsync(Guid id);
         Task<City?> GetByIdWithImageAsync(Guid id);
+        Task<List<City>> GetPagedAsync(int skip, int take);
+        Task<int> CountAsync();
     }
 }

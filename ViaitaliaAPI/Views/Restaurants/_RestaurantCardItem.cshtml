@@ -1,0 +1,13 @@
+@model ViaitaliaAPI.Models.Restaurant
+<a class="discovery-card" asp-controller="Restaurants" asp-action="Details" asp-route-id="@Model.Id">
+    @if (Model.Image != null)
+    {
+        <img class="discovery-card__image" src="@Model.Image.FilePath" alt="@Model.RestaurantName" />
+    }
+    else
+    {
+        <div class="discovery-card__image"></div>
+    }
+    <p class="discovery-card__title">@Model.RestaurantName</p>
+    <p class="discovery-card__meta">@Model.CityName · @Model.CuisineType</p>
+</a>

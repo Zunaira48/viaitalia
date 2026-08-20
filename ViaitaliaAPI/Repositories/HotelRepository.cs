@@ -16,18 +16,24 @@ public class HotelRepository : IHotelRepository
         return await _context.Hotels.Include(h => h.City).Include(h => h.Image).ToListAsync();
     }
 
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
     public async Task<Hotel?> GetByIdAsync(Guid id)
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
     {
         return await _context.Hotels.FindAsync(id);
     }
 
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
     public async Task<Hotel?> GetByIdWithCityAsync(Guid id)
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
     {
         return await _context.Hotels.Include(h => h.City)
                                     .FirstOrDefaultAsync(h => h.Id == id);
     }
 
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
     public async Task<Hotel?> GetByIdWithImageAsync(Guid id)
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
     {
         return await _context.Hotels.Include(h => h.City).Include(h => h.Image)
                                     .FirstOrDefaultAsync(h => h.Id == id);
@@ -59,4 +65,18 @@ public class HotelRepository : IHotelRepository
     {
         return await _context.Hotels.AnyAsync(h => h.Id == id);
     }
+            public async Task<List<Hotel>> GetPagedAsync(int skip, int take)
+        {
+            return await _context.Hotels
+                .Include(h => h.Image)
+                .OrderBy(h => h.HotelName)
+                .Skip(skip)
+                .Take(take)
+                .ToListAsync();
+        }
+
+        public async Task<int> CountAsync()
+        {
+            return await _context.Hotels.CountAsync();
+        }
 }

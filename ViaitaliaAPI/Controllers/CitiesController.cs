@@ -18,6 +18,7 @@ namespace ViaitaliaAPI.Controllers
         private readonly ICityRepository _cityRepository;
         private readonly IImageRepository _imageRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private const int PageSize = 20;
 
         public CitiesController(TravelDBContext context, ICityRepository cityRepository, IImageRepository imageRepository, IWebHostEnvironment webHostEnvironment)
         {
@@ -28,18 +29,27 @@ namespace ViaitaliaAPI.Controllers
         }
 
         // GET: Cities
-        // Public — no login required to browse cities
         public async Task<IActionResult> Index()
         {
-            var cities = await _cityRepository.GetAllAsync();
-            cities = cities
-                .OrderByDescending(a => a.CityName)
-                .ToList();
+            var cities = await _cityRepository.GetPagedAsync(0, PageSize);
+            var totalCount = await _cityRepository.CountAsync();
+
+            ViewBag.TotalCount = totalCount;
+            ViewBag.Loaded = cities.Count;
+            ViewBag.PageSize = PageSize;
+
             return View(cities);
         }
 
+        // GET: Cities/LoadMore
+        [HttpGet]
+        public async Task<IActionResult> LoadMore(int skip)
+        {
+            var cities = await _cityRepository.GetPagedAsync(skip, PageSize);
+            return PartialView("_CityCardBatch", cities);
+        }
+
         // GET: Cities/Details/5
-        // Public — no login required to view a city's details
         public async Task<IActionResult> Details(Guid id)
         {
             var city = await _cityRepository.GetByIdWithImageAsync(id);
@@ -66,8 +76,8 @@ namespace ViaitaliaAPI.Controllers
             if (ModelState.IsValid)
             {
                 var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images");
-                Directory.CreateDirectory(uploadsFolder); 
-                
+                Directory.CreateDirectory(uploadsFolder);
+
                 if (imageFile != null && imageFile.Length > 0)
                 {
                     var fileName = Guid.NewGuid().ToString();
@@ -103,7 +113,6 @@ namespace ViaitaliaAPI.Controllers
             ViewData["CityId"] = new SelectList(_context.Cities, "CityId", "CityName", city.CityId);
             return View(city);
         }
-
 
         // GET: Cities/Edit/5
         [Authorize(Roles = "Writer")]

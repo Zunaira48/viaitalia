@@ -1,0 +1,5 @@
+@model List<ViaitaliaAPI.Models.City>
+@foreach (var city in Model)
+{
+    @await Html.PartialAsync("_CityCardItem", city)
+}

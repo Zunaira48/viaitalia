@@ -1,0 +1,13 @@
+@model ViaitaliaAPI.Models.Hotel
+<a class="discovery-card" asp-controller="Hotels" asp-action="Details" asp-route-id="@Model.Id">
+    @if (Model.Image != null)
+    {
+        <img class="discovery-card__image" src="@Model.Image.FilePath" alt="@Model.HotelName" />
+    }
+    else
+    {
+        <div class="discovery-card__image"></div>
+    }
+    <p class="discovery-card__title">@Model.HotelName</p>
+    <p class="discovery-card__meta">@Model.CityName · @(Model.Stars ?? 0)★ · @Model.Budget</p>
+</a>
