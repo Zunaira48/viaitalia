@@ -11,6 +11,29 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <title>Your Travel Plan - Viaitalia</title>
     <link rel="stylesheet" href="~/css/design-system.css" />
+    <style>
+        .category-block { margin-top: var(--space-lg); }
+        .category-block h4 { font-family: var(--font-main); font-size: var(--fs-base); font-weight: 600; margin-bottom: var(--space-sm); }
+
+        .weather-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--space-lg); }
+        .weather-city-card {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            box-shadow: 0 4px 14px rgba(20,32,31,0.10);
+            border-top: 3px solid var(--color-primary);
+        }
+        .weather-city-card__header {
+            display: flex; justify-content: space-between; align-items: baseline;
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid var(--color-border);
+        }
+        .weather-city-card__header span { font-family: var(--font-display); font-size: var(--fs-lg); }
+        .weather-city-card__header .temp { font-weight: 700; font-size: var(--fs-xl); color: var(--color-primary); }
+        .weather-stat { font-size: var(--fs-sm); color: var(--color-text-muted); display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+        .weather-stat img { width: 16px; height: 16px; opacity: 0.6; }
+    </style>
 </head>
 <body>
 
@@ -39,7 +62,7 @@
     <div id="italy-map" style="height:450px; width:100%; border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--color-border);"></div>
 
     <h2 style="margin-top: var(--space-2xl);">Weather Summary</h2>
-    <div id="weather-container" class="fact-grid"></div>
+    <div id="weather-container" class="weather-grid"></div>
 
     @foreach (var city in Model.Cities)
     {
@@ -56,20 +79,36 @@
             </div>
             <p style="font-size: var(--fs-sm);">Nearest Airport: <strong>@city.NearestAirportName</strong></p>
 
-            <h3>Hotels</h3>
-            <div class="discovery-grid">
-                @{
-                    var cityHotels = Model.Hotels.Where(h => h.CityId == city.CityId).ToList();
-                }
+            @{
+                var cityHotels = Model.Hotels.Where(h => h.CityId == city.CityId).ToList();
+                var cityRestaurants = Model.Restaurants.Where(r => r.CityId == city.CityId).ToList();
+                var cityMalls = Model.ShoppingMalls.Where(s => s.CityId == city.CityId).ToList();
+                var cityAttractions = Model.Attractions.Where(a => a.CityId == city.CityId).ToList();
+                var cityBeaches = Model.Beaches.Where(b => b.CityId == city.CityId).ToList();
+            }
+
+            <div class="category-block">
+                <h4>Hotels</h4>
                 @if (cityHotels.Any())
                 {
-                    @foreach (var hotel in cityHotels)
-                    {
-                        <div class="card"><div class="card__body">
-                            <p class="card__title" style="margin-bottom:2px;">@hotel.HotelName</p>
-                            <p class="card__meta">Budget: @hotel.Budget · @(hotel.Stars ?? 0)★</p>
-                        </div></div>
-                    }
+                    <div class="discovery-grid">
+                        @foreach (var hotel in cityHotels)
+                        {
+                            <a class="discovery-card" asp-controller="Hotels" asp-action="Details" asp-route-id="@hotel.Id">
+                                @if (hotel.Image != null)
+                                {
+                                    <img class="discovery-card__image" src="@hotel.Image.FilePath" alt="@hotel.HotelName"
+                                         onerror="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';this.style.background='var(--color-border)';" />
+                                }
+                                else
+                                {
+                                    <div class="discovery-card__image"></div>
+                                }
+                                <p class="discovery-card__title">@hotel.HotelName</p>
+                                <p class="discovery-card__meta">Budget: @hotel.Budget · @(hotel.Stars ?? 0)★</p>
+                            </a>
+                        }
+                    </div>
                 }
                 else
                 {
@@ -77,17 +116,28 @@
                 }
             </div>
 
-            <h3 style="margin-top: var(--space-lg);">Restaurants</h3>
-            <div class="discovery-grid">
-                @{
-                    var cityRestaurants = Model.Restaurants.Where(r => r.CityId == city.CityId).ToList();
-                }
+            <div class="category-block">
+                <h4>Restaurants</h4>
                 @if (cityRestaurants.Any())
                 {
-                    @foreach (var restaurant in cityRestaurants)
-                    {
-                        <div class="card"><div class="card__body"><p class="card__title">@restaurant.RestaurantName</p></div></div>
-                    }
+                    <div class="discovery-grid">
+                        @foreach (var restaurant in cityRestaurants)
+                        {
+                            <a class="discovery-card" asp-controller="Restaurants" asp-action="Details" asp-route-id="@restaurant.Id">
+                                @if (restaurant.Image != null)
+                                {
+                                    <img class="discovery-card__image" src="@restaurant.Image.FilePath" alt="@restaurant.RestaurantName"
+                                         onerror="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';this.style.background='var(--color-border)';" />
+                                }
+                                else
+                                {
+                                    <div class="discovery-card__image"></div>
+                                }
+                                <p class="discovery-card__title">@restaurant.RestaurantName</p>
+                                <p class="discovery-card__meta">@restaurant.CuisineType</p>
+                            </a>
+                        }
+                    </div>
                 }
                 else
                 {
@@ -95,17 +145,57 @@
                 }
             </div>
 
-            <h3 style="margin-top: var(--space-lg);">Shopping Malls</h3>
-            <div class="discovery-grid">
-                @{
-                    var cityMalls = Model.ShoppingMalls.Where(s => s.CityId == city.CityId).ToList();
+            <div class="category-block">
+                <h4>Beaches</h4>
+                @if (cityBeaches.Any())
+                {
+                    <div class="discovery-grid">
+                        @foreach (var beach in cityBeaches)
+                        {
+                            <a class="discovery-card" asp-controller="Beaches" asp-action="Details" asp-route-id="@beach.Id">
+                                @if (beach.Image != null)
+                                {
+                                    <img class="discovery-card__image" src="@beach.Image.FilePath" alt="@beach.BeachName"
+                                         onerror="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';this.style.background='var(--color-border)';" />
+                                }
+                                else
+                                {
+                                    <div class="discovery-card__image"></div>
+                                }
+                                <p class="discovery-card__title">@beach.BeachName</p>
+                                <p class="discovery-card__meta">@beach.BeachType</p>
+                            </a>
+                        }
+                    </div>
                 }
+                else
+                {
+                    <p class="card__meta">No beaches found.</p>
+                }
+            </div>
+
+            <div class="category-block">
+                <h4>Shopping Malls</h4>
                 @if (cityMalls.Any())
                 {
-                    @foreach (var mall in cityMalls)
-                    {
-                        <div class="card"><div class="card__body"><p class="card__title">@mall.MallName</p></div></div>
-                    }
+                    <div class="discovery-grid">
+                        @foreach (var mall in cityMalls)
+                        {
+                            <a class="discovery-card" asp-controller="ShoppingMalls" asp-action="Details" asp-route-id="@mall.Id">
+                                @if (mall.Image != null)
+                                {
+                                    <img class="discovery-card__image" src="@mall.Image.FilePath" alt="@mall.MallName"
+                                         onerror="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';this.style.background='var(--color-border)';" />
+                                }
+                                else
+                                {
+                                    <div class="discovery-card__image"></div>
+                                }
+                                <p class="discovery-card__title">@mall.MallName</p>
+                                <p class="discovery-card__meta">@(mall.Rating.HasValue ? $"{mall.Rating}★" : "")</p>
+                            </a>
+                        }
+                    </div>
                 }
                 else
                 {
@@ -113,17 +203,28 @@
                 }
             </div>
 
-            <h3 style="margin-top: var(--space-lg);">Attraction Places</h3>
-            <div class="discovery-grid">
-                @{
-                    var cityAttractions = Model.Attractions.Where(a => a.CityId == city.CityId).ToList();
-                }
+            <div class="category-block">
+                <h4>Attraction Places</h4>
                 @if (cityAttractions.Any())
                 {
-                    @foreach (var attraction in cityAttractions)
-                    {
-                        <div class="card"><div class="card__body"><p class="card__title">@attraction.AttractionName</p></div></div>
-                    }
+                    <div class="discovery-grid">
+                        @foreach (var attraction in cityAttractions)
+                        {
+                            <a class="discovery-card" asp-controller="AttractionPlaces" asp-action="Details" asp-route-id="@attraction.Id">
+                                @if (attraction.Image != null)
+                                {
+                                    <img class="discovery-card__image" src="@attraction.Image.FilePath" alt="@attraction.AttractionName"
+                                         onerror="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';this.style.background='var(--color-border)';" />
+                                }
+                                else
+                                {
+                                    <div class="discovery-card__image"></div>
+                                }
+                                <p class="discovery-card__title">@attraction.AttractionName</p>
+                                <p class="discovery-card__meta">@attraction.Type</p>
+                            </a>
+                        }
+                    </div>
                 }
                 else
                 {

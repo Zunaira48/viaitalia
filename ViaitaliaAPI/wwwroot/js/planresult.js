@@ -15,20 +15,21 @@ for (const [city, weather] of Object.entries(cityWeatherData || {})) {
     let pressure = weather?.main?.pressure ?? 'N/A';
 
     let cityBlock = `
-         <div class="weather-detail-item">
-             <span class="font-lucida">${city}</span>
-             <strong class="font-lucida">${temp}°C</strong>
-         </div>
-         <div class="weather-detail-item"><img src="/images/humidity.png" alt="Humidity Icon">Humidity: ${humidity}%</div>
-         <div class="weather-detail-item"><img src="/images/wind.png" alt="wind Icon">Wind: ${wind} m/s</div>
-         <div class="weather-detail-item"><img src="/images/pressure.png" alt="pressure Icon">Pressure: ${pressure} hPa</div>
-         <div class="weather-detail-item"><img src="/images/temperature-list.png" alt="feellike Icon">Feels Like: ${feelsLike}°C</div>
-         <div class="weather-detail-item"><img src="/images/thunderstorm.png" alt="condition Icon">Condition: ${cond}</div>
-     `;
+        <div class="weather-city-card">
+            <div class="weather-city-card__header">
+                <span>${city}</span>
+                <strong class="temp">${temp}°C</strong>
+            </div>
+            <div class="weather-stat"><img src="/images/humidity.png" alt="Humidity icon">Humidity: ${humidity}%</div>
+            <div class="weather-stat"><img src="/images/wind.png" alt="Wind icon">Wind: ${wind} m/s</div>
+            <div class="weather-stat"><img src="/images/pressure.png" alt="Pressure icon">Pressure: ${pressure} hPa</div>
+            <div class="weather-stat"><img src="/images/temperature-list.png" alt="Feels like icon">Feels Like: ${feelsLike}°C</div>
+            <div class="weather-stat"><img src="/images/thunderstorm.png" alt="Condition icon">Condition: ${cond}</div>
+        </div>
+    `;
     weatherContainer.insertAdjacentHTML('beforeend', cityBlock);
 }
 
-// Leaflet Map Initialization
 document.addEventListener("DOMContentLoaded", function () {
     var map = L.map('italy-map').setView([italyData.lat, italyData.lng], 6);
 
@@ -44,5 +45,3 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
-
-console.log(cityWeatherData);
