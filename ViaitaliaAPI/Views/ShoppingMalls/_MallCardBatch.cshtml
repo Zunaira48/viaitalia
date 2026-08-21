@@ -1,0 +1,5 @@
+@model List<ViaitaliaAPI.Models.ShoppingMall>
+@foreach (var mall in Model)
+{
+    @await Html.PartialAsync("_MallCardItem", mall)
+}

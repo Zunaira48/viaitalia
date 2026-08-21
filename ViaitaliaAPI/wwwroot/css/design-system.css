@@ -66,6 +66,8 @@ p { margin: 0 0 var(--space-md) 0; color: var(--color-text-muted); }
 .btn-primary:hover { background: var(--color-primary-dark); }
 .btn-outline { background: transparent; color: var(--color-primary); border: 1.5px solid var(--color-primary); }
 .btn-outline:hover { background: var(--color-primary); color: var(--color-white); }
+.btn-danger { background: transparent; color: #c0392b; border: 1.5px solid #c0392b; }
+.btn-danger:hover { background: #c0392b; color: var(--color-white); }
 .btn-sm { padding: 6px 14px; font-size: var(--fs-sm); }
 
 .badge {
@@ -115,7 +117,6 @@ p { margin: 0 0 var(--space-md) 0; color: var(--color-text-muted); }
 .state-message { text-align: center; padding: var(--space-2xl) var(--space-lg); color: var(--color-text-muted); }
 .state-message h3 { color: var(--color-text); margin-bottom: var(--space-sm); }
 
-/* ---- Editorial hero ---- */
 .hero-editorial {
   position: relative;
   padding: var(--space-2xl) var(--space-xl);
@@ -140,7 +141,6 @@ p { margin: 0 0 var(--space-md) 0; color: var(--color-text-muted); }
 .hero-editorial h1 { color: var(--color-white); margin-bottom: var(--space-sm); }
 .hero-editorial p { color: rgba(255,255,255,0.85); font-size: var(--fs-lg); }
 
-/* ---- Quick category links ---- */
 .quick-links {
   display: flex;
   gap: var(--space-md);
@@ -161,7 +161,6 @@ p { margin: 0 0 var(--space-md) 0; color: var(--color-text-muted); }
 }
 .quick-links a:hover { border-color: var(--color-primary); color: var(--color-primary); }
 
-/* ---- Discovery section ---- */
 .section-wrap { max-width: 1200px; margin: 0 auto; padding: 0 var(--space-xl) var(--space-2xl); }
 .section-eyebrow {
   font-size: var(--fs-xs);
@@ -176,11 +175,7 @@ p { margin: 0 0 var(--space-md) 0; color: var(--color-text-muted); }
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: var(--space-lg);
 }
-.discovery-card {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
+.discovery-card { text-decoration: none; color: inherit; display: block; }
 .discovery-card__image {
   width: 100%;
   aspect-ratio: 4/3;
@@ -194,10 +189,52 @@ p { margin: 0 0 var(--space-md) 0; color: var(--color-text-muted); }
 .discovery-card__title { font-family: var(--font-main); font-weight: 600; font-size: var(--fs-lg); margin: var(--space-sm) 0 2px; color: var(--color-text); }
 .discovery-card__meta { font-size: var(--fs-sm); color: var(--color-text-muted); margin: 0; }
 
+/* ---- Detail pages ---- */
+.detail-wrap { max-width: 1000px; margin: 0 auto; padding: var(--space-xl); }
+.detail-breadcrumb { font-size: var(--fs-sm); color: var(--color-text-muted); margin-bottom: var(--space-md); }
+.detail-breadcrumb a { color: var(--color-text-muted); text-decoration: none; }
+.detail-breadcrumb a:hover { color: var(--color-primary); }
+.detail-hero { position: relative; border-radius: var(--radius-lg); overflow: hidden; margin-bottom: var(--space-lg); background: var(--color-border); }
+.detail-hero img { width: 100%; aspect-ratio: 16/7; object-fit: cover; display: block; }
+.detail-hero__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(20,32,31,0) 45%, rgba(20,32,31,0.8));
+  display: flex; align-items: flex-end; padding: var(--space-xl);
+}
+.detail-hero__title { color: var(--color-white); margin: 0; }
+.detail-hero__subtitle { color: rgba(255,255,255,0.85); margin: 4px 0 0; font-size: var(--fs-base); }
+.fact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--space-md);
+  margin: var(--space-lg) 0;
+}
+.fact-item {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+}
+.fact-item__label {
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+}
+.fact-item__value { font-weight: 600; font-size: var(--fs-base); color: var(--color-text); }
+.writer-actions {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
 @media (max-width: 768px) {
   .site-header { padding: var(--space-md); flex-wrap: wrap; }
   .nav-links { display: none; }
   .hero-editorial { padding: var(--space-xl) var(--space-md); }
   h1 { font-size: var(--fs-2xl); }
-  .quick-links, .section-wrap { padding-left: var(--space-md); padding-right: var(--space-md); }
+  .quick-links, .section-wrap, .detail-wrap { padding-left: var(--space-md); padding-right: var(--space-md); }
 }

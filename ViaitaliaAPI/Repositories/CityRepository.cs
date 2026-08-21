@@ -1,5 +1,4 @@
-﻿#nullable enable
-
+﻿
 using Microsoft.EntityFrameworkCore;
 using ViaitaliaAPI.Data;
 using ViaitaliaAPI.Models;
@@ -20,12 +19,16 @@ namespace ViaitaliaAPI.Repositories
             return await _context.Cities.Include(c => c.Image).ToListAsync();
         }
 
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         public async Task<City?> GetByIdAsync(Guid id)
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         {
             return await _context.Cities.FirstOrDefaultAsync(c => c.CityId == id);
         }
 
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         public async Task<City?> GetByIdWithImageAsync(Guid id)
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         {
             return await _context.Cities
                 .Include(c => c.Image)

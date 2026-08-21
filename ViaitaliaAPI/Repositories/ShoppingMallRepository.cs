@@ -18,6 +18,7 @@ namespace ViaitaliaAPI.Repositories
             return await _context.ShoppingMalls.Include(s => s.City).Include(s => s.Image).ToListAsync();
         }
 
+#pragma warning disable CS8632
         public async Task<ShoppingMall?> GetByIdAsync(Guid id)
         {
             return await _context.ShoppingMalls.Include(s => s.City).FirstOrDefaultAsync(m => m.Id == id);
@@ -27,7 +28,22 @@ namespace ViaitaliaAPI.Repositories
         {
             return await _context.ShoppingMalls.Include(s => s.City).Include(s => s.Image).FirstOrDefaultAsync(s => s.Id == id);
         }
+#pragma warning restore CS8632
 
+        public async Task<List<ShoppingMall>> GetPagedAsync(int skip, int take)
+        {
+            return await _context.ShoppingMalls
+                .Include(s => s.Image)
+                .OrderByDescending(s => s.Rating)
+                .Skip(skip)
+                .Take(take)
+                .ToListAsync();
+        }
+
+        public async Task<int> CountAsync()
+        {
+            return await _context.ShoppingMalls.CountAsync();
+        }
 
         public async Task AddAsync(ShoppingMall shoppingMall)
         {

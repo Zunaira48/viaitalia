@@ -1,0 +1,13 @@
+@model ViaitaliaAPI.Models.Beach
+<a class="discovery-card" asp-controller="Beaches" asp-action="Details" asp-route-id="@Model.Id">
+    @if (Model.Image != null)
+    {
+        <img class="discovery-card__image" src="@Model.Image.FilePath" alt="@Model.BeachName" />
+    }
+    else
+    {
+        <div class="discovery-card__image"></div>
+    }
+    <p class="discovery-card__title">@Model.BeachName</p>
+    <p class="discovery-card__meta">@Model.CityName · @Model.BeachType</p>
+</a>

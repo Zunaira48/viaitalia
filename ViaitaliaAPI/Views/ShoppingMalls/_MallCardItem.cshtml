@@ -1,0 +1,13 @@
+@model ViaitaliaAPI.Models.ShoppingMall
+<a class="discovery-card" asp-controller="ShoppingMalls" asp-action="Details" asp-route-id="@Model.Id">
+    @if (Model.Image != null)
+    {
+        <img class="discovery-card__image" src="@Model.Image.FilePath" alt="@Model.MallName" />
+    }
+    else
+    {
+        <div class="discovery-card__image"></div>
+    }
+    <p class="discovery-card__title">@Model.MallName</p>
+    <p class="discovery-card__meta">@Model.CityName @(Model.Rating.HasValue ? $"· {Model.Rating}★" : "")</p>
+</a>

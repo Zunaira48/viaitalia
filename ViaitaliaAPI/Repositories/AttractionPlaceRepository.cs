@@ -20,15 +20,32 @@ namespace ViaitaliaAPI.Repositories
         {
             return await _context.AttractionPlaces
                                  .Include(a => a.City)
-                                 .Include(a=>a.Image)
+                                 .Include(a => a.Image)
                                  .ToListAsync();
         }
 
+#pragma warning disable CS8632
         public async Task<AttractionPlace?> GetByIdAsync(Guid id)
         {
             return await _context.AttractionPlaces
                                  .Include(a => a.City)
                                  .FirstOrDefaultAsync(a => a.Id == id);
+        }
+#pragma warning restore CS8632
+
+        public async Task<List<AttractionPlace>> GetPagedAsync(int skip, int take)
+        {
+            return await _context.AttractionPlaces
+                .Include(a => a.Image)
+                .OrderBy(a => a.PopularityRank)
+                .Skip(skip)
+                .Take(take)
+                .ToListAsync();
+        }
+
+        public async Task<int> CountAsync()
+        {
+            return await _context.AttractionPlaces.CountAsync();
         }
 
         public async Task AddAsync(AttractionPlace attractionPlace)
@@ -58,12 +75,14 @@ namespace ViaitaliaAPI.Repositories
             return await _context.AttractionPlaces.AnyAsync(e => e.Id == id);
         }
 
+#pragma warning disable CS8632
         public async Task<AttractionPlace?> GetByIdWithCityAsync(Guid id)
         {
             return await _context.AttractionPlaces
-                .Include(ap => ap.City)  // Eager load the City
+                .Include(ap => ap.City)
                 .FirstOrDefaultAsync(ap => ap.Id == id);
         }
+#pragma warning restore CS8632
 
         public async Task<AttractionPlace> GetByIdWithImageAsync(Guid id)
         {
@@ -72,6 +91,7 @@ namespace ViaitaliaAPI.Repositories
                 .FirstOrDefaultAsync(a => a.Id == id);
         }
 
+#pragma warning disable CS8632
         public async Task<AttractionPlace?> GetByIdWithImageAndCityAsync(Guid id)
         {
             return await _context.AttractionPlaces
@@ -79,7 +99,6 @@ namespace ViaitaliaAPI.Repositories
                 .Include(a => a.City)
                 .FirstOrDefaultAsync(a => a.Id == id);
         }
-
-
+#pragma warning restore CS8632
     }
 }

@@ -1,7 +1,7 @@
 ﻿@model ViaitaliaAPI.Models.TravelPlannerResponse
 @{
-    ViewData["Title"] = "Travel Plan Results";
-    Layout = null;  // Disable any layout file
+    ViewData["Title"] = "Your Travel Plan";
+    Layout = null;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -9,258 +9,144 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    
-    <title>@ViewData["Title"]</title>
-    
-    <!-- Add Google Fonts link for cursive font -->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <!-- Page-specific CSS -->
-<link rel="stylesheet" href="~/css/planresult.css?v=1" />
+    <title>Your Travel Plan - Viaitalia</title>
+    <link rel="stylesheet" href="~/css/design-system.css" />
 </head>
 <body>
-    <!-- Hero Section -->
-    <section id="section-hero">
-        <div class="hero-container">
-            <!-- Content overlay -->
-            <div class="hero-content">
-                <h1 class="hero-title font-cursive">If You Want To Modify Your Plan</h1>
-                <a asp-controller="TravelPlanner" asp-action="Plan" class="hero-button font-cursive">Go Back To Planner</a>
-            </div>
+
+@await Html.PartialAsync("_Header")
+
+<div class="section-wrap" style="padding-top: var(--space-xl);">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:var(--space-md);">
+        <div>
+            <span class="section-eyebrow">Your plan</span>
+            <h1 style="margin-bottom:0;">Travel Plan Result</h1>
         </div>
-    </section>
-    
-    <!-- Plan Summary Section -->
-    <section id="section-plan-summary">
-        <div class="plan-summary-container">
-            <div class="plan-summary-header">
-                <h2 class="plan-summary-title font-cursive font-bold">Travel Plan Result</h2>
-            </div>
-            <div class="plan-summary-grid">
-                <div class="plan-card">
-                    <img src="~/images/users.png" alt="Group Type Icon" class="plan-card-icon">
-                    <div class="plan-card-text">
-                        <h3 class="font-cursive font-bold">Group Type</h3>
-                        <p class="font-krub small-text">@Model.Request.GroupType</p>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <img src="~/images/map-point.png" alt="Trip Duration Icon" class="plan-card-icon">
-                    <div class="plan-card-text">
-                        <h3 class="font-cursive font-bold">Trip Duration</h3>
-                        <p class="font-krub small-text">@Model.Request.TripDuration days</p>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <img src="~/images/wheelchair.png" alt="Wheelchair Icon" class="plan-card-icon">
-                    <div class="plan-card-text">
-                        <h3 class="font-cursive font-bold">Require Wheelchair</h3>
-                        <p class="font-krub small-text">@(Model.Request.RequiresWheelchair ? "Yes" : "No")</p>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <img src="~/images/sack-dollar.png" alt="Budget Icon" class="plan-card-icon">
-                    <div class="plan-card-text">
-                        <h3 class="font-cursive font-bold">Budget</h3>
-                        <p class="font-krub small-text">@Model.Request.BudgetType</p>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <img src="~/images/hotel.png" alt="Hotel Stars Icon" class="plan-card-icon">
-                    <div class="plan-card-text">
-                        <h3 class="font-cursive font-bold">Hotel Stars</h3>
-                        <p class="font-krub small-text">@Model.Request.HotelStarRating</p>
-                    </div>
-                </div>
-                <div class="plan-card">
-                    <img src="~/images/plane-departure.png" alt="Airport Icon" class="plan-card-icon">
-                    <div class="plan-card-text">
-                        <h3 class="font-cursive font-bold">Arrival Airport</h3>
-                        <p class="font-krub small-text">@Model.Request.SelectedAirport</p>
-                    </div>
-                </div>
-                <div class="plan-card plan-card-centered">
-                    <img src="~/images/castle.png" alt="Themes Icon" class="plan-card-icon">
-                    <div class="plan-card-text">
-                        <h3 class="font-cursive font-bold">Preferred Themes</h3>
-                        <p class="font-krub small-text">@string.Join(", ", Model.Request.SelectedTags)</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Map Section -->
-    <section id="section-map">
-        <div class="map-container">
-            <div class="map-header">
-                <img src="~/images/maps.png" alt="Map Icon" class="map-icon">
-                <h2 class="map-title font-lucida">Italy Trip Map</h2>
-            </div>
-            <div id="italy-map" style="height:500px;width:100%;border-radius:40px;overflow:hidden;"></div>
-        </div>
-    </section>
-    
-    <!-- Weather Section -->
-    <section id="section-weather">
-        <div class="weather-container">
-            <div class="weather-header">
-                <img src="~/images/cloud-showers.png" alt="Weather Icon" class="weather-icon">
-                <h2 class="weather-title font-lucida">Weather Summary</h2>
-            </div>
-            <hr class="weather-divider">
-            <div id="weather-container" class="weather-details-grid">
-                <!-- Weather data will be dynamically inserted here -->
-            </div>
-        </div>
-    </section>
-    
-    <!-- City Details Section -->
+        <a asp-controller="TravelPlanner" asp-action="Plan" class="btn btn-outline">Modify plan</a>
+    </div>
+
+    <div class="fact-grid" style="margin-top: var(--space-lg);">
+        <div class="fact-item"><div class="fact-item__label">Group Type</div><div class="fact-item__value">@Model.Request.GroupType</div></div>
+        <div class="fact-item"><div class="fact-item__label">Trip Duration</div><div class="fact-item__value">@Model.Request.TripDuration days</div></div>
+        <div class="fact-item"><div class="fact-item__label">Wheelchair</div><div class="fact-item__value">@(Model.Request.RequiresWheelchair ? "Yes" : "No")</div></div>
+        <div class="fact-item"><div class="fact-item__label">Budget</div><div class="fact-item__value">@Model.Request.BudgetType</div></div>
+        <div class="fact-item"><div class="fact-item__label">Hotel Stars</div><div class="fact-item__value">@Model.Request.HotelStarRating★</div></div>
+        <div class="fact-item"><div class="fact-item__label">Arrival Airport</div><div class="fact-item__value">@Model.Request.SelectedAirport</div></div>
+        <div class="fact-item"><div class="fact-item__label">Themes</div><div class="fact-item__value">@string.Join(", ", Model.Request.SelectedTags)</div></div>
+    </div>
+
+    <h2 style="margin-top: var(--space-2xl);">Italy Trip Map</h2>
+    <div id="italy-map" style="height:450px; width:100%; border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--color-border);"></div>
+
+    <h2 style="margin-top: var(--space-2xl);">Weather Summary</h2>
+    <div id="weather-container" class="fact-grid"></div>
+
     @foreach (var city in Model.Cities)
     {
-        <section id="section-city-details">
-            <div class="city-banner">
-                <img src="https://images.unsplash.com/photo-1543566781-564090f56098?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="@city.CityName city view" class="city-banner-image">
-                <div class="city-banner-overlay">
-                    <p class="city-name font-lunasima">City: @city.CityName</p>
+        <div style="margin-top: var(--space-2xl); padding-top: var(--space-xl); border-top: 1px solid var(--color-border);">
+            <div class="detail-hero" style="margin-bottom: var(--space-md);">
+                @if (city.Image != null)
+                {
+                    <img src="@city.Image.FilePath" alt="@city.CityName"
+                         onerror="this.onerror=null;this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';this.style.background='var(--color-border)';" />
+                }
+                <div class="detail-hero__overlay">
+                    <h2 class="detail-hero__title">@city.CityName</h2>
                 </div>
             </div>
-            <div class="city-content-container">
-                <div class="airport-info">
-                    <img src="https://images.unsplash.com/photo-1524927272271-ae385cdb4692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Florence Airport" class="airport-image">
-                    <div class="airport-text">
-                        <h3 class="font-cursive font-bold">Nearest Airport:</h3>
-                        <p class="font-krub small-text">@city.NearestAirportName</p>
-                    </div>
-                </div>
-                
-                <!-- Hotels -->
-                <div class="category-section">
-                    <h2 class="category-title font-cursive font-bold">Hotels</h2>
-                    <hr class="category-divider">
-                    <div class="item-list">
-                        @{
-                            var cityHotels = Model.Hotels.Where(h => h.CityId == city.CityId).ToList();
-                        }
-                        @if (cityHotels.Any())
-                        {
-                            @foreach (var hotel in cityHotels)
-                            {
-                                <div class="item-card">
-                                    <img src="/images/hotels/@(hotel.Id).jpg" alt="@hotel.HotelName" class="item-image">
-                                    <div class="item-details">
-                                        <h4 class="font-cursive font-bold">@hotel.HotelName</h4>
-                                        <p class="font-krub small-text">Budget: @hotel.Budget, Star: @hotel.Stars</p>
-                                    </div>
-                                </div>
-                            }
-                        }
-                        else
-                        {
-                            <p class="no-items">No hotels match your filters.</p>
-                        }
-                    </div>
-                </div>
-                
-                <!-- Restaurants -->
-                <div class="category-section">
-                    <h2 class="category-title font-cursive font-bold">Restaurants</h2>
-                    <hr class="category-divider">
-                    <div class="item-list">
-                        @{
-                            var cityRestaurants = Model.Restaurants.Where(r => r.CityId == city.CityId).ToList();
-                        }
-                        @if (cityRestaurants.Any())
-                        {
-                            @foreach (var restaurant in cityRestaurants)
-                            {
-                                <div class="item-card">
-                                    <img src="/images/restaurants/@(restaurant.Id).jpg" alt="@restaurant.RestaurantName" class="item-image">
-                                    <div class="item-details">
-                                        <h4 class="font-cursive font-bold">@restaurant.RestaurantName</h4>
-                                    </div>
-                                </div>
-                            }
-                        }
-                        else
-                        {
-                            <p class="no-items">No restaurants available.</p>
-                        }
-                    </div>
-                </div>
-                
-                <!-- Shopping Malls -->
-                <div class="category-section">
-                    <h2 class="category-title font-cursive font-bold">Shopping Malls</h2>
-                    <hr class="category-divider">
-                    <div class="item-list">
-                        @{
-                            var cityMalls = Model.ShoppingMalls.Where(s => s.CityId == city.CityId).ToList();
-                        }
-                        @if (cityMalls.Any())
-                        {
-                            @foreach (var mall in cityMalls)
-                            {
-                                <div class="item-card">
-                                    <img src="/images/malls/@(mall.Id).jpg" alt="@mall.MallName" class="item-image">
-                                    <div class="item-details">
-                                        <h4 class="font-cursive font-bold">@mall.MallName</h4>
-                                    </div>
-                                </div>
-                            }
-                        }
-                        else
-                        {
-                            <p class="no-items">No shopping malls found.</p>
-                        }
-                    </div>
-                </div>
-                
-                <!-- Attractions -->
-                <div class="category-section">
-                    <h2 class="category-title font-cursive font-bold">Attraction Places</h2>
-                    <hr class="category-divider">
-                    <div class="item-list">
-                        @{
-                            var cityAttractions = Model.Attractions.Where(a => a.CityId == city.CityId).ToList();
-                        }
-                        @if (cityAttractions.Any())
-                        {
-                            @foreach (var attraction in cityAttractions)
-                            {
-                                <div class="item-card">
-                                    <img src="/images/attractions/@(attraction.Id).jpg" alt="@attraction.AttractionName" class="item-image">
-                                    <div class="item-details">
-                                        <h4 class="font-cursive font-bold">@attraction.AttractionName</h4>
-                                    </div>
-                                </div>
-                            }
-                        }
-                        else
-                        {
-                            <p class="no-items">No accessible attractions found.</p>
-                        }
-                    </div>
-                </div>
+            <p style="font-size: var(--fs-sm);">Nearest Airport: <strong>@city.NearestAirportName</strong></p>
+
+            <h3>Hotels</h3>
+            <div class="discovery-grid">
+                @{
+                    var cityHotels = Model.Hotels.Where(h => h.CityId == city.CityId).ToList();
+                }
+                @if (cityHotels.Any())
+                {
+                    @foreach (var hotel in cityHotels)
+                    {
+                        <div class="card"><div class="card__body">
+                            <p class="card__title" style="margin-bottom:2px;">@hotel.HotelName</p>
+                            <p class="card__meta">Budget: @hotel.Budget · @(hotel.Stars ?? 0)★</p>
+                        </div></div>
+                    }
+                }
+                else
+                {
+                    <p class="card__meta">No hotels match your filters.</p>
+                }
             </div>
-        </section>
+
+            <h3 style="margin-top: var(--space-lg);">Restaurants</h3>
+            <div class="discovery-grid">
+                @{
+                    var cityRestaurants = Model.Restaurants.Where(r => r.CityId == city.CityId).ToList();
+                }
+                @if (cityRestaurants.Any())
+                {
+                    @foreach (var restaurant in cityRestaurants)
+                    {
+                        <div class="card"><div class="card__body"><p class="card__title">@restaurant.RestaurantName</p></div></div>
+                    }
+                }
+                else
+                {
+                    <p class="card__meta">No restaurants available.</p>
+                }
+            </div>
+
+            <h3 style="margin-top: var(--space-lg);">Shopping Malls</h3>
+            <div class="discovery-grid">
+                @{
+                    var cityMalls = Model.ShoppingMalls.Where(s => s.CityId == city.CityId).ToList();
+                }
+                @if (cityMalls.Any())
+                {
+                    @foreach (var mall in cityMalls)
+                    {
+                        <div class="card"><div class="card__body"><p class="card__title">@mall.MallName</p></div></div>
+                    }
+                }
+                else
+                {
+                    <p class="card__meta">No shopping malls found.</p>
+                }
+            </div>
+
+            <h3 style="margin-top: var(--space-lg);">Attraction Places</h3>
+            <div class="discovery-grid">
+                @{
+                    var cityAttractions = Model.Attractions.Where(a => a.CityId == city.CityId).ToList();
+                }
+                @if (cityAttractions.Any())
+                {
+                    @foreach (var attraction in cityAttractions)
+                    {
+                        <div class="card"><div class="card__body"><p class="card__title">@attraction.AttractionName</p></div></div>
+                    }
+                }
+                else
+                {
+                    <p class="card__meta">No accessible attractions found.</p>
+                }
+            </div>
+        </div>
     }
-    
-    <!-- Page-specific JS -->
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script id="weather-data" type="application/json">
-        @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.CityWeatherData))
-    </script>
+</div>
 
-    <script id="coords-data" type="application/json">
-        @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.CityCoordinates))
-    </script>
+@await Html.PartialAsync("_Footer")
 
-    <script id="italy-data" type="application/json">
-        @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(new { lat = ViewBag.ItalyLat, lng = ViewBag.ItalyLng }))
-    </script>
-
-
-    <script src="~/js/planresult.js"></script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script id="weather-data" type="application/json">
+    @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.CityWeatherData))
+</script>
+<script id="coords-data" type="application/json">
+    @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.CityCoordinates))
+</script>
+<script id="italy-data" type="application/json">
+    @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(new { lat = ViewBag.ItalyLat, lng = ViewBag.ItalyLng }))
+</script>
+<script src="~/js/planresult.js"></script>
 
 </body>
 </html>

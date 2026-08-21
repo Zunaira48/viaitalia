@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ViaitaliaAPI.Data;
 using ViaitaliaAPI.Models;
 
@@ -20,19 +18,25 @@ namespace ViaitaliaAPI.Repositories
             return await _context.Restaurants.Include(r => r.City).Include(r => r.Image).ToListAsync();
         }
 
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         public async Task<Restaurant?> GetByIdAsync(Guid id)
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         {
             return await _context.Restaurants.FindAsync(id);
         }
 
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         public async Task<Restaurant?> GetByIdWithCityAsync(Guid id)
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         {
             return await _context.Restaurants
                 .Include(r => r.City)
                 .FirstOrDefaultAsync(r => r.Id == id);
         }
 
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         public async Task<Restaurant?> GetByIdWithImageAsync(Guid id)
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         {
             return await _context.Restaurants
                 .Include(r => r.City)

@@ -15,6 +15,7 @@ namespace ViaitaliaAPI.Controllers
         private readonly TravelDBContext _context;
         private readonly IImageRepository _imageRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private const int PageSize = 20;
 
         public ShoppingMallsController(IShoppingMallRepository shoppingMallRepository, ICityRepository cityRepository, TravelDBContext context, IImageRepository imageRepository, IWebHostEnvironment webHostEnvironment)
         {
@@ -25,17 +26,25 @@ namespace ViaitaliaAPI.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        [Authorize(Roles = "Writer, Reader")]
         public async Task<IActionResult> Index()
         {
-            var malls = await _shoppingMallRepository.GetAllAsync();
-            malls = malls
-               .OrderByDescending(a => a.MallName)
-               .ToList();
+            var malls = await _shoppingMallRepository.GetPagedAsync(0, PageSize);
+            var totalCount = await _shoppingMallRepository.CountAsync();
+
+            ViewBag.TotalCount = totalCount;
+            ViewBag.Loaded = malls.Count;
+            ViewBag.PageSize = PageSize;
+
             return View(malls);
         }
 
-        [Authorize(Roles = "Writer, Reader")]
+        [HttpGet]
+        public async Task<IActionResult> LoadMore(int skip)
+        {
+            var malls = await _shoppingMallRepository.GetPagedAsync(skip, PageSize);
+            return PartialView("_MallCardBatch", malls);
+        }
+
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null) return NotFound();
@@ -46,7 +55,6 @@ namespace ViaitaliaAPI.Controllers
             return View(mall);
         }
 
-        // Get create
         [Authorize(Roles = "Writer")]
         public async Task<IActionResult> Create()
         {
@@ -66,7 +74,7 @@ namespace ViaitaliaAPI.Controllers
 
                 if (imageFile != null && imageFile.Length > 0)
                 {
-                    var fileName = Guid.NewGuid().ToString(); // Just base name
+                    var fileName = Guid.NewGuid().ToString();
                     var extension = Path.GetExtension(imageFile.FileName);
                     var savedFileName = fileName + extension;
                     var filePath = Path.Combine(uploadsFolder, savedFileName);
@@ -212,8 +220,6 @@ namespace ViaitaliaAPI.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
-
 
         [Authorize(Roles = "Writer")]
         public async Task<IActionResult> Delete(Guid? id)

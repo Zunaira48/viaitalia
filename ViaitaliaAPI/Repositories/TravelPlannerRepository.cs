@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ViaitaliaAPI.Data;
+﻿using ViaitaliaAPI.Data;
 using ViaitaliaAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ViaitaliaAPI.Repositories
 {
@@ -12,13 +12,15 @@ namespace ViaitaliaAPI.Repositories
         {
             _context = context;
         }
-                public async Task<TravelPlannerResponse> GenerateTravelPlan(TravelPlannerRequest model)
+
+        public async Task<TravelPlannerResponse> GenerateTravelPlan(TravelPlannerRequest model)
         {
             var selectedTags = model.SelectedTags
                 .Select(t => t.Trim().ToLowerInvariant())
                 .ToList();
 
             var allCities = await _context.Cities
+                .Include(c => c.Image)
                 .Where(c => !string.IsNullOrEmpty(c.Tags))
                 .ToListAsync();
 
@@ -32,24 +34,29 @@ namespace ViaitaliaAPI.Repositories
             var cityIds = filteredCities.Select(c => c.CityId).ToList();
 
             var accessibleAttractions = await _context.AttractionPlaces
+                .Include(a => a.Image)
                 .Where(a => a.CityId.HasValue &&
                             cityIds.Contains(a.CityId.Value) &&
                             (!model.RequiresWheelchair || a.WheelchairAccessible == "Yes"))
                 .ToListAsync();
 
             var filteredHotels = await _context.Hotels
+                .Include(h => h.Image)
                 .Where(h => h.CityId.HasValue && cityIds.Contains(h.CityId.Value))
                 .ToListAsync();
 
             var filteredBeaches = await _context.Beaches
+                .Include(b => b.Image)
                 .Where(b => b.CityId.HasValue && cityIds.Contains(b.CityId.Value))
                 .ToListAsync();
 
             var filteredShoppingMalls = await _context.ShoppingMalls
+                .Include(m => m.Image)
                 .Where(m => m.CityId.HasValue && cityIds.Contains(m.CityId.Value))
                 .ToListAsync();
 
             var filteredRestaurants = await _context.Restaurants
+                .Include(r => r.Image)
                 .Where(r => r.CityId.HasValue && cityIds.Contains(r.CityId.Value))
                 .ToListAsync();
 
@@ -64,6 +71,5 @@ namespace ViaitaliaAPI.Repositories
                 Request = model
             };
         }
-                
     }
 }

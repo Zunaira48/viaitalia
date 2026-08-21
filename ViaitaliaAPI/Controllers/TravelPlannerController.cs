@@ -225,6 +225,11 @@ namespace ViaitaliaAPI.Controllers
             ViewBag.CityWeatherData = cityWeatherData;
             ViewBag.CityWeatherJson = JsonSerializer.Serialize(cityWeatherData);
 
+            var cityCoordinates = response.Cities
+                .Where(c => c.Latitude != 0 && c.Longitude != 0)
+                .ToDictionary(c => c.CityName, c => new { lat = c.Latitude, lng = c.Longitude });
+            ViewBag.CityCoordinates = cityCoordinates;
+
             ViewBag.ItalyLat = 41.8719;
             ViewBag.ItalyLng = 12.5674;
 

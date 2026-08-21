@@ -4,7 +4,7 @@ using ViaitaliaAPI.Models;
 
 namespace ViaitaliaAPI.Repositories
 {
-    public class BeachRepository: IBeachRepository
+    public class BeachRepository : IBeachRepository
     {
         private readonly TravelDBContext _context;
 
@@ -18,11 +18,12 @@ namespace ViaitaliaAPI.Repositories
             return await _context.Beaches.Include(b => b.City).Include(b => b.Image).ToListAsync();
         }
 
+#pragma warning disable CS8632
         public async Task<Beach?> GetByIdAsync(Guid id)
         {
             return await _context.Beaches.FindAsync(id);
         }
-
+#pragma warning restore CS8632
 
         public async Task<List<Beach>> GetByCityIdAsync(Guid cityId)
         {
@@ -31,6 +32,20 @@ namespace ViaitaliaAPI.Repositories
                 .ToListAsync();
         }
 
+        public async Task<List<Beach>> GetPagedAsync(int skip, int take)
+        {
+            return await _context.Beaches
+                .Include(b => b.Image)
+                .OrderBy(b => b.BeachName)
+                .Skip(skip)
+                .Take(take)
+                .ToListAsync();
+        }
+
+        public async Task<int> CountAsync()
+        {
+            return await _context.Beaches.CountAsync();
+        }
 
         public async Task AddAsync(Beach beach)
         {
@@ -66,21 +81,21 @@ namespace ViaitaliaAPI.Repositories
             }
         }
 
+#pragma warning disable CS8632
         public async Task<Beach?> GetByIdWithCityAsync(Guid id)
         {
             return await _context.Beaches
                 .Include(b => b.City)
                 .FirstOrDefaultAsync(b => b.Id == id);
         }
+#pragma warning restore CS8632
 
-        public async Task<Beach?> GetByIdWithImageAsync(Guid id)
+        public async Task<Beach> GetByIdWithImageAsync(Guid id)
         {
             return await _context.Beaches
                 .Include(b => b.City)
                 .Include(b => b.Image)
                 .FirstOrDefaultAsync(b => b.Id == id);
         }
-
-        
     }
 }

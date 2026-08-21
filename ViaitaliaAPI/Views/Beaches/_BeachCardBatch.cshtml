@@ -1,0 +1,5 @@
+@model List<ViaitaliaAPI.Models.Beach>
+@foreach (var beach in Model)
+{
+    @await Html.PartialAsync("_BeachCardItem", beach)
+}

@@ -19,6 +19,7 @@ namespace ViaitaliaAPI.Controllers
         private readonly IAttractionPlaceRepository _repository;
         private readonly ICityRepository _cityRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private const int PageSize = 20;
 
         public AttractionPlacesController(IAttractionPlaceRepository repository, TravelDBContext context, IImageRepository imageRepository, ICityRepository cityRepository, IWebHostEnvironment webHostEnvironment)
         {
@@ -30,18 +31,27 @@ namespace ViaitaliaAPI.Controllers
         }
 
         // GET: AttractionPlaces
-        [Authorize(Roles = "Writer, Reader")]
         public async Task<IActionResult> Index()
         {
-            var attractionPlaces = await _repository.GetAllAsync();
-            attractionPlaces = attractionPlaces
-                .OrderByDescending(a => a.AttractionName)
-                .ToList();
+            var attractionPlaces = await _repository.GetPagedAsync(0, PageSize);
+            var totalCount = await _repository.CountAsync();
+
+            ViewBag.TotalCount = totalCount;
+            ViewBag.Loaded = attractionPlaces.Count;
+            ViewBag.PageSize = PageSize;
+
             return View(attractionPlaces);
         }
 
+        // GET: AttractionPlaces/LoadMore
+        [HttpGet]
+        public async Task<IActionResult> LoadMore(int skip)
+        {
+            var attractionPlaces = await _repository.GetPagedAsync(skip, PageSize);
+            return PartialView("_AttractionCardBatch", attractionPlaces);
+        }
+
         // GET: AttractionPlaces/Details/5
-        [Authorize(Roles = "Writer, Reader")]
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -74,9 +84,9 @@ namespace ViaitaliaAPI.Controllers
                 if (imageFile != null && imageFile.Length > 0)
                 {
                     var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images");
-                    Directory.CreateDirectory(uploadsFolder); // Ensure folder exists
+                    Directory.CreateDirectory(uploadsFolder);
 
-                    var fileName = Guid.NewGuid().ToString(); // Just base name
+                    var fileName = Guid.NewGuid().ToString();
                     var extension = Path.GetExtension(imageFile.FileName);
                     var savedFileName = fileName + extension;
                     var filePath = Path.Combine(uploadsFolder, savedFileName);
@@ -97,7 +107,7 @@ namespace ViaitaliaAPI.Controllers
                     };
 
                     var uploadedImage = await _imageRepository.Upload(image);
-                    
+
                     attractionPlace.ImageId = image.Id;
                 }
 
@@ -154,7 +164,6 @@ namespace ViaitaliaAPI.Controllers
 
                     if (imageFile != null && imageFile.Length > 0)
                     {
-
                         if (existingAttraction.Image != null)
                         {
                             var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, "Images",
@@ -228,8 +237,6 @@ namespace ViaitaliaAPI.Controllers
             ViewData["CityId"] = new SelectList(_context.Cities, "CityId", "CityName", attractionPlace.CityId);
             return View(attractionPlace);
         }
-
-
 
         // GET: AttractionPlaces/Delete/5
         [Authorize(Roles = "Writer")]

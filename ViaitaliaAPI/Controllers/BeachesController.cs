@@ -19,6 +19,7 @@ namespace ViaitaliaAPI.Controllers
         private readonly ICityRepository _cityRepository;
         private readonly IImageRepository _imageRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private const int PageSize = 20;
 
         public BeachesController(TravelDBContext context, IBeachRepository beachRepository, ICityRepository cityRepository, IImageRepository imageRepository, IWebHostEnvironment webHostEnvironment)
         {
@@ -30,19 +31,27 @@ namespace ViaitaliaAPI.Controllers
         }
 
         // GET: Beaches
-        [Authorize(Roles = "Writer, Reader")]
         public async Task<IActionResult> Index()
         {
-            var beaches = await _beachRepository.GetAllAsync();
-            beaches = beaches
-                .OrderByDescending(a => a.BeachName)
-                .ToList();
+            var beaches = await _beachRepository.GetPagedAsync(0, PageSize);
+            var totalCount = await _beachRepository.CountAsync();
+
+            ViewBag.TotalCount = totalCount;
+            ViewBag.Loaded = beaches.Count;
+            ViewBag.PageSize = PageSize;
+
             return View(beaches);
         }
 
+        // GET: Beaches/LoadMore
+        [HttpGet]
+        public async Task<IActionResult> LoadMore(int skip)
+        {
+            var beaches = await _beachRepository.GetPagedAsync(skip, PageSize);
+            return PartialView("_BeachCardBatch", beaches);
+        }
 
         // GET: Beaches/Details/5
-        [Authorize(Roles = "Writer, Reader")]
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null) return NotFound();
@@ -51,19 +60,15 @@ namespace ViaitaliaAPI.Controllers
             return beach == null ? NotFound() : View(beach);
         }
 
-
         // GET: Beaches/Create
         [Authorize(Roles = "Writer")]
         public async Task<IActionResult> Create()
         {
             var cities = await _cityRepository.GetAllAsync();
-
             ViewBag.CityId = new SelectList(cities, "CityId", "CityName");
-
             return View();
         }
 
-        // POST
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Writer")]
@@ -72,10 +77,10 @@ namespace ViaitaliaAPI.Controllers
             if (ModelState.IsValid)
             {
                 var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images");
-                Directory.CreateDirectory(uploadsFolder); // Ensure folder exists
+                Directory.CreateDirectory(uploadsFolder);
                 if (imageFile != null && imageFile.Length > 0)
                 {
-                    var fileName = Guid.NewGuid().ToString(); // Just base name
+                    var fileName = Guid.NewGuid().ToString();
                     var extension = Path.GetExtension(imageFile.FileName);
                     var savedFileName = fileName + extension;
                     var filePath = Path.Combine(uploadsFolder, savedFileName);
@@ -117,7 +122,6 @@ namespace ViaitaliaAPI.Controllers
             ViewData["CityId"] = new SelectList(_context.Cities, "CityId", "CityName", beach.CityId);
             return View(beach);
         }
-
 
         // GET: Beaches/Edit/5
         [Authorize(Roles = "Writer")]
@@ -223,7 +227,6 @@ namespace ViaitaliaAPI.Controllers
             }
         }
 
-
         // GET: Beaches/Delete/5
         [Authorize(Roles = "Writer")]
         public async Task<IActionResult> Delete(Guid? id)
@@ -237,8 +240,6 @@ namespace ViaitaliaAPI.Controllers
 
             return View(beach);
         }
-
-
 
         // POST: Beaches/Delete/5
         [HttpPost, ActionName("Delete")]
@@ -254,8 +255,6 @@ namespace ViaitaliaAPI.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
-
 
         private async Task<bool> BeachExists(Guid id)
         {

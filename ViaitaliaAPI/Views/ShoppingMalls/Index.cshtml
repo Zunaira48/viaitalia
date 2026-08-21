@@ -1,506 +1,84 @@
-﻿@model IEnumerable<ViaitaliaAPI.Models.ShoppingMall>
+﻿@model List<ViaitaliaAPI.Models.ShoppingMall>
 @{
-    ViewData["Title"] = "Shopping Malls";
-    Layout = null; // This disables the layout page
+    ViewData["Title"] = "Shopping";
+    Layout = null;
     bool isWriter = User.IsInRole("Writer");
-    bool isReader = User.IsInRole("Reader");
-}
-@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
-@{
-    var tokens = Antiforgery.GetAndStoreTokens(Context);
-    var requestToken = tokens.RequestToken;
 }
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ViaItalia</title>
-    <style>
-        :root {
-            --color-primary: #7acbcd;
-            --color-secondary: #0ae7bb;
-            --color-dark: #001a33;
-            --color-text: #000000;
-            --color-white: #ffffff;
-            --card-bg: rgba(81, 152, 158, 0.66);
-            --font-main: 'Inter', sans-serif;
-            --font-display: 'Palatino Linotype', 'Georgia', serif;
-            --font-nav: 'Karma', sans-serif;
-        }
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            font-family: var(--font-main);
-            background-color: var(--color-white);
-            color: var(--color-text);
-            line-height: 1.6;
-        }
-        
-        .page-wrapper {
-            max-width: 1440px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-        
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        
-        ul {
-            list-style: none;
-        }
-        
-        h1, h2, h3, p {
-            margin: 0;
-        }
-        
-        /* Header Styles */
-        .site-header {
-            padding: 15px 0;
-        }
-        
-        .header-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 40px;
-        }
-        
-        .site-header .logo img {
-            width: 232px;
-            height: 89px;
-            display: block;
-        }
-        
-        .main-nav {
-            position: relative;
-            margin-bottom: 23px;
-        }
-        
-        .main-nav ul {
-            display: flex;
-            align-items: center;
-            gap: 19px;
-        }
-        
-        .main-nav a {
-            font-family: var(--font-nav);
-            font-size: 26px;
-            font-weight: 400;
-            padding: 10px 15px;
-            position: relative;
-            white-space: nowrap;
-        }
-        
-        .main-nav a.active {
-            font-weight: 700;
-        }
-        
-        .main-nav a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -23px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 98px;
-            height: 14px;
-            background-color: var(--color-primary);
-            border-radius: 3px;
-        }
-        
-        .main-nav::before {
-            content: '';
-            position: absolute;
-            bottom: -23px;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background-color: rgba(0, 0, 0, 0.55);
-        }
-        
-        .signout-btn {
-            background-color: var(--color-secondary);
-            color: var(--color-white);
-            font-family: var(--font-nav);
-            font-size: 24px;
-            font-weight: 400;
-            padding: 5px 25px;
-            border-radius: 50px;
-            line-height: 35px;
-            white-space: nowrap;
-            display: inline-block;
-        }
-        .signout-btn:hover{
-
-background-color:darkcyan;
-        }
-        /* Hero Section Styles */
-        .hero-section {
-            padding: 32px 0 88px;
-        }
-        
-        .hero-container {
-            padding: 0 121px;
-        }
-        
-        .hero-title {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 64px;
-            line-height: 1.35;
-            margin-bottom: 32px;
-        }
-        
-        .hero-subtitle {
-            font-family: var(--font-display);
-            font-weight: 400;
-            font-size: 40px;
-            line-height: 1.35;
-            max-width: 995px;
-        }
-        
-        /* Create Button Styles */
-        .create-section {
-            padding: 0 30px 20px;
-            text-align: right;
-        }
-        
-        .create-btn {
-            background-color: var(--color-secondary);
-            color: var(--color-white);
-            font-family: var(--font-nav);
-            font-size: 20px;
-            font-weight: 400;
-            padding: 8px 20px;
-            border-radius: 50px;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-        
-        /* Shopping Malls Section Styles */
-        .malls-section {
-            padding: 0 30px 116px;
-        }
-        
-        .malls-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 70px 18px;
-        }
-        
-        .mall-card {
-            background-color: var(--card-bg);
-            border-radius: 59px;
-            padding: 20px 17px;
-            transition: transform 0.3s ease;
-        }
-        
-        .mall-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .mall-card__image {
-            width: 100%;
-            height: 275px;
-            object-fit: cover;
-            border-radius: 42px;
-            display: block;
-        }
-        
-        .mall-card__content {
-            padding: 21px 0 20px 21px;
-        }
-        
-        .mall-card__title {
-            font-family: var(--font-main);
-            font-weight: 700;
-            font-size: 32px;
-            line-height: 1.2;
-            margin-bottom: 10px;
-        }
-        
-        .mall-card__title a {
-            color: var(--color-text);
-        }
-        
-        .mall-card__title a:hover {
-            text-decoration: underline;
-        }
-        
-        .mall-card__location {
-            font-family: var(--font-main);
-            font-weight: 400;
-            font-size: 32px;
-            line-height: 1.2;
-            margin-bottom: 15px;
-        }
-        
-        .mall-card__info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-        
-        .mall-card__info-item {
-            font-family: var(--font-main);
-            font-weight: 400;
-            font-size: 18px;
-            line-height: 1.2;
-        }
-        
-        .mall-card__info-label {
-            font-weight: 700;
-            margin-right: 5px;
-        }
-        
-        .mall-card__actions {
-            margin-top: 15px;
-            display: flex;
-            gap: 10px;
-        }
-        
-        .mall-card__actions a {
-            font-family: var(--font-main);
-            font-size: 16px;
-            padding: 5px 12px;
-            border-radius: 5px;
-            display: inline-block;
-        }
-        
-        .btn-edit {
-            background-color: #ffc107;
-            color: #212529;
-        }
-        
-        .btn-details {
-            background-color: #17a2b8;
-            color: white;
-        }
-        
-        .btn-delete {
-            background-color: #dc3545;
-            color: white;
-        }
-        
-        /* Footer Styles - Full Width */
-        .site-footer {
-            background-color: var(--color-dark);
-            width: 100%;
-            margin-top: 0;
-        }
-        
-        .footer-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 28px 40px;
-        }
-        
-        .site-footer .logo img {
-            width: 182px;
-            height: 69px;
-            display: block;
-        }
-        
-        .footer-nav ul {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px 43px;
-        }
-        
-        .footer-nav a {
-            color: var(--color-white);
-            font-family: var(--font-nav);
-            font-size: 24px;
-            font-weight: 400;
-        }
-        
-        /* Responsive Tablet */
-        @@media (max-width: 1024px) {
-            .header-container,
-            .hero-container,
-            .malls-section {
-                padding-left: 20px;
-                padding-right: 20px;
-            }
-            .main-nav {
-                display: none;
-            }
-            .main-nav::before {
-                display: none;
-            }
-            /* Adjust footer for tablet */
-            .footer-container {
-                padding: 28px 20px;
-            }
-        }
-        
-        /* Responsive Mobile */
-        @@media (max-width: 767px) {
-            .header-container {
-                padding: 15px 20px;
-            }
-            .hero-container {
-                padding-top: 40px;
-                padding-bottom: 40px;
-            }
-            .hero-title {
-                font-size: 48px;
-            }
-            .hero-subtitle {
-                font-size: 24px;
-            }
-            .malls-grid {
-                grid-template-columns: 1fr;
-                row-gap: 40px;
-            }
-            .footer-container {
-                flex-direction: column;
-                gap: 30px;
-                padding: 40px 20px;
-            }
-            
-            .footer-nav ul {
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
-            }
-            
-            .mall-card__actions {
-                flex-direction: column;
-            }
-        }
-    </style>
+    <title>Shopping - Viaitalia</title>
+    <link rel="stylesheet" href="~/css/design-system.css" />
 </head>
 <body>
-    <div class="page-wrapper">
-        <!-- Header Section -->
-        <header class="site-header">
-            <div class="header-container">
-                <a href="#" class="logo">
-                    <img src="~/images/ViaItalia teal + blue combo logo.png" alt="ViaItalia Logo">
-                </a>
-                 <nav class="main-nav">
-    <ul>
-        <li><a asp-controller="AttractionPlaces" asp-action="Index" class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "AttractionPlaces" ? "active" : "")">Attractions</a></li>
-        <li><a asp-controller="Hotels" asp-action="Index" class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Hotels" ? "active" : "")">Hotels</a></li>
-        <li><a asp-controller="Beaches" asp-action="Index" class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Beaches" ? "active" : "")">Beaches</a></li>
-        <li><a asp-controller="Cities" asp-action="Index" class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Cities" ? "active" : "")">Cities</a></li>
-        <li><a asp-controller="ShoppingMalls" asp-action="Index" class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "ShoppingMalls" ? "active" : "")">Shopping Malls</a></li>
-        <li><a asp-controller="Restaurants" asp-action="Index" class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Restaurants" ? "active" : "")">Restaurants</a></li>
-    </ul>
-</nav>
 
-                <form asp-action="Logout" asp-controller="Auth" method="post">
-                    @Html.AntiForgeryToken()
-                    <button type="submit" class="signout-btn">Sign out</button>
-                </form>
-            </div>
-        </header>
+@await Html.PartialAsync("_Header")
 
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="hero-container">
-                <h1 class="hero-title">Shopping Malls</h1>
-                <p class="hero-subtitle">Here we suggest you some popular shopping malls of Italy.</p>
-            </div>
-        </section>
-
-        <!-- Create Button Section (only for non-Reader users) -->
-        @if (!isReader)
+<section class="section-wrap" style="padding-top: var(--space-xl);">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:var(--space-md);">
+        <div>
+            <span class="section-eyebrow">Explore</span>
+            <h1 style="margin-bottom:0;">Shopping</h1>
+        </div>
+        @if (isWriter)
         {
-            <div class="create-section">
-                <a asp-action="Create" class="create-btn">Create New</a>
-            </div>
+            <a asp-action="Create" class="btn btn-primary">Create new</a>
         }
-
-        <!-- Shopping Malls Section -->
-        <section id="malls" class="malls-section">
-            <div class="malls-grid">
-                @foreach (var item in Model)
-                {
-                    <article class="mall-card">
-                        <!-- Using a placeholder image with mall name as seed -->
-                        
-                        @if (@item.Image != null)
-                        {
-                            <img class="mall-card__image" 
-                             src="@item.Image.FilePath" 
-                             alt="@item.MallName in @item.CityName" />
-                        }
-                        <div class="mall-card__content">
-                            <h3 class="mall-card__title">
-                                <a asp-action="Details" asp-route-id="@item.Id">@item.MallName</a>
-                            </h3>
-                            <p class="mall-card__location">@item.CityName</p>
-                            
-                            <div class="mall-card__info">
-                                <div class="mall-card__info-item">
-                                    <span class="mall-card__info-label">Shops:</span>
-                                    <span>@item.TotalShops</span>
-                                </div>
-                                <div class="mall-card__info-item">
-                                    <span class="mall-card__info-label">Rating:</span>
-                                    <span>@item.Rating</span>
-                                </div>
-                            </div>
-                            
-                            <div class="mall-card__info">
-                                <div class="mall-card__info-item">
-                                    <span class="mall-card__info-label">Area:</span>
-                                    <span>@item.AreaSqFt sq ft</span>
-                                </div>
-                                <div class="mall-card__info-item">
-                                    <span class="mall-card__info-label">Parking:</span>
-                                    <span>@item.ParkingCapacity</span>
-                                </div>
-                            </div>
-                            
-                            <div class="mall-card__actions">
-                                @if (isReader)
-                                {
-                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn-details">Details</a>
-                                }
-                                else
-                                {
-                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn-edit">Edit</a>
-                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn-details">Details</a>
-                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn-delete">Delete</a>
-                                }
-                            </div>
-                        </div>
-                    </article>
-                }
-            </div>
-        </section>
     </div>
 
-    <!-- Footer Section - Full Width -->
-    <footer class="site-footer">
-        <div class="footer-container">
-            <a href="#" class="logo">
-                <img src="~/images/ViaItalia logo in white.png" alt="ViaItalia Logo">
-            </a>
-            <nav class="footer-nav">
-                <ul>
-                    <li><a asp-controller="Pages" asp-action="Contactus">Contact us</a></li>
-                    <li><a asp-controller="Pages" asp-action="Aboutus">About us</a></li>
-                    <li><a asp-controller="Pages" asp-action="Terms">Term&condition</a></li>
-                    <li><a asp-controller="Pages" asp-action="PrivacyPolicy">Privacy policy</a></li>
-                    <li><a asp-controller="Pages" asp-action="Blog">Blog</a></li>
-                </ul>
-            </nav>
+    @if (Model != null && Model.Any())
+    {
+        <div class="discovery-grid" id="results-grid" style="margin-top: var(--space-lg);">
+            @foreach (var mall in Model)
+            {
+                @await Html.PartialAsync("_MallCardItem", mall)
+            }
         </div>
-    </footer>
+
+        <div style="text-align:center; margin-top: var(--space-xl);">
+            <p id="results-count" style="color:var(--color-text-muted); font-size:var(--fs-sm);">
+                Showing @ViewBag.Loaded of @ViewBag.TotalCount
+            </p>
+            @if ((int)ViewBag.Loaded < (int)ViewBag.TotalCount)
+            {
+                <button id="load-more-btn" class="btn btn-outline" data-skip="@ViewBag.Loaded" data-pagesize="@ViewBag.PageSize">
+                    Load more
+                </button>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="state-message">
+            <h3>No shopping malls found</h3>
+            <p>Check back soon.</p>
+        </div>
+    }
+</section>
+
+@await Html.PartialAsync("_Footer")
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var btn = document.getElementById('load-more-btn');
+    if (!btn) return;
+    btn.addEventListener('click', async function () {
+        var skip = parseInt(btn.dataset.skip, 10);
+        var pageSize = parseInt(btn.dataset.pagesize, 10);
+        btn.textContent = 'Loading...';
+        const response = await fetch('/ShoppingMalls/LoadMore?skip=' + skip);
+        const html = await response.text();
+        document.getElementById('results-grid').insertAdjacentHTML('beforeend', html);
+        btn.dataset.skip = skip + pageSize;
+        var loadedCount = document.querySelectorAll('#results-grid .discovery-card').length;
+        var totalCount = @ViewBag.TotalCount;
+        document.getElementById('results-count').textContent = 'Showing ' + loadedCount + ' of ' + totalCount;
+        if (loadedCount >= totalCount) { btn.remove(); } else { btn.textContent = 'Load more'; }
+    });
+});
+</script>
+
 </body>
 </html>

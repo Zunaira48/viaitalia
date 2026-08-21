@@ -1,0 +1,5 @@
+@model List<ViaitaliaAPI.Models.AttractionPlace>
+@foreach (var attraction in Model)
+{
+    @await Html.PartialAsync("_AttractionCardItem", attraction)
+}

@@ -1,209 +1,158 @@
 ﻿@model ViaitaliaAPI.Models.TravelPlannerRequest
 @{
     ViewData["Title"] = "Plan Your Trip";
-    Layout = null; // Remove or change depending on whether this is a full page or partial
+    Layout = null;
 }
 @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
 @{
     var tokens = Antiforgery.GetAndStoreTokens(Context);
     var requestToken = tokens.RequestToken;
 }
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/css/recommendation form.css?v=1" />
-   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Your Trip - Viaitalia</title>
+    <link rel="stylesheet" href="~/css/design-system.css" />
+    <style>
+        .planner-form { max-width: 720px; margin: 0 auto; }
+        .form-section { margin-bottom: var(--space-xl); }
+        .block-options { display: flex; gap: var(--space-md); flex-wrap: wrap; }
+        .block-option { position: relative; }
+        .block-option input { position: absolute; opacity: 0; }
+        .block-option label {
+            display: flex; flex-direction: column; align-items: center; gap: var(--space-xs);
+            padding: var(--space-md); border: 1.5px solid var(--color-border); border-radius: var(--radius-md);
+            cursor: pointer; font-size: var(--fs-sm); min-width: 90px; text-align: center;
+        }
+        .block-option input:checked + label { border-color: var(--color-primary); background: rgba(13,115,119,0.06); color: var(--color-primary); }
+        .block-option img { width: 28px; height: 28px; }
+        .radio-large { display: flex; gap: var(--space-lg); }
+        .theme-select { min-height: 180px; }
+        .duration-controls { display: flex; align-items: center; gap: var(--space-sm); }
+        .duration-controls button {
+            width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--color-border);
+            background: white; cursor: pointer; font-size: var(--fs-lg);
+        }
+        .duration-controls input { width: 70px; text-align: center; padding: 8px; border: 1.5px solid var(--color-border); border-radius: var(--radius-sm); }
+    </style>
 </head>
 <body>
-<header class="site-header">
-    <div class="container header-container">
-        <a href="#" class="logo">
-            <img src="~/images/ViaItalia teal + blue combo logo.png" alt="ViaItalia logo">
-        </a>
-        <nav class="main-nav">
-    <ul>
-        <li><a asp-controller="AttractionPlaces" asp-action="Index" class="nav-btn">Attractions</a></li>
-        <li><a asp-controller="Hotels" asp-action="Index" class="nav-btn">Hotels</a></li>
-        <li><a asp-controller="Beaches" asp-action="Index" class="nav-btn">Beaches</a></li>
-        <li><a asp-controller="Cities" asp-action="Index" class="nav-btn">Cities</a></li>
-        <li><a asp-controller="ShoppingMalls" asp-action="Index" class="nav-btn">Shopping malls</a></li>
-        <li><a asp-controller="Restaurants" asp-action="Index" class="nav-btn">Restaurants</a></li>
-    </ul>
-</nav>
-            <form asp-action="Logout" asp-controller="Auth" method="post">
-                @Html.AntiForgeryToken()
-                <button type="submit" class="signout-btn">Sign out</button>
-            </form>
-    </div>
-</header>
-<main id="main-content">
-    <div class="container">
-        <form asp-action="Plan" method="post" class="trip-form">
-            <!-- Trip Preferences Intro -->
-            <div class="form-intro">
-                <h1 class="form-main-title">Provide us your Trip preferences</h1>
-                <p class="form-subtitle">
-                    Give some Specific information about your Trip, Our Travel Planner will Generate a customized Plan according to your Preferences.
-                </p>
-            </div>
-            <!-- Companion Selection -->
-            <section id="companions" class="form-section">
-                <h2 class="section-title">With whom you plan to Travel?</h2>
+
+@await Html.PartialAsync("_Header")
+
+<div class="section-wrap" style="padding-top: var(--space-xl);">
+    <div class="planner-form">
+        <span class="section-eyebrow">Travel Planner</span>
+        <h1>Tell us about your trip</h1>
+        <p style="margin-bottom: var(--space-xl);">A few details, and we'll match you with cities, hotels, and places that fit.</p>
+
+        <form asp-action="Plan" method="post">
+            @Html.AntiForgeryToken()
+
+            <section class="form-section">
+                <h3>Who's traveling?</h3>
                 <div class="form-group block-options">
                     <div class="block-option">
                         <input type="radio" asp-for="GroupType" value="Friends" id="group-Friends" />
-                        <label for="group-Friends">
-                            <img src="~/images/followers.png" alt="Friends icon">
-                            Friends
-                        </label>
+                        <label for="group-Friends"><img src="~/images/followers.png" alt="Friends" />Friends</label>
                     </div>
                     <div class="block-option">
                         <input type="radio" asp-for="GroupType" value="Couple" id="group-Couple" />
-                        <label for="group-Couple">
-                            <img src="~/images/couple.png" alt="Couple icon">
-                            Couple
-                        </label>
+                        <label for="group-Couple"><img src="~/images/couple.png" alt="Couple" />Couple</label>
                     </div>
                     <div class="block-option">
                         <input type="radio" asp-for="GroupType" value="Family" id="group-Family" />
-                        <label for="group-Family">
-                            <img src="~/images/family.png" alt="Family icon">
-                            Family
-                        </label>
+                        <label for="group-Family"><img src="~/images/family.png" alt="Family" />Family</label>
                     </div>
-                    <span asp-validation-for="GroupType" class="text-danger"></span>
+                </div>
+                <span asp-validation-for="GroupType" class="alert alert-error" style="display:none;"></span>
+            </section>
+
+            <section class="form-section">
+                <h3>How many days?</h3>
+                <div class="duration-controls">
+                    <button type="button" id="decreaseBtn">−</button>
+                    <input asp-for="TripDuration" id="durationInput" type="number" min="1" value="5" class="form-input" />
+                    <button type="button" id="increaseBtn">+</button>
                 </div>
             </section>
-            <!-- Trip Duration -->
-            <section id="duration" class="form-section">
-                <h2 class="section-title">How many days do you plan to travel?</h2>
-                <div class="form-group">
-                    <div class="duration-container">
-                        <div class="duration-label">Days</div>
-                        <div class="duration-controls">
-                            <button type="button" class="decrease" id="decreaseBtn">−</button>
-                            <input asp-for="TripDuration" class="form-control" id="durationInput" type="number" min="1" value="5" />
-                            <button type="button" class="increase" id="increaseBtn">+</button>
-                        </div>
-                    </div>
-                    <span asp-validation-for="TripDuration" class="text-danger"></span>
-                </div>
-            </section>
-            <!-- Wheelchair Accessibility -->
-            <section id="accessibility" class="form-section">
-                <h2 class="section-title">Require Wheelchair</h2>
+
+            <section class="form-section">
+                <h3>Do you require wheelchair access?</h3>
                 <div class="form-group radio-large">
-                    <div class="radio-option">
-                        <input type="radio" asp-for="RequiresWheelchair" value="true" id="wheelchair-yes" />
-                        <label for="wheelchair-yes">Yes</label>
-                    </div>
-                    <div class="radio-option">
-                        <input type="radio" asp-for="RequiresWheelchair" value="false" id="wheelchair-no" />
-                        <label for="wheelchair-no">No</label>
-                    </div>
-                    <span asp-validation-for="RequiresWheelchair" class="text-danger"></span>
+                    <label><input type="radio" asp-for="RequiresWheelchair" value="true" /> Yes</label>
+                    <label><input type="radio" asp-for="RequiresWheelchair" value="false" /> No</label>
                 </div>
             </section>
-            <!-- Preferred Destination Theme (MultiSelect Razor) -->
-            <section id="theme" class="form-section">
-                <h2 class="section-title">Preferred destination Theme</h2>
-                <div class="form-group">
-                    <select asp-for="SelectedTags" asp-items="@(new MultiSelectList(Model.AvailableTags))" multiple class="form-control theme-select" size="8">
-                    </select>
-                    <span asp-validation-for="SelectedTags" class="text-danger"></span>
-                </div>
+
+            <section class="form-section">
+                <h3>What themes interest you?</h3>
+                <select asp-for="SelectedTags" asp-items="@(new MultiSelectList(Model.AvailableTags))" multiple class="form-select theme-select"></select>
             </section>
-            <!-- Arrival Airport (Razor Loop) -->
-            <section id="airport" class="form-section">
-                <h2 class="section-title">Arrival Airport</h2>
-                <div class="form-group">
-                    <select asp-for="SelectedAirport" class="form-control airport-select">
-                        <option value="">-- Select Airport --</option>
-                        @foreach (var airport in Model.AvailableAirports)
-                        {
-                            <option value="@airport">@airport</option>
-                        }
-                    </select>
-                    <span asp-validation-for="SelectedAirport" class="text-danger"></span>
-                </div>
+
+            <section class="form-section">
+                <h3>Arrival airport</h3>
+                <select asp-for="SelectedAirport" class="form-select">
+                    <option value="">-- Select Airport --</option>
+                    @foreach (var airport in Model.AvailableAirports)
+                    {
+                        <option value="@airport">@airport</option>
+                    }
+                </select>
             </section>
-            <!-- Budget Type -->
-            <section id="budget" class="form-section">
-                <h2 class="section-title">Tell us your travel Budget?</h2>
+
+            <section class="form-section">
+                <h3>Travel budget</h3>
                 <div class="form-group block-options">
                     <div class="block-option">
                         <input type="radio" asp-for="BudgetType" value="Low" id="budget-Low" />
-                        <label for="budget-Low">
-                            <img src="~/images/money.png" alt="Low budget icon">
-                            Low
-                        </label>
+                        <label for="budget-Low"><img src="~/images/money.png" alt="Low" />Low</label>
                     </div>
                     <div class="block-option">
                         <input type="radio" asp-for="BudgetType" value="Medium" id="budget-Medium" />
-                        <label for="budget-Medium">
-                            <img src="~/images/money.png" alt="Medium budget icon">
-                            Medium
-                        </label>
+                        <label for="budget-Medium"><img src="~/images/money.png" alt="Medium" />Medium</label>
                     </div>
                     <div class="block-option">
                         <input type="radio" asp-for="BudgetType" value="High" id="budget-High" />
-                        <label for="budget-High">
-                            <img src="~/images/money.png" alt="High budget icon">
-                            High
-                        </label>
+                        <label for="budget-High"><img src="~/images/money.png" alt="High" />High</label>
                     </div>
-                    <span asp-validation-for="BudgetType" class="text-danger"></span>
                 </div>
             </section>
-            <!-- Hotel Star Rating -->
-            <section id="activities" class="form-section">
-                <h2 class="section-title">Select Hotel Rating</h2>
+
+            <section class="form-section">
+                <h3>Preferred hotel rating</h3>
                 <div class="form-group block-options">
                     @for (int i = 1; i <= 5; i++)
                     {
                         <div class="block-option">
                             <input type="radio" asp-for="HotelStarRating" value="@i" id="rating-@i" />
-                            <label for="rating-@i">
-                                <img src="~/images/star.png" alt="@i star icon">
-                                @i Star
-                            </label>
+                            <label for="rating-@i"><img src="~/images/star.png" alt="@i star" />@i Star</label>
                         </div>
                     }
-                    <span asp-validation-for="HotelStarRating" class="text-danger"></span>
                 </div>
             </section>
-            <!-- Submit Button -->
-            <div class="submit-container">
-                <button type="submit" class="generate-plan-btn">
-                    Generate My Plan
-                </button>
-            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%; text-align:center; font-size:var(--fs-lg); padding:14px;">
+                Generate My Plan
+            </button>
         </form>
     </div>
-</main>
-<footer class="site-footer">
-    <div class="container footer-container">
-        <a href="#" class="footer-logo">
-            <img src="~/images/ViaItalia logo in white.png" alt="ViaItalia white logo">
-        </a>
-        <nav class="footer-nav">
-            <ul>
-                    <li><a asp-controller="Pages" asp-action="Contactus">Contact us</a></li>
-                    <li><a asp-controller="Pages" asp-action="Aboutus">About us</a></li>
-                    <li><a asp-controller="Pages" asp-action="Terms">Terms & Conditions</a></li>
-                    <li><a asp-controller="Pages" asp-action="PrivacyPolicy">Privacy Policy</a></li>
-                    <li><a asp-controller="Pages" asp-action="Blog">Blog</a></li>
-            </ul>
-        </nav>
-    </div>
-</footer>
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script src="~/js/recommendation form.js"></script>
-   
-}
+</div>
+
+@await Html.PartialAsync("_Footer")
+
+<script>
+document.getElementById('increaseBtn')?.addEventListener('click', function () {
+    var input = document.getElementById('durationInput');
+    input.value = parseInt(input.value || 1, 10) + 1;
+});
+document.getElementById('decreaseBtn')?.addEventListener('click', function () {
+    var input = document.getElementById('durationInput');
+    input.value = Math.max(1, parseInt(input.value || 1, 10) - 1);
+});
+</script>
+
 </body>
 </html>
